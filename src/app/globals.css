@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+:root {
+  /* Jersey palette: olive, terracotta, charcoal (no logo colors) */
+  --background: #0d0e0c;
+  --foreground: #f5f5f0;
+  --muted: #9ca090;
+  --border: #252a22;
+  --steel: #1e221c;
+  --card: #141814;
+  --olive: #4d5c44;
+  --olive-light: #5c6b4f;
+  --accent: #d95d39;
+  --accent-bright: #e07c3c;
+  --accent-dim: rgba(217, 93, 57, 0.18);
+  --beige: #c4b8a8;
+}
+
+:root.dark {
+  --background: #080908;
+  --foreground: #f5f5f0;
+  --muted: #9ca090;
+  --border: #1e231c;
+  --steel: #161a14;
+  --card: #0f130e;
+  --olive: #3d4a36;
+  --olive-light: #4d5c44;
+  --accent: #d95d39;
+  --accent-bright: #e07c3c;
+  --accent-dim: rgba(217, 93, 57, 0.14);
+  --beige: #b8ac9c;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-steel: var(--steel);
+  --color-card: var(--card);
+  --color-olive: var(--olive);
+  --color-olive-light: var(--olive-light);
+  --color-accent: var(--accent);
+  --color-accent-bright: var(--accent-bright);
+  --color-beige: var(--beige);
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+body {
+  @apply antialiased;
+}
+
+/* Grid — olive/orange tint */
+.lab-grid {
+  background-image: linear-gradient(
+      rgba(217, 93, 57, 0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(77, 92, 68, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.lab-noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Section title — lab-style (уніфікована шкала) */
+.section-label {
+  @apply text-[9px] font-mono uppercase tracking-[0.28em] text-muted;
+}
+
+.section-title {
+  @apply text-sm md:text-base lg:text-lg font-semibold tracking-tight text-foreground uppercase;
+}
+
+/* Картки: заголовок, мета, опис, ціна */
+.card-title {
+  @apply text-[13.5px] font-semibold text-foreground leading-tight uppercase tracking-wide;
+}
+.card-meta {
+  @apply text-[10px] font-mono uppercase tracking-[0.2em];
+}
+.card-desc {
+  @apply text-[10px] leading-relaxed uppercase tracking-wide;
+}
+.card-price {
+  @apply text-[12px] font-mono uppercase tracking-[0.15em];
+}
+.text-tiny {
+  @apply text-[9px];
+}
+
+/* Card hover glow */
+.card-hover {
+  @apply transition-all duration-300;
+}
+.card-hover:hover {
+  box-shadow: 0 0 0 1px rgba(217, 93, 57, 0.3), 0 8px 32px -8px rgba(0, 0, 0, 0.5);
+}
+
+/* Accent top line for cards */
+.card-accent-top {
+  position: relative;
+  overflow: hidden;
+}
+.card-accent-top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent 70%);
+  border-radius: 2px 2px 0 0;
+  opacity: 0.7;
+}
+
+/* Приховати скролбар, залишити скрол */
+.scrollbar-hide {
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
