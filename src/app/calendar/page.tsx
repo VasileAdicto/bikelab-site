@@ -134,33 +134,43 @@ export default function CalendarPage() {
               </div>
               <div className="p-3 flex flex-col gap-2">
                 <div className="flex items-start justify-between gap-2 flex-wrap">
-                  <h2 className="card-title text-[11px] leading-tight line-clamp-2">{ride.title}</h2>
-                  <span className="shrink-0 rounded-full border border-border bg-steel/80 px-1.5 py-0.5 text-[9px] font-mono uppercase tracking-[0.1em] text-muted">
+                  <h2 className="card-title text-[12px] leading-tight line-clamp-2">{ride.title}</h2>
+                  <span className="shrink-0 rounded-full border border-border bg-steel/80 px-2 py-0.5 text-[10px] font-mono uppercase tracking-[0.1em] text-muted">
                     {ride.category === "XC" ? "XC" : ride.category === "Road" ? "Road" : "Race"}
                   </span>
                 </div>
-                <p className="text-[9px] font-mono text-muted">
+                <p className="text-[11px] font-mono text-muted">
                   {new Date(ride.date).toLocaleDateString("uk-UA", { day: "2-digit", month: "short" })}
                   , 08:30 · {ride.meetingPoint}
                 </p>
-                <dl className="grid grid-cols-2 gap-x-2 gap-y-0.5 text-[9px] font-mono text-muted">
+                <dl className="grid grid-cols-2 gap-x-2 gap-y-0.5 text-[11px] font-mono text-muted">
                   <div><dt className="text-muted/80">Дист.</dt><dd className="text-foreground/90">{ride.distance}</dd></div>
                   <div><dt className="text-muted/80">Набір</dt><dd className="text-foreground/90">{ride.elevation}</dd></div>
                   <div><dt className="text-muted/80">Вт/кг</dt><dd className="text-foreground/90">{ride.powerWkg}</dd></div>
                   <div><dt className="text-muted/80">Час</dt><dd className="text-foreground/90">{ride.duration}</dd></div>
                 </dl>
                 <div>
-                  <span className="text-[8px] uppercase text-muted/80">Складність</span>
+                  <span className="text-[9px] uppercase text-muted/80">Складність</span>
                   <DifficultyBar value={ride.difficulty} />
                 </div>
-                <a
-                  href={STRAVA_ROUTE_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[9px] font-mono uppercase tracking-wider text-accent hover:underline mt-0.5"
-                >
-                  Strava →
-                </a>
+                <div className="mt-0.5 flex items-center justify-between gap-3">
+                  <a
+                    href={STRAVA_ROUTE_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[10px] font-mono uppercase tracking-wider text-accent hover:underline"
+                  >
+                    Strava →
+                  </a>
+                  <a
+                    href={STRAVA_ROUTE_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[10px] font-mono uppercase tracking-wider text-foreground/80 hover:text-accent hover:underline"
+                  >
+                    ДОКЛАДНІШЕ &gt;&gt;
+                  </a>
+                </div>
               </div>
             </article>
           ))}

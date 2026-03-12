@@ -84,6 +84,11 @@ body {
   @apply text-sm md:text-base lg:text-lg font-semibold tracking-tight text-foreground uppercase;
 }
 
+/* About page subtitles */
+.about-subtitle {
+  @apply text-[21px] font-mono uppercase tracking-[0.28em] text-white;
+}
+
 /* Картки: заголовок, мета, опис, ціна */
 .card-title {
   @apply text-[13.5px] font-semibold text-foreground leading-tight uppercase tracking-wide;

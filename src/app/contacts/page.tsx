@@ -21,7 +21,7 @@ export default function AboutPage() {
           </p>
 
           <div>
-            <h2 className="section-label text-white mb-2 text-[21px]">
+            <h2 className="about-subtitle mb-2">
               Наша філософія: «Лабораторія швидкості»
             </h2>
             <p>
@@ -35,7 +35,7 @@ export default function AboutPage() {
           </div>
 
           <div>
-            <h2 className="section-label text-white mb-2 text-[21px]">
+            <h2 className="about-subtitle mb-2">
               Чим ми займаємося
             </h2>
             <ul className="space-y-2 list-disc list-inside">
@@ -64,7 +64,7 @@ export default function AboutPage() {
           </div>
 
           <div>
-            <h2 className="section-label text-white mb-2 text-[21px]">
+            <h2 className="about-subtitle mb-2">
               Ми — це люди
             </h2>
             <p>
@@ -77,7 +77,7 @@ export default function AboutPage() {
           </div>
 
           <div>
-            <h2 className="section-label text-white mb-2 text-[21px]">
+            <h2 className="about-subtitle mb-2">
               Більше ніж спорт: Tour de Drone
             </h2>
             <p>
