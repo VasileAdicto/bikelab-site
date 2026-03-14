@@ -42,7 +42,7 @@ export function Logo({ variant = "header", className = "" }: LogoProps) {
             className="w-full h-full object-contain object-top"
             style={{
               filter:
-                "invert(1) sepia(0.6) saturate(4) hue-rotate(10deg) brightness(1)",
+                "invert(48%) sepia(78%) saturate(1650%) hue-rotate(340deg) brightness(95%) contrast(92%)",
             }}
           />
         </span>
