@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono } from "next/font/google";
+import { Inter, Oswald } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/theme-context";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { SwipeNav } from "@/components/swipe-nav";
 
-const jetbrainsMono = JetBrains_Mono({
-  weight: ["400", "500", "600", "700"],
+const inter = Inter({
   subsets: ["latin", "cyrillic"],
   variable: "--font-sans",
+  display: "swap",
+});
+
+const oswald = Oswald({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-heading",
   display: "swap",
 });
 
@@ -20,8 +25,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="uk" suppressHydrationWarning className={jetbrainsMono.variable}>
-      <body className="min-h-screen bg-background text-foreground font-serif antialiased">
+    <html lang="uk" suppressHydrationWarning className={`${inter.variable} ${oswald.variable}`}>
+      <body className="min-h-screen bg-background text-foreground font-sans antialiased">
         <ThemeProvider>
           <SwipeNav>
             <div className="lab-grid min-h-screen flex flex-col">

@@ -14,7 +14,6 @@
   --accent-bright: #e07c3c;
   --accent-dim: rgba(217, 93, 57, 0.18);
   --beige: #c4b8a8;
-  --font-serif: Georgia, "Times New Roman", serif;
 }
 
 :root.dark {
@@ -45,27 +44,23 @@
   --color-accent-bright: var(--accent-bright);
   --color-beige: var(--beige);
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-heading), var(--font-sans), sans-serif;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-serif);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
-/* Кнопки, навігація, назви розділів — JetBrains Mono */
-header,
-nav,
-footer,
-button,
+/* Заголовки — Oswald */
+h1, h2, h3, h4, h5, h6,
 .section-label,
 .section-title,
-.card-meta,
 .card-title,
-.card-price,
 .about-subtitle {
-  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-heading), sans-serif;
 }
 
 body {
