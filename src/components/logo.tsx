@@ -14,7 +14,6 @@ export function Logo({ variant = "header", className = "" }: LogoProps) {
       className={`inline-flex items-center gap-1 sm:gap-4 group ${className}`}
       aria-label="BIKE L.A.B. — на головну"
     >
-      {/* Біло-помаранчеве лого: верх (BIKE) — білий, низ (L.A.B.) — помаранчевий */}
       <span className="relative inline-block w-[120px] sm:w-[140px] h-[44px] sm:h-[52px] shrink-0">
         {/* Верхня половина — біла */}
         <span
@@ -29,7 +28,8 @@ export function Logo({ variant = "header", className = "" }: LogoProps) {
             className="w-full h-full object-contain object-top invert outline-none [outline:none]"
           />
         </span>
-        {/* Нижня половина — L.A.B. кольором #DA5C3B (фірмовий) */}
+
+        {/* Нижня половина — L.A.B. у кольорі RGB(217, 93, 57) */}
         <span
           className="absolute inset-0 overflow-hidden"
           style={{ clipPath: "inset(50% 0 0 0)" }}
@@ -42,7 +42,7 @@ export function Logo({ variant = "header", className = "" }: LogoProps) {
             className="w-full h-full object-contain object-top outline-none [outline:none]"
             style={{
               filter:
-                "invert(42%) sepia(73%) saturate(1540%) hue-rotate(338deg) brightness(98%) contrast(92%)",
+                "invert(46%) sepia(78%) saturate(600%) hue-rotate(340deg) brightness(95%) contrast(90%)",
               outline: "none",
             }}
           />
