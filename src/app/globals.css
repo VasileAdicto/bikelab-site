@@ -52,8 +52,6 @@ body {
   color: var(--foreground);
   font-family: var(--font-serif);
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
 }
 
 /* Кнопки, навігація, назви розділів — JetBrains Mono */
@@ -117,7 +115,7 @@ body {
   letter-spacing: 0.28em;
 }
 .card-desc {
-  @apply text-[10px] leading-relaxed uppercase tracking-wide;
+  @apply text-[10px] leading-relaxed tracking-wide;
 }
 .card-price {
   @apply text-[12px] font-mono uppercase tracking-[0.15em];
