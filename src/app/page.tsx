@@ -32,11 +32,9 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Київська команда{" "}
             <span className="text-accent drop-shadow-[0_0_24px_rgba(217,93,57,0.5)]">
-              BIKE L.A.B.
-            </span>{" "}
-            для тих, хто мислить як інженер, а їде як чемпіон.
+              BIKE LIKE A BOSS
+            </span>
           </motion.h1>
 
           <motion.p

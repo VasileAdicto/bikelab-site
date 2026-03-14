@@ -51,7 +51,7 @@ export function Logo({ variant = "header", className = "" }: LogoProps) {
 
       {!isFooter && (
         <span className="text-[10px] font-mono uppercase tracking-[0.15em] text-muted/70 hidden sm:inline border-l pl-4 border-border">
-          Bike Like A Boss · Kyiv
+          Kyiv Bike Club
         </span>
       )}
     </Link>
