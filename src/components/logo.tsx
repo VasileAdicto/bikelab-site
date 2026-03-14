@@ -15,14 +15,19 @@ export function Logo({ variant = "header", className = "" }: LogoProps) {
       aria-label="BIKE L.A.B. — на головну"
     >
       <span
-        className="font-extrabold leading-[0.85] text-foreground select-none uppercase tracking-tighter inline-flex flex-col items-stretch"
+        className="font-extrabold leading-[0.85] text-foreground select-none uppercase tracking-tighter inline-flex flex-col items-stretch w-fit"
         style={{ fontFamily: "var(--font-sans), system-ui, sans-serif" }}
       >
-        <span className="block text-2xl sm:text-3xl text-center tracking-[-0.05em]">
+        <span className="block text-2xl sm:text-3xl text-center tracking-[-0.05em] min-w-0">
           BIKE
         </span>
-        <span className="mt-0.5 flex justify-center text-[0.72em] sm:text-[0.8em] text-accent tracking-[0.22em]">
-          <span className="inline-block px-0.5">L.A.B.</span>
+        <span className="mt-0.5 flex justify-between items-center w-full text-[0.72em] sm:text-[0.8em] text-accent min-w-0 self-stretch">
+          <span className="flex-shrink-0">L</span>
+          <span className="flex-shrink-0">.</span>
+          <span className="flex-shrink-0">A</span>
+          <span className="flex-shrink-0">.</span>
+          <span className="flex-shrink-0">B</span>
+          <span className="flex-shrink-0">.</span>
         </span>
       </span>
 
