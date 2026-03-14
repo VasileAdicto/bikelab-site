@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { PT_Serif } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/theme-context";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { SwipeNav } from "@/components/swipe-nav";
 
-const inter = Inter({
+const ptSerif = PT_Serif({
+  weight: ["400", "700"],
   subsets: ["latin", "cyrillic"],
   variable: "--font-sans",
   display: "swap",
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="uk" suppressHydrationWarning className={inter.variable}>
+    <html lang="uk" suppressHydrationWarning className={ptSerif.variable}>
       <body className="min-h-screen bg-background text-foreground font-sans antialiased">
         <ThemeProvider>
           <SwipeNav>
