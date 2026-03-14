@@ -29,7 +29,7 @@ export function Logo({ variant = "header", className = "" }: LogoProps) {
             className="w-full h-full object-contain object-top invert outline-none [outline:none]"
           />
         </span>
-        {/* Нижня половина — L.A.B. фірмовим помаранчевим без обводки */}
+        {/* Нижня половина — L.A.B. кольором #DA5C3B (фірмовий) */}
         <span
           className="absolute inset-0 overflow-hidden"
           style={{ clipPath: "inset(50% 0 0 0)" }}
@@ -42,7 +42,8 @@ export function Logo({ variant = "header", className = "" }: LogoProps) {
             className="w-full h-full object-contain object-top outline-none [outline:none]"
             style={{
               filter:
-                "invert(1) sepia(0.55) saturate(4.5) hue-rotate(15deg) brightness(0.9)",
+                "invert(42%) sepia(73%) saturate(1540%) hue-rotate(338deg) brightness(98%) contrast(92%)",
+              outline: "none",
             }}
           />
         </span>
