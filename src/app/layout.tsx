@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { PT_Serif } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/theme-context";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { SwipeNav } from "@/components/swipe-nav";
 
-const ptSerif = PT_Serif({
-  weight: ["400", "700"],
+const jetbrainsMono = JetBrains_Mono({
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin", "cyrillic"],
   variable: "--font-sans",
   display: "swap",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="uk" suppressHydrationWarning className={ptSerif.variable}>
+    <html lang="uk" suppressHydrationWarning className={jetbrainsMono.variable}>
       <body className="min-h-screen bg-background text-foreground font-sans antialiased">
         <ThemeProvider>
           <SwipeNav>
