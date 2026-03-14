@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="uk" suppressHydrationWarning className={jetbrainsMono.variable}>
-      <body className="min-h-screen bg-background text-foreground font-sans antialiased">
+      <body className="min-h-screen bg-background text-foreground font-serif antialiased">
         <ThemeProvider>
           <SwipeNav>
             <div className="lab-grid min-h-screen flex flex-col">
