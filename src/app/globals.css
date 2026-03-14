@@ -92,8 +92,12 @@ body {
 }
 
 .section-title {
-  @apply text-sm md:text-base lg:text-lg font-semibold text-foreground uppercase;
+  @apply text-sm md:text-base lg:text-lg font-semibold uppercase;
   letter-spacing: 0.2em;
+  color: var(--foreground);
+}
+.section-title.text-accent {
+  color: var(--accent);
 }
 
 /* About page subtitles */
