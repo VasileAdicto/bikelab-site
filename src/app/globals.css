@@ -144,6 +144,11 @@ body {
   opacity: 0.7;
 }
 
+/* Картки тренерів — однаковий дизайн */
+.trainer-card {
+  min-height: 140px;
+}
+
 /* Приховати скролбар, залишити скрол */
 .scrollbar-hide {
   overflow-x: auto;

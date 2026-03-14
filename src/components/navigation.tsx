@@ -26,8 +26,8 @@ export function Navigation() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">
-      <nav className="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-4">
-        <Logo variant="header" />
+      <nav className="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-4 w-full">
+        <Logo variant="header" className="shrink-0" />
 
         <div className="hidden md:flex items-center gap-8">
           {links.map((link) => {
@@ -53,7 +53,7 @@ export function Navigation() {
           })}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 shrink-0 ml-auto">
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}

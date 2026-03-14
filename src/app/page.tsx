@@ -38,14 +38,13 @@ export default function Home() {
           </motion.h1>
 
           <motion.p
-            className="max-w-xl text-xs text-muted"
+            className="max-w-xl text-[11px] text-muted leading-relaxed"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
           >
-            Ми комбінуємо біомеханику, дані з датчиків та реальні київські рельєфи
-            (Голосіїв, Бориспільська траса), щоб оптимізувати кожен ват та
-            кожну секунду на колі.
+            Ми комбінуємо біомеханику, дані з датчиків та реальні київські рельєфи,
+            щоб оптимізувати кожен ват та кожну секунду на колі.
           </motion.p>
 
           <motion.div
@@ -69,7 +68,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-3 gap-3 sm:gap-4 pt-2 text-xs font-mono uppercase tracking-[0.2em]"
+            className="grid grid-cols-3 gap-2 sm:gap-2.5 pt-2 text-xs font-mono uppercase tracking-[0.2em] max-w-[min(100%,22rem)]"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.25 }}
@@ -77,7 +76,7 @@ export default function Home() {
             {stats.map((s) => (
               <div
                 key={s.label}
-                className="rounded-xl border border-border bg-card/80 px-4 py-3.5 card-hover card-accent-top"
+                className="rounded-xl border border-border bg-card/80 px-3 py-3 card-hover card-accent-top"
               >
                 <div className="text-accent text-base font-semibold">{s.value}</div>
                 <div className="mt-1 card-meta text-muted">{s.label}</div>
@@ -122,13 +121,13 @@ export default function Home() {
               alt=""
               width={56}
               height={56}
-              className="h-14 w-14 shrink-0 rounded-full border-2 border-accent/30 object-cover bg-steel"
+              className="h-14 w-14 shrink-0 rounded-full border-2 border-accent/30 object-cover bg-steel self-start"
             />
-            <div className="min-w-0">
-              <p className="text-foreground/90 leading-relaxed">
+            <div className="min-w-0 flex flex-col flex-1">
+              <p className="text-foreground/90 leading-relaxed flex-1">
                 Я був здивований наскільки просто пояснюють складні речі, завдяки чому все виходило в 100 разів швидше ніж коли сам вчився.
               </p>
-              <cite className="mt-3 block card-desc font-mono text-accent not-italic">
+              <cite className="mt-3 text-[11px] font-mono text-accent not-italic">
                 Толя
               </cite>
             </div>
@@ -139,13 +138,13 @@ export default function Home() {
               alt=""
               width={56}
               height={56}
-              className="h-14 w-14 shrink-0 rounded-full border-2 border-accent/30 object-cover bg-steel"
+              className="h-14 w-14 shrink-0 rounded-full border-2 border-accent/30 object-cover bg-steel self-start"
             />
-            <div className="min-w-0">
-              <p className="text-foreground/90 leading-relaxed">
+            <div className="min-w-0 flex flex-col flex-1">
+              <p className="text-foreground/90 leading-relaxed flex-1">
                 Я прийшов повним профаном, тепер катаю заднім колесом по 10 метрів, а всього рік тому сів на велосипед.
               </p>
-              <cite className="mt-3 block card-desc font-mono text-accent not-italic">
+              <cite className="mt-3 text-[11px] font-mono text-accent not-italic">
                 Сергій
               </cite>
             </div>
@@ -156,13 +155,13 @@ export default function Home() {
               alt=""
               width={56}
               height={56}
-              className="h-14 w-14 shrink-0 rounded-full border-2 border-accent/30 object-cover bg-steel"
+              className="h-14 w-14 shrink-0 rounded-full border-2 border-accent/30 object-cover bg-steel self-start"
             />
-            <div className="min-w-0">
-              <p className="text-foreground/90 leading-relaxed">
+            <div className="min-w-0 flex flex-col flex-1">
+              <p className="text-foreground/90 leading-relaxed flex-1">
                 Була приємно здивована що стільки дівчат на тренуваннях, що можна не тільки покатати, а поспілкуватися на дівчачі теми.
               </p>
-              <cite className="mt-3 block card-desc font-mono text-accent not-italic">
+              <cite className="mt-3 text-[11px] font-mono text-accent not-italic">
                 Таня
               </cite>
             </div>
@@ -172,21 +171,21 @@ export default function Home() {
 
       <section className="grid gap-6 border-t border-border/60 pt-12 text-xs text-muted md:grid-cols-3">
         <div className="rounded-2xl border border-border/60 bg-card/40 p-5 card-hover border-l-2 border-l-olive-light/50">
-          <div className="section-label text-foreground/80">XC / Trail</div>
+          <div className="section-label text-foreground/80 text-[11px]">XC / Trail</div>
           <p className="mt-2 leading-relaxed text-foreground/85">
             Технічні тренування в Голосієві: коріння, каміння, вузькі стежки. Ми
             знімаємо відео, аналізуємо позицію, кут атаки та роботу підвіски.
           </p>
         </div>
         <div className="rounded-2xl border border-border/60 bg-card/40 p-5 card-hover border-l-2 border-l-accent/50">
-          <div className="section-label text-foreground/80">Road / Race</div>
+          <div className="section-label text-foreground/80 text-[11px]">Road / Race</div>
           <p className="mt-2 leading-relaxed text-foreground/85">
             Інтервальні блоки на Бориспільській трасі, робота в групі, енергетика
             на довгих заїздах, підготовка до гранфондо та стартів.
           </p>
         </div>
         <div className="rounded-2xl border border-border/60 bg-card/40 p-5 card-hover border-l-2 border-l-olive-light/50">
-          <div className="section-label text-foreground/80">Tour de Drone</div>
+          <div className="section-label text-foreground/80 text-[11px]">Tour de Drone</div>
           <p className="mt-2 leading-relaxed text-foreground/85">
             Волонтерський напрямок клубу: тренуємось, знімаємо контент та
             перетворюємо кілометри на підтримку виробництва дронів для ЗСУ.

@@ -43,7 +43,7 @@ export default function BlogPage() {
     <div className="space-y-10">
       <header className="space-y-4">
         <p className="section-label">Blog / Lab Reports</p>
-        <h1 className="section-title">
+        <h1 className="section-title text-accent">
           Лабораторні звіти, а не просто пости.
         </h1>
         <p className="max-w-2xl text-xs text-muted leading-relaxed">

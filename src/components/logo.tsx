@@ -11,7 +11,7 @@ export function Logo({ variant = "header", className = "" }: LogoProps) {
   return (
     <Link
       href="/"
-      className={`inline-flex items-center gap-1 sm:gap-4 group ${className}`}
+      className={`inline-flex items-center gap-0.5 sm:gap-1.5 group ${className}`}
       aria-label="BIKE L.A.B. — на головну"
     >
       <span className="relative inline-block w-[120px] sm:w-[140px] h-[44px] sm:h-[52px] shrink-0">
@@ -50,7 +50,7 @@ export function Logo({ variant = "header", className = "" }: LogoProps) {
       </span>
 
       {!isFooter && (
-        <span className="text-[10px] font-mono uppercase tracking-[0.15em] text-muted/70 hidden sm:inline border-l pl-4 border-border">
+        <span className="text-[10px] font-mono uppercase tracking-[0.15em] text-muted/70 hidden sm:inline border-l pl-2 sm:pl-3 border-border">
           Kyiv Bike Club
         </span>
       )}

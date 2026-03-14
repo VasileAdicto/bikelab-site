@@ -48,7 +48,7 @@ export default function TrainingPage() {
     <div className="space-y-10">
       <header className="space-y-4">
         <p className="section-label">Training / Shop</p>
-        <h1 className="section-title">
+        <h1 className="section-title text-accent">
           Тренування, які збираються як лабораторний протокол.
         </h1>
         <p className="max-w-2xl text-xs text-muted leading-relaxed">
