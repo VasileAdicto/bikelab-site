@@ -11,23 +11,40 @@ export function Logo({ variant = "header", className = "" }: LogoProps) {
   return (
     <Link
       href="/"
-      className={`inline-flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 group ${className}`}
+      className={`inline-flex items-center gap-1 sm:gap-4 group ${className}`}
       aria-label="BIKE L.A.B. — на головну"
     >
-      <span
-        className="font-extrabold leading-[0.85] text-foreground select-none uppercase tracking-tighter inline-flex flex-col items-stretch w-fit"
-        style={{ fontFamily: "var(--font-sans), system-ui, sans-serif" }}
-      >
-        <span className="block text-2xl sm:text-3xl text-center tracking-[-0.05em] min-w-0">
-          BIKE
+      {/* Біло-помаранчеве лого: верх (BIKE) — білий, низ (L.A.B.) — помаранчевий */}
+      <span className="relative inline-block w-[120px] sm:w-[140px] h-[44px] sm:h-[52px] shrink-0">
+        {/* Верхня половина — біла */}
+        <span
+          className="absolute inset-0 overflow-hidden"
+          style={{ clipPath: "inset(0 0 50% 0)" }}
+        >
+          <img
+            src="/logo.png"
+            alt=""
+            width={140}
+            height={52}
+            className="w-full h-full object-contain object-top invert"
+          />
         </span>
-        <span className="mt-0.5 flex justify-between items-center w-full text-[0.72em] sm:text-[0.8em] text-accent min-w-0 self-stretch">
-          <span className="flex-shrink-0">L</span>
-          <span className="flex-shrink-0">.</span>
-          <span className="flex-shrink-0">A</span>
-          <span className="flex-shrink-0">.</span>
-          <span className="flex-shrink-0">B</span>
-          <span className="flex-shrink-0">.</span>
+        {/* Нижня половина — помаранчева (accent #d95d39) */}
+        <span
+          className="absolute inset-0 overflow-hidden"
+          style={{ clipPath: "inset(50% 0 0 0)" }}
+        >
+          <img
+            src="/logo.png"
+            alt=""
+            width={140}
+            height={52}
+            className="w-full h-full object-contain object-top"
+            style={{
+              filter:
+                "invert(1) sepia(0.55) saturate(4.5) hue-rotate(15deg) brightness(0.9)",
+            }}
+          />
         </span>
       </span>
 
