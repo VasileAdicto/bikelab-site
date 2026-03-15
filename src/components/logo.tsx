@@ -22,44 +22,15 @@ export function Logo({ variant = "header", className = "", cropToLetters = false
           isCompact ? "w-[72px] sm:w-[88px] h-[44px] sm:h-[52px]" : "w-[120px] sm:w-[140px] h-[44px] sm:h-[52px]"
         }`}
       >
-        {/* Верхня половина — біла */}
-        <span
-          className="absolute inset-0 overflow-hidden"
-          style={{ clipPath: "inset(0 0 50% 0)" }}
-        >
-          <img
-            src="/logo.png"
-            alt=""
-            width={140}
-            height={52}
-            className={`h-full object-top invert outline-none [outline:none] ${
-              isCompact ? "w-auto min-w-full" : "w-full object-contain"
-            }`}
-            style={isCompact ? { objectPosition: "right center", objectFit: "cover" } : undefined}
-          />
-        </span>
-
-        {/* Нижня половина — L.A.B. у кольорі акценту RGB(255, 48, 0) */}
-        <span
-          className="absolute inset-0 overflow-hidden"
-          style={{ clipPath: "inset(50% 0 0 0)" }}
-        >
-          <img
-            src="/logo.png"
-            alt=""
-            width={140}
-            height={52}
-            className={`h-full object-top outline-none [outline:none] ${
-              isCompact ? "w-auto min-w-full" : "w-full object-contain"
-            }`}
-            style={{
-              filter:
-                "invert(46%) sepia(78%) saturate(600%) hue-rotate(340deg) brightness(95%) contrast(90%)",
-              outline: "none",
-              ...(isCompact ? { objectPosition: "right center", objectFit: "cover" } : {}),
-            }}
-          />
-        </span>
+        <img
+          src="/logo.png"
+          alt="BikeLab Kyiv logo"
+          width={140}
+          height={52}
+          className={`h-full outline-none [outline:none] ${
+            isCompact ? "w-auto min-w-full object-left" : "w-full object-contain object-center"
+          }`}
+        />
       </span>
 
       {!isFooter && (
