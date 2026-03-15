@@ -116,6 +116,7 @@ export default function AdminDashboardPage() {
   }
 
   const texts = content.texts ?? {};
+  const images = content.images ?? {};
   const sizes = content.sizes ?? {};
   const fontSizes = content.fontSizes ?? {};
   const customCode = content.customCode ?? {};
@@ -243,9 +244,46 @@ export default function AdminDashboardPage() {
           </div>
         </div>
 
-        {/* Правий блок ми тут не редагуємо, просто прев'ю */}
+        {/* Правий блок — прев'ю та заміна фото героя */}
         <div className="hidden md:block rounded-3xl border border-dashed border-border bg-card/40 p-4 text-xs text-muted">
-          Правий блок (фото / Instagram) поки що редагується у коді. Можемо додати і його пізніше.
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-border bg-card/80">
+            {images["hero.photo"] ? (
+              <img
+                src={images["hero.photo"]}
+                alt="Hero photo"
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center px-4 text-center text-xs text-muted">
+                Поки що використовується стандартний Instagram‑блок на головній. Тут можна завантажити власне фото героя.
+              </div>
+            )}
+            <label className="absolute bottom-3 right-3 inline-flex items-center gap-2 rounded-full bg-background/90 px-3 py-1.5 border border-border text-[11px] text-foreground cursor-pointer hover:border-accent hover:text-accent">
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={async (e) => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+                  const form = new FormData();
+                  form.set("file", file);
+                  form.set("key", "hero.photo");
+                  const res = await fetch("/api/admin/upload", {
+                    method: "POST",
+                    credentials: "include",
+                    body: form,
+                  });
+                  const data = await res.json();
+                  if (data?.url) {
+                    await savePartial({ images: { "hero.photo": data.url } });
+                  }
+                  e.target.value = "";
+                }}
+              />
+              Змінити фото
+            </label>
+          </div>
         </div>
       </section>
 

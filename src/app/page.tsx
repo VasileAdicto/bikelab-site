@@ -1,15 +1,33 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { InstagramPhotoRotator } from "@/components/instagram-photo-rotator";
+import type { SiteContent } from "@/lib/content";
 
-const stats = [
+const defaultStats = [
   { label: "років досвіду", value: "10+" },
   { label: "проведених тренувань", value: "500+" },
   { label: "дисципліни", value: "XC & Road" },
 ];
 
 export default function Home() {
+  const [content, setContent] = useState<SiteContent | null>(null);
+
+  useEffect(() => {
+    fetch("/api/content")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (data) setContent(data);
+      })
+      .catch(() => {});
+  }, []);
+
+  const texts = content?.texts ?? {};
+  const statsFromContent = texts["stats"] as { value: string; label: string }[] | undefined;
+  const stats = Array.isArray(statsFromContent) && statsFromContent.length === 3 ? statsFromContent : defaultStats;
+  const heroPhoto = content?.images?.["hero.photo"] as string | undefined;
+
   return (
     <div className="relative space-y-16">
       <div className="lab-noise" />
@@ -23,7 +41,7 @@ export default function Home() {
             transition={{ duration: 0.4 }}
           >
             <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_14px_var(--accent)]" />
-            Лабораторія твоєї швидкості
+            {(texts["hero.tagline"] as string) ?? "Лабораторія твоєї швидкості"}
           </motion.p>
 
           <motion.h1
@@ -33,7 +51,7 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             <span className="text-accent drop-shadow-[0_0_24px_rgba(255,48,0,0.5)]">
-              BIKE LIKE A BOSS
+              {(texts["hero.title"] as string) ?? "BIKE LIKE A BOSS"}
             </span>
           </motion.h1>
 
@@ -43,8 +61,8 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
           >
-            Ми комбінуємо біомеханику, дані з датчиків та реальні київські рельєфи,
-            щоб оптимізувати кожен ват та кожну секунду на колі.
+            {(texts["hero.description"] as string) ??
+              "Ми комбінуємо біомеханику, дані з датчиків та реальні київські рельєфи, щоб оптимізувати кожен ват та кожну секунду на колі."}
           </motion.p>
 
           <motion.div
@@ -57,13 +75,13 @@ export default function Home() {
               href="/training"
               className="group inline-flex items-center gap-2 rounded-full border border-accent bg-accent px-6 py-2.5 text-xs font-mono uppercase tracking-[0.25em] font-medium text-white shadow-[0_0_28px_rgba(255,48,0,0.4)] transition-all hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(255,48,0,0.5)] hover:bg-accent-bright"
             >
-              Записатися на тренування
+              {(texts["hero.cta1"] as string) ?? "Записатися на тренування"}
             </a>
             <a
               href="/calendar"
               className="inline-flex items-center gap-2 rounded-full border border-border bg-steel/50 px-5 py-2.5 text-xs font-mono uppercase tracking-[0.25em] text-muted hover:border-accent/60 hover:text-accent transition-all"
             >
-              Розклад клубних заїздів
+              {(texts["hero.cta2"] as string) ?? "Розклад клубних заїздів"}
             </a>
           </motion.div>
 
@@ -85,30 +103,41 @@ export default function Home() {
           </motion.div>
         </div>
 
-        <motion.a
-          href="https://www.instagram.com/bike_like_a_boss"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="relative flex aspect-[4/5] w-full flex-col overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-slate-900/90 via-black to-slate-950/90 shadow-[0_0_60px_-12px_rgba(0,0,0,0.6)] transition-shadow hover:shadow-[0_0_48px_-8px_rgba(255,48,0,0.25)]"
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(255,48,0,0.15),transparent_50%),radial-gradient(ellipse_60%_40%_at_90%_100%,rgba(77,92,68,0.15),transparent_45%)]" />
-          {/* Фото з тонкою обводкою та мінімальним відступом */}
-          <div className="relative flex-1 px-1.5 sm:px-2 pt-2 pb-0.5 flex flex-col min-h-0">
-            <div className="relative flex-1 min-h-0 overflow-hidden max-w-[95%] mx-auto w-full border border-border/60 rounded-sm">
-              <InstagramPhotoRotator />
+        {heroPhoto ? (
+          <motion.div
+            className="relative flex aspect-[4/5] w-full overflow-hidden rounded-3xl border border-border bg-black shadow-[0_0_60px_-12px_rgba(0,0,0,0.6)]"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <img src={heroPhoto} alt="BikeLab hero" className="h-full w-full object-cover" />
+          </motion.div>
+        ) : (
+          <motion.a
+            href="https://www.instagram.com/bike_like_a_boss"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative flex aspect-[4/5] w-full flex-col overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-slate-900/90 via-black to-slate-950/90 shadow-[0_0_60px_-12px_rgba(0,0,0,0.6)] transition-shadow hover:shadow-[0_0_48px_-8px_rgba(255,48,0,0.25)]"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(255,48,0,0.15),transparent_50%),radial-gradient(ellipse_60%_40%_at_90%_100%,rgba(77,92,68,0.15),transparent_45%)]" />
+            {/* Фото з тонкою обводкою та мінімальним відступом */}
+            <div className="relative flex-1 px-1.5 sm:px-2 pt-2 pb-0.5 flex flex-col min-h-0">
+              <div className="relative flex-1 min-h-0 overflow-hidden max-w-[95%] mx-auto w-full border border-border/60 rounded-sm">
+                <InstagramPhotoRotator />
+              </div>
             </div>
-          </div>
-          {/* Під фото: @handle і кнопка Підписатися */}
-          <div className="relative shrink-0 p-4 pt-2 pb-5 space-y-3">
-            <p className="text-base font-semibold text-foreground">@bike_like_a_boss</p>
-            <span className="block w-full rounded-full border border-accent bg-accent py-2.5 text-center text-xs font-mono uppercase tracking-[0.25em] font-medium text-white shadow-[0_0_20px_rgba(255,48,0,0.3)] transition-all hover:bg-accent-bright hover:shadow-[0_0_28px_rgba(255,48,0,0.4)]">
-              Підписатися
-            </span>
-          </div>
-        </motion.a>
+            {/* Під фото: @handle і кнопка Підписатися */}
+            <div className="relative shrink-0 p-4 pt-2 pb-5 space-y-3">
+              <p className="text-base font-semibold text-foreground">@bike_like_a_boss</p>
+              <span className="block w-full rounded-full border border-accent bg-accent py-2.5 text-center text-xs font-mono uppercase tracking-[0.25em] font-medium text-white shadow-[0_0_20px_rgba(255,48,0,0.3)] transition-all hover:bg-accent-bright hover:shadow-[0_0_28px_rgba(255,48,0,0.4)]">
+                Підписатися
+              </span>
+            </div>
+          </motion.a>
+        )}
       </section>
 
       {/* Відгуки клієнтів */}
