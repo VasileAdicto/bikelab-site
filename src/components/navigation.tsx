@@ -26,9 +26,10 @@ export function Navigation() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">
-      <nav className="w-full py-3.5 flex items-center">
-        {/* Лого по лівому краю */}
-        <div className="-ml-4 sm:-ml-6 pl-4 sm:pl-6 w-[100px] sm:w-[120px] shrink-0 flex justify-start">
+      {/* Той самий контейнер що й main — логотипи по краях контенту, не сторінки */}
+      <nav className="max-w-6xl mx-auto px-4 sm:px-6 w-full py-3.5 flex items-center">
+        {/* Лого по лівому краю контенту (збігається з початком тексту нижче) */}
+        <div className="w-[100px] sm:w-[120px] shrink-0 flex justify-start">
           <Logo variant="header" cropToLetters className="max-w-full" />
         </div>
 
@@ -57,8 +58,8 @@ export function Navigation() {
           })}
         </div>
 
-        {/* Strava по правому краю сайту */}
-        <div className="w-[100px] sm:w-[120px] shrink-0 flex items-center justify-end gap-2 -mr-4 sm:-mr-6 pr-4 sm:pr-6">
+        {/* Strava по правому краю контенту (збігається з кінцем тексту нижче) */}
+        <div className="w-[100px] sm:w-[120px] shrink-0 flex items-center justify-end gap-2">
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
