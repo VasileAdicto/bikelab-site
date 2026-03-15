@@ -91,6 +91,7 @@ export default function AdminDashboardPage() {
   const [content, setContent] = useState<SiteContent | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [selected, setSelected] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/admin/content", { credentials: "include" })
@@ -100,31 +101,26 @@ export default function AdminDashboardPage() {
       .finally(() => setLoading(false));
   }, []);
 
-  async function saveText(id: string, value: string) {
+  async function savePartial(partial: Partial<SiteContent>) {
     setSaving(true);
     try {
       const res = await fetch("/api/admin/content", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ texts: { [id]: value } }),
+        body: JSON.stringify(partial),
       });
       if (res.ok) {
         const data = (await res.json()) as SiteContent;
         setContent(data);
-      } else {
-        // Локально оновимо хоча б стан
-        setContent((prev) => {
-          if (!prev) return prev;
-          return {
-            ...prev,
-            texts: { ...(prev.texts ?? {}), [id]: value },
-          };
-        });
       }
     } finally {
       setSaving(false);
     }
+  }
+
+  async function saveText(id: string, value: string) {
+    await savePartial({ texts: { [id]: value } });
   }
 
   if (loading || !content) {
@@ -136,6 +132,9 @@ export default function AdminDashboardPage() {
   }
 
   const texts = content.texts ?? {};
+  const sizes = content.sizes ?? {};
+  const fontSizes = content.fontSizes ?? {};
+  const customCode = content.customCode ?? {};
 
   const get = (id: TextKey, fallback: string) =>
     typeof texts[id] === "string" ? (texts[id] as string) : fallback;
@@ -147,7 +146,7 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* Герой як на головній, але редагований */}
-      <section className="grid gap-12 pt-2 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] items-center border border-dashed border-border rounded-2xl p-4 sm:p-6 bg-card/40">
+      <section className="grid gap-12 pt-2 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] items-start border border-dashed border-border rounded-2xl p-4 sm:p-6 bg-card/40">
         <div className="space-y-8">
           <p className="inline-flex items-center gap-2 rounded-full border border-accent/50 bg-accent-dim px-4 py-1.5 card-meta text-accent cursor-pointer">
             <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_14px_var(--accent)]" />
@@ -182,7 +181,15 @@ export default function AdminDashboardPage() {
           />
 
           <div className="flex flex-wrap items-center gap-4">
-            <button className="group inline-flex items-center gap-2 rounded-full border border-accent bg-accent px-6 py-2.5 text-xs font-mono uppercase tracking-[0.25em] font-medium text-white shadow-[0_0_28px_rgba(255,48,0,0.4)]">
+            <button
+              className="group inline-flex items-center gap-2 rounded-full border border-accent bg-accent px-6 py-2.5 font-mono uppercase tracking-[0.25em] font-medium text-white shadow-[0_0_28px_rgba(255,48,0,0.4)] cursor-pointer"
+              style={{
+                width: sizes["hero.cta1.width"],
+                fontSize: fontSizes["hero.cta1"],
+                color: customCode["hero.cta1.color"],
+              }}
+              onClick={() => setSelected("hero.cta1")}
+            >
               <EditableText
                 id="hero.cta1"
                 initial="Записатися на тренування"
@@ -192,7 +199,15 @@ export default function AdminDashboardPage() {
                 save={saveText}
               />
             </button>
-            <button className="inline-flex items-center gap-2 rounded-full border border-border bg-steel/50 px-5 py-2.5 text-xs font-mono uppercase tracking-[0.25em] text-muted">
+            <button
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-steel/50 px-5 py-2.5 font-mono uppercase tracking-[0.25em] text-muted cursor-pointer"
+              style={{
+                width: sizes["hero.cta2.width"],
+                fontSize: fontSizes["hero.cta2"],
+                color: customCode["hero.cta2.color"],
+              }}
+              onClick={() => setSelected("hero.cta2")}
+            >
               <EditableText
                 id="hero.cta2"
                 initial="Розклад клубних заїздів"
@@ -214,6 +229,7 @@ export default function AdminDashboardPage() {
               <div
                 key={s.idLabel}
                 className="rounded-xl border border-border bg-card/80 px-4 py-3.5 card-hover card-accent-top cursor-pointer"
+                onClick={() => setSelected(s.idLabel)}
               >
                 <EditableText
                   id={s.idValue}
@@ -240,6 +256,65 @@ export default function AdminDashboardPage() {
         <div className="hidden md:block rounded-3xl border border-dashed border-border bg-card/40 p-4 text-xs text-muted">
           Правий блок (фото / Instagram) поки що редагується у коді. Можемо додати і його пізніше.
         </div>
+      </section>
+
+      {/* Панель налаштувань вибраного елемента */}
+      <section className="mt-6 rounded-2xl border border-border bg-card/60 p-4 text-sm text-muted space-y-3">
+        {!selected && <p>Клікни по кнопці або картці статистики, щоб налаштувати її.</p>}
+        {selected && (
+          <>
+            <p className="text-foreground font-semibold">Налаштування: {selected}</p>
+            {(selected === "hero.cta1" || selected === "hero.cta2") && (
+              <div className="grid gap-3 sm:grid-cols-3">
+                <div>
+                  <label className="block mb-1">Ширина (px або rem)</label>
+                  <input
+                    type="text"
+                    defaultValue={sizes[`${selected}.width`] ?? ""}
+                    placeholder="наприклад 220px або 14rem"
+                    className="w-full rounded-xl border border-border bg-background px-3 py-1.5 text-foreground"
+                    onBlur={(e) =>
+                      savePartial({
+                        sizes: { ...sizes, [`${selected}.width`]: e.target.value || undefined },
+                      })
+                    }
+                  />
+                </div>
+                <div>
+                  <label className="block mb-1">Розмір шрифту (px/rem)</label>
+                  <input
+                    type="text"
+                    defaultValue={fontSizes[selected] ?? ""}
+                    placeholder="12px, 0.8rem…"
+                    className="w-full rounded-xl border border-border bg-background px-3 py-1.5 text-foreground"
+                    onBlur={(e) =>
+                      savePartial({
+                        fontSizes: { ...fontSizes, [selected]: e.target.value || undefined },
+                      })
+                    }
+                  />
+                </div>
+                <div>
+                  <label className="block mb-1">Колір тексту</label>
+                  <input
+                    type="text"
+                    defaultValue={(customCode[`${selected}.color`] as string) ?? ""}
+                    placeholder="#ffffff або rgb(...)"
+                    className="w-full rounded-xl border border-border bg-background px-3 py-1.5 text-foreground"
+                    onBlur={(e) =>
+                      savePartial({
+                        customCode: { ...customCode, [`${selected}.color`]: e.target.value || undefined },
+                      })
+                    }
+                  />
+                </div>
+              </div>
+            )}
+            {selected?.startsWith("stats.") && (
+              <p>Для карток статистики поки що можна міняти лише текст по дабл‑кліку.</p>
+            )}
+          </>
+        )}
       </section>
 
       {saving && (
