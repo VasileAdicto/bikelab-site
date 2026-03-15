@@ -3,13 +3,94 @@
 import { useEffect, useState } from "react";
 import type { SiteContent } from "@/lib/content";
 
-type TabId = "texts" | "images" | "sizes" | "fonts" | "sections" | "code" | "links" | "admins";
+type TextKey =
+  | "hero.tagline"
+  | "hero.title"
+  | "hero.description"
+  | "hero.cta1"
+  | "hero.cta2"
+  | "stats.0.value"
+  | "stats.0.label"
+  | "stats.1.value"
+  | "stats.1.label"
+  | "stats.2.value"
+  | "stats.2.label";
+
+type EditableTextProps = {
+  id: TextKey | string;
+  initial: string;
+  className?: string;
+  as?: "p" | "h1" | "span";
+  multiline?: boolean;
+  save: (id: string, value: string) => Promise<void>;
+  valueFromContent?: string | undefined;
+};
+
+function EditableText({
+  id,
+  initial,
+  className,
+  as = "p",
+  multiline,
+  save,
+  valueFromContent,
+}: EditableTextProps) {
+  const [editing, setEditing] = useState(false);
+  const [value, setValue] = useState<string>(valueFromContent ?? initial);
+
+  // Якщо контент змінився ззовні — оновлюємо
+  useEffect(() => {
+    setValue(valueFromContent ?? initial);
+  }, [valueFromContent, initial]);
+
+  async function commit(newValue: string) {
+    setValue(newValue);
+    setEditing(false);
+    if (newValue !== valueFromContent) {
+      await save(id, newValue);
+    }
+  }
+
+  const commonProps = {
+    className,
+    onDoubleClick: () => setEditing(true),
+  };
+
+  if (!editing) {
+    const TextTag = as;
+    return <TextTag {...commonProps}>{value}</TextTag>;
+  }
+
+  if (multiline) {
+    return (
+      <textarea
+        autoFocus
+        defaultValue={value}
+        className={`${className} outline-none border border-accent/60 bg-card/60 rounded-md px-2 py-1`}
+        onBlur={(e) => commit(e.target.value)}
+      />
+    );
+  }
+
+  return (
+    <input
+      autoFocus
+      defaultValue={value}
+      className={`${className} outline-none border border-accent/60 bg-card/60 rounded-md px-2 py-1`}
+      onBlur={(e) => commit(e.target.value)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          e.currentTarget.blur();
+        }
+      }}
+    />
+  );
+}
 
 export default function AdminDashboardPage() {
   const [content, setContent] = useState<SiteContent | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [tab, setTab] = useState<TabId>("texts");
 
   useEffect(() => {
     fetch("/api/admin/content", { credentials: "include" })
@@ -19,18 +100,27 @@ export default function AdminDashboardPage() {
       .finally(() => setLoading(false));
   }, []);
 
-  async function save(partial: Partial<SiteContent>) {
+  async function saveText(id: string, value: string) {
     setSaving(true);
     try {
       const res = await fetch("/api/admin/content", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify(partial),
+        body: JSON.stringify({ texts: { [id]: value } }),
       });
       if (res.ok) {
-        const data = await res.json();
+        const data = (await res.json()) as SiteContent;
         setContent(data);
+      } else {
+        // Локально оновимо хоча б стан
+        setContent((prev) => {
+          if (!prev) return prev;
+          return {
+            ...prev,
+            texts: { ...(prev.texts ?? {}), [id]: value },
+          };
+        });
       }
     } finally {
       setSaving(false);
@@ -45,369 +135,118 @@ export default function AdminDashboardPage() {
     );
   }
 
-  const tabs: { id: TabId; label: string }[] = [
-    { id: "texts", label: "Тексти" },
-    { id: "links", label: "Посилання" },
-    { id: "sizes", label: "Розміри кнопок/іконок" },
-    { id: "fonts", label: "Розмір шрифту" },
-    { id: "images", label: "Фото" },
-    { id: "sections", label: "Розділи" },
-    { id: "code", label: "Код / опис" },
-    { id: "admins", label: "Адміни" },
-  ];
-
   const texts = content.texts ?? {};
-  const links = content.links ?? {};
-  const sizes = content.sizes ?? {};
-  const fontSizes = content.fontSizes ?? {};
-  const images = content.images ?? {};
-  const sections = content.sections ?? [];
-  const customCode = content.customCode ?? {};
+
+  const get = (id: TextKey, fallback: string) =>
+    typeof texts[id] === "string" ? (texts[id] as string) : fallback;
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <div className="flex gap-2 border-b border-border pb-4 mb-6 overflow-x-auto">
-        {tabs.map((t) => (
-          <button
-            key={t.id}
-            onClick={() => setTab(t.id)}
-            className={`px-4 py-2 rounded-xl text-sm whitespace-nowrap ${
-              tab === t.id
-                ? "bg-accent text-white"
-                : "bg-card border border-border text-muted hover:text-foreground"
-            }`}
-          >
-            {t.label}
-          </button>
-        ))}
+    <div className="relative space-y-16 max-w-6xl mx-auto px-4 sm:px-6 pb-20 pt-10">
+      <div className="mb-4 text-xs text-muted">
+        Режим редагування: <span className="text-accent">двічі клікни по тексту, щоб змінити його</span>.
       </div>
 
-      {tab === "texts" && (
-        <div className="space-y-4">
-          <h2 className="text-lg font-semibold text-foreground">Редагування текстів</h2>
-          {Object.entries(texts).map(([key, val]) => (
-            <div key={key}>
-              <label className="block text-sm text-muted mb-1">{key}</label>
-              <input
-                type="text"
-                defaultValue={typeof val === "string" ? val : JSON.stringify(val)}
-                className="w-full rounded-xl border border-border bg-card px-4 py-2 text-foreground"
-                onBlur={(e) => {
-                  const v = e.target.value;
-                  try {
-                    const parsed = JSON.parse(v);
-                    save({ texts: { ...texts, [key]: parsed } });
-                  } catch {
-                    save({ texts: { ...texts, [key]: v } });
-                  }
-                }}
-              />
-            </div>
-          ))}
-        </div>
-      )}
+      {/* Герой як на головній, але редагований */}
+      <section className="grid gap-12 pt-2 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] items-center border border-dashed border-border rounded-2xl p-4 sm:p-6 bg-card/40">
+        <div className="space-y-8">
+          <p className="inline-flex items-center gap-2 rounded-full border border-accent/50 bg-accent-dim px-4 py-1.5 card-meta text-accent cursor-pointer">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_14px_var(--accent)]" />
+            <EditableText
+              id="hero.tagline"
+              initial="Лабораторія твоєї швидкості"
+              valueFromContent={get("hero.tagline", "Лабораторія твоєї швидкості")}
+              className="inline"
+              save={saveText}
+            />
+          </p>
 
-      {tab === "links" && (
-        <div className="space-y-4">
-          <h2 className="text-lg font-semibold text-foreground">Посилання</h2>
-          {Object.entries(links).map(([key, url]) => (
-            <div key={key}>
-              <label className="block text-sm text-muted mb-1">{key}</label>
-              <input
-                type="url"
-                defaultValue={url}
-                className="w-full rounded-xl border border-border bg-card px-4 py-2 text-foreground"
-                onBlur={(e) => save({ links: { ...links, [key]: e.target.value } })}
+          <EditableText
+            id="hero.title"
+            initial="BIKE LIKE A BOSS"
+            valueFromContent={get("hero.title", "BIKE LIKE A BOSS")}
+            as="h1"
+            className="font-bold tracking-tight leading-[1.1] text-[1.11rem] sm:text-[1.33rem] md:text-[1.78rem] lg:text-[2.22rem] text-accent drop-shadow-[0_0_24px_rgba(255,48,0,0.5)] cursor-pointer"
+            save={saveText}
+          />
+
+          <EditableText
+            id="hero.description"
+            initial="Ми комбінуємо біомеханику, дані з датчиків та реальні київські рельєфи, щоб оптимізувати кожен ват та кожну секунду на колі."
+            valueFromContent={get(
+              "hero.description",
+              "Ми комбінуємо біомеханику, дані з датчиків та реальні київські рельєфи, щоб оптимізувати кожен ват та кожну секунду на колі."
+            )}
+            className="max-w-xl text-[11px] text-muted leading-relaxed cursor-pointer"
+            multiline
+            save={saveText}
+          />
+
+          <div className="flex flex-wrap items-center gap-4">
+            <button className="group inline-flex items-center gap-2 rounded-full border border-accent bg-accent px-6 py-2.5 text-xs font-mono uppercase tracking-[0.25em] font-medium text-white shadow-[0_0_28px_rgba(255,48,0,0.4)]">
+              <EditableText
+                id="hero.cta1"
+                initial="Записатися на тренування"
+                valueFromContent={get("hero.cta1", "Записатися на тренування")}
+                as="span"
+                className="cursor-pointer"
+                save={saveText}
               />
-            </div>
-          ))}
-          <div>
-            <label className="block text-sm text-muted mb-1">Новий ключ посилання</label>
-            <input
-              type="text"
-              placeholder="наприклад newLink"
-              className="w-full rounded-xl border border-border bg-card px-4 py-2 text-foreground mb-2"
-              id="new-link-key"
-            />
-            <input
-              type="url"
-              placeholder="https://..."
-              className="w-full rounded-xl border border-border bg-card px-4 py-2 text-foreground"
-              id="new-link-url"
-              onBlur={(e) => {
-                const k = (document.getElementById("new-link-key") as HTMLInputElement)?.value;
-                const v = e.target.value;
-                if (k && v) save({ links: { ...links, [k]: v } });
-              }}
-            />
+            </button>
+            <button className="inline-flex items-center gap-2 rounded-full border border-border bg-steel/50 px-5 py-2.5 text-xs font-mono uppercase tracking-[0.25em] text-muted">
+              <EditableText
+                id="hero.cta2"
+                initial="Розклад клубних заїздів"
+                valueFromContent={get("hero.cta2", "Розклад клубних заїздів")}
+                as="span"
+                className="cursor-pointer"
+                save={saveText}
+              />
+            </button>
           </div>
-        </div>
-      )}
 
-      {tab === "sizes" && (
-        <div className="space-y-4">
-          <h2 className="text-lg font-semibold text-foreground">Розміри кнопок та іконок</h2>
-          {Object.entries(sizes).map(([key, val]) => (
-            <div key={key}>
-              <label className="block text-sm text-muted mb-1">{key}</label>
-              <input
-                type="text"
-                defaultValue={val}
-                placeholder="наприклад 2.5rem або 18"
-                className="w-full rounded-xl border border-border bg-card px-4 py-2 text-foreground"
-                onBlur={(e) => save({ sizes: { ...sizes, [key]: e.target.value } })}
-              />
-            </div>
-          ))}
-        </div>
-      )}
-
-      {tab === "fonts" && (
-        <div className="space-y-4">
-          <h2 className="text-lg font-semibold text-foreground">Розмір шрифту</h2>
-          {Object.entries(fontSizes).map(([key, val]) => (
-            <div key={key}>
-              <label className="block text-sm text-muted mb-1">{key}</label>
-              <input
-                type="text"
-                defaultValue={val}
-                placeholder="наприклад 14px або 1.25rem"
-                className="w-full rounded-xl border border-border bg-card px-4 py-2 text-foreground"
-                onBlur={(e) => save({ fontSizes: { ...fontSizes, [key]: e.target.value } })}
-              />
-            </div>
-          ))}
-        </div>
-      )}
-
-      {tab === "images" && (
-        <div className="space-y-4">
-          <h2 className="text-lg font-semibold text-foreground">Завантаження фото</h2>
-          <ImageUpload onUpload={(key, url) => save({ images: { ...images, [key]: url } })} />
-          <div className="pt-4">
-            <p className="text-sm text-muted mb-2">Збережені зображення (ключ → URL):</p>
-            {Object.entries(images).map(([k, url]) => (
-              <div key={k} className="flex items-center gap-2 mb-2">
-                <span className="text-sm font-mono text-foreground">{k}</span>
-                <a href={url} target="_blank" rel="noopener noreferrer" className="text-accent text-sm truncate max-w-[200px]">
-                  {url}
-                </a>
+          {/* Статистика 10+ / 500+ / XC & Road */}
+          <div className="grid grid-cols-3 gap-2 sm:gap-2.5 pt-2 text-xs font-mono uppercase tracking-[0.2em] w-full max-w-[min(100%,33rem)]">
+            {[
+              { idValue: "stats.0.value", idLabel: "stats.0.label", defV: "10+", defL: "років досвіду" },
+              { idValue: "stats.1.value", idLabel: "stats.1.label", defV: "500+", defL: "проведених тренувань" },
+              { idValue: "stats.2.value", idLabel: "stats.2.label", defV: "XC & Road", defL: "дисципліни" },
+            ].map((s) => (
+              <div
+                key={s.idLabel}
+                className="rounded-xl border border-border bg-card/80 px-4 py-3.5 card-hover card-accent-top cursor-pointer"
+              >
+                <EditableText
+                  id={s.idValue}
+                  initial={s.defV}
+                  valueFromContent={get(s.idValue as TextKey, s.defV)}
+                  as="p"
+                  className="text-accent text-base font-semibold"
+                  save={saveText}
+                />
+                <EditableText
+                  id={s.idLabel}
+                  initial={s.defL}
+                  valueFromContent={get(s.idLabel as TextKey, s.defL)}
+                  as="p"
+                  className="mt-1 card-meta text-muted"
+                  save={saveText}
+                />
               </div>
             ))}
           </div>
         </div>
-      )}
 
-      {tab === "sections" && (
-        <div className="space-y-4">
-          <h2 className="text-lg font-semibold text-foreground">Додати розділ</h2>
-          <p className="text-sm text-muted">
-            Розділи зберігаються як масив: id, title, content, order.
-          </p>
-          {sections.map((sec, i) => (
-            <div key={sec.id} className="rounded-xl border border-border p-4 bg-card space-y-2">
-              <input
-                defaultValue={sec.title}
-                className="w-full rounded border border-border px-3 py-1.5 text-foreground text-sm"
-                placeholder="Заголовок"
-                onBlur={(e) => {
-                  const next = [...sections];
-                  next[i] = { ...next[i], title: e.target.value };
-                  save({ sections: next });
-                }}
-              />
-              <textarea
-                defaultValue={sec.content}
-                className="w-full rounded border border-border px-3 py-1.5 text-foreground text-sm min-h-[80px]"
-                placeholder="Контент"
-                onBlur={(e) => {
-                  const next = [...sections];
-                  next[i] = { ...next[i], content: e.target.value };
-                  save({ sections: next });
-                }}
-              />
-            </div>
-          ))}
-          <button
-            type="button"
-            onClick={() =>
-              save({
-                sections: [
-                  ...sections,
-                  { id: `sec-${Date.now()}`, title: "Новий розділ", content: "", order: sections.length },
-                ],
-              })
-            }
-            className="rounded-xl border border-accent text-accent px-4 py-2 text-sm hover:bg-accent/10"
-          >
-            + Додати розділ
-          </button>
+        {/* Правий блок ми тут не редагуємо, просто прев'ю */}
+        <div className="hidden md:block rounded-3xl border border-dashed border-border bg-card/40 p-4 text-xs text-muted">
+          Правий блок (фото / Instagram) поки що редагується у коді. Можемо додати і його пізніше.
         </div>
-      )}
-
-      {tab === "code" && (
-        <div className="space-y-4">
-          <h2 className="text-lg font-semibold text-foreground">Опис / код (ключ → текст або HTML)</h2>
-          {Object.entries(customCode).map(([key, val]) => (
-            <div key={key}>
-              <label className="block text-sm text-muted mb-1">{key}</label>
-              <textarea
-                defaultValue={val}
-                className="w-full rounded-xl border border-border bg-card px-4 py-2 text-foreground font-mono text-sm min-h-[100px]"
-                onBlur={(e) => save({ customCode: { ...customCode, [key]: e.target.value } })}
-              />
-            </div>
-          ))}
-          <div>
-            <label className="block text-sm text-muted mb-1">Новий ключ коду</label>
-            <input
-              type="text"
-              placeholder="наприклад hero.extra"
-              className="w-full rounded-xl border border-border bg-card px-4 py-2 text-foreground mb-2"
-              id="new-code-key"
-            />
-            <textarea
-              placeholder="Текст або HTML..."
-              className="w-full rounded-xl border border-border bg-card px-4 py-2 text-foreground font-mono text-sm min-h-[80px]"
-              id="new-code-val"
-              onBlur={(e) => {
-                const k = (document.getElementById("new-code-key") as HTMLInputElement)?.value;
-                const v = e.target.value;
-                if (k) save({ customCode: { ...customCode, [k]: v } });
-              }}
-            />
-          </div>
-        </div>
-      )}
-
-      {tab === "admins" && (
-        <div className="space-y-4">
-          <h2 className="text-lg font-semibold text-foreground">Адміни</h2>
-          <p className="text-sm text-muted">
-            За замовчуванням: Hanna / 123456. Додаткові адміни зберігаються нижче (пароль у вигляді хешу).
-          </p>
-          <AddAdminForm
-            onAdd={async (username, password) => {
-              const { hashPassword } = await import("@/lib/auth");
-              const passwordHash = await hashPassword(password);
-              const admins = [...(content.admins ?? []), { username, passwordHash }];
-              await save({ admins });
-            }}
-          />
-          <ul className="text-sm text-muted">
-            <li>Hanna (за замовчуванням)</li>
-            {(content.admins ?? []).map((a) => (
-              <li key={a.username}>{a.username}</li>
-            ))}
-          </ul>
-        </div>
-      )}
+      </section>
 
       {saving && (
         <p className="fixed bottom-4 right-4 text-sm text-muted bg-card border border-border px-3 py-2 rounded-xl">
-          Збережено
+          Збереження…
         </p>
       )}
     </div>
-  );
-}
-
-function ImageUpload({ onUpload }: { onUpload: (key: string, url: string) => void }) {
-  const [key, setKey] = useState("");
-  const [file, setFile] = useState<File | null>(null);
-  const [uploading, setUploading] = useState(false);
-
-  async function handleUpload() {
-    if (!file || !key) return;
-    setUploading(true);
-    try {
-      const form = new FormData();
-      form.set("file", file);
-      form.set("key", key);
-      const res = await fetch("/api/admin/upload", {
-        method: "POST",
-        credentials: "include",
-        body: form,
-      });
-      const data = await res.json();
-      if (data.url) {
-        onUpload(data.key || key, data.url);
-        setKey("");
-        setFile(null);
-      }
-    } finally {
-      setUploading(false);
-    }
-  }
-
-  return (
-    <div className="flex flex-wrap items-end gap-2">
-      <input
-        type="text"
-        value={key}
-        onChange={(e) => setKey(e.target.value)}
-        placeholder="Ключ (наприклад hero.image)"
-        className="rounded-xl border border-border bg-card px-4 py-2 text-foreground w-48"
-      />
-      <input
-        type="file"
-        accept="image/*"
-        onChange={(e) => setFile(e.target.files?.[0] ?? null)}
-        className="text-sm text-foreground"
-      />
-      <button
-        type="button"
-        onClick={handleUpload}
-        disabled={!key || !file || uploading}
-        className="rounded-xl bg-accent text-white px-4 py-2 text-sm disabled:opacity-50"
-      >
-        {uploading ? "Завантаження…" : "Завантажити"}
-      </button>
-    </div>
-  );
-}
-
-function AddAdminForm({ onAdd }: { onAdd: (username: string, password: string) => Promise<void> }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!username || !password) return;
-    setLoading(true);
-    try {
-      await onAdd(username, password);
-      setUsername("");
-      setPassword("");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="flex gap-2 items-end">
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Логін"
-        className="rounded-xl border border-border bg-card px-4 py-2 text-foreground"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Пароль"
-        className="rounded-xl border border-border bg-card px-4 py-2 text-foreground"
-      />
-      <button
-        type="submit"
-        disabled={loading}
-        className="rounded-xl bg-accent text-white px-4 py-2 text-sm disabled:opacity-50"
-      >
-        Додати адміна
-      </button>
-    </form>
   );
 }
