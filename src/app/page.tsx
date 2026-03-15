@@ -68,7 +68,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-3 gap-2 sm:gap-2.5 pt-2 text-xs font-mono uppercase tracking-[0.2em] max-w-[min(100%,22rem)]"
+            className="grid grid-cols-3 gap-2 sm:gap-2.5 pt-2 text-xs font-mono uppercase tracking-[0.2em] w-full max-w-[min(100%,33rem)]"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.25 }}
@@ -76,7 +76,7 @@ export default function Home() {
             {stats.map((s) => (
               <div
                 key={s.label}
-                className="rounded-xl border border-border bg-card/80 px-3 py-3 card-hover card-accent-top"
+                className="rounded-xl border border-border bg-card/80 px-4 py-3.5 card-hover card-accent-top"
               >
                 <div className="text-accent text-base font-semibold">{s.value}</div>
                 <div className="mt-1 card-meta text-muted">{s.label}</div>
