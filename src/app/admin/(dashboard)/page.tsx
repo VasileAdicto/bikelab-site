@@ -24,6 +24,7 @@ type EditableTextProps = {
   multiline?: boolean;
   save: (id: string, value: string) => Promise<void>;
   valueFromContent?: string | undefined;
+  onSelect?: (id: string) => void;
 };
 
 function EditableText({
@@ -35,7 +36,6 @@ function EditableText({
   save,
   valueFromContent,
 }: EditableTextProps) {
-  const [editing, setEditing] = useState(false);
   const [value, setValue] = useState<string>(valueFromContent ?? initial);
 
   // Якщо контент змінився ззовні — оновлюємо
@@ -45,45 +45,28 @@ function EditableText({
 
   async function commit(newValue: string) {
     setValue(newValue);
-    setEditing(false);
     if (newValue !== valueFromContent) {
       await save(id, newValue);
     }
   }
 
-  const commonProps = {
-    className,
-    onDoubleClick: () => setEditing(true),
-  };
-
-  if (!editing) {
-    const TextTag = as;
-    return <TextTag {...commonProps}>{value}</TextTag>;
-  }
-
-  if (multiline) {
-    return (
-      <textarea
-        autoFocus
-        defaultValue={value}
-        className={`${className} outline-none border border-accent/60 bg-card/60 rounded-md px-2 py-1`}
-        onBlur={(e) => commit(e.target.value)}
-      />
-    );
-  }
+  const TextTag = as;
 
   return (
-    <input
-      autoFocus
-      defaultValue={value}
-      className={`${className} outline-none border border-accent/60 bg-card/60 rounded-md px-2 py-1`}
-      onBlur={(e) => commit(e.target.value)}
-      onKeyDown={(e) => {
-        if (e.key === "Enter") {
-          e.currentTarget.blur();
-        }
-      }}
-    />
+    <TextTag
+      className={className}
+      contentEditable
+      suppressContentEditableWarning
+      onFocus={() => onSelect?.(id)}
+      onInput={(e: React.FormEvent<HTMLElement>) =>
+        setValue((e.currentTarget.textContent ?? "").trimStart())
+      }
+      onBlur={(e: React.FocusEvent<HTMLElement>) =>
+        commit((e.currentTarget.textContent ?? "").trim())
+      }
+    >
+      {value}
+    </TextTag>
   );
 }
 
@@ -156,6 +139,7 @@ export default function AdminDashboardPage() {
               valueFromContent={get("hero.tagline", "Лабораторія твоєї швидкості")}
               className="inline"
               save={saveText}
+              onSelect={setSelected}
             />
           </p>
 
@@ -166,6 +150,7 @@ export default function AdminDashboardPage() {
             as="h1"
             className="font-bold tracking-tight leading-[1.1] text-[1.11rem] sm:text-[1.33rem] md:text-[1.78rem] lg:text-[2.22rem] text-accent drop-shadow-[0_0_24px_rgba(255,48,0,0.5)] cursor-pointer"
             save={saveText}
+            onSelect={setSelected}
           />
 
           <EditableText
@@ -178,6 +163,7 @@ export default function AdminDashboardPage() {
             className="max-w-xl text-[11px] text-muted leading-relaxed cursor-pointer"
             multiline
             save={saveText}
+            onSelect={setSelected}
           />
 
           <div className="flex flex-wrap items-center gap-4">
@@ -197,6 +183,7 @@ export default function AdminDashboardPage() {
                 as="span"
                 className="cursor-pointer"
                 save={saveText}
+                onSelect={setSelected}
               />
             </button>
             <button
@@ -215,6 +202,7 @@ export default function AdminDashboardPage() {
                 as="span"
                 className="cursor-pointer"
                 save={saveText}
+                onSelect={setSelected}
               />
             </button>
           </div>
@@ -238,6 +226,7 @@ export default function AdminDashboardPage() {
                   as="p"
                   className="text-accent text-base font-semibold"
                   save={saveText}
+                  onSelect={setSelected}
                 />
                 <EditableText
                   id={s.idLabel}
@@ -246,6 +235,7 @@ export default function AdminDashboardPage() {
                   as="p"
                   className="mt-1 card-meta text-muted"
                   save={saveText}
+                  onSelect={setSelected}
                 />
               </div>
             ))}
@@ -258,8 +248,8 @@ export default function AdminDashboardPage() {
         </div>
       </section>
 
-      {/* Панель налаштувань вибраного елемента */}
-      <section className="mt-6 rounded-2xl border border-border bg-card/60 p-4 text-sm text-muted space-y-3">
+      {/* Панель налаштувань вибраного елемента (як тулбар зверху) */}
+      <section className="fixed left-1/2 top-16 z-[60] -translate-x-1/2 rounded-full border border-border bg-card/90 backdrop-blur px-4 py-2 text-xs text-muted flex items-center gap-4 shadow-lg">
         {!selected && <p>Клікни по кнопці або картці статистики, щоб налаштувати її.</p>}
         {selected && (
           <>
