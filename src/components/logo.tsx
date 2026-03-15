@@ -18,18 +18,16 @@ export function Logo({ variant = "header", className = "", cropToLetters = false
       aria-label="BIKE L.A.B. — на головну"
     >
       <span
-        className={`relative inline-block shrink-0 overflow-hidden ${
-          isCompact ? "w-[72px] sm:w-[88px] h-[44px] sm:h-[52px]" : "w-[120px] sm:w-[140px] h-[44px] sm:h-[52px]"
+        className={`relative inline-block shrink-0 overflow-hidden aspect-square ${
+          isCompact ? "w-10 h-10 sm:w-11 sm:h-11" : "w-11 h-11 sm:w-12 sm:h-12"
         }`}
       >
         <img
           src="/logo.png"
           alt="BikeLab Kyiv logo"
-          width={140}
-          height={52}
-          className={`h-full outline-none [outline:none] ${
-            isCompact ? "w-auto min-w-full object-left" : "w-full object-contain object-center"
-          }`}
+          width={956}
+          height={956}
+          className="size-full object-contain outline-none [outline:none]"
         />
       </span>
 
