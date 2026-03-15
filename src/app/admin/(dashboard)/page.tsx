@@ -35,6 +35,7 @@ function EditableText({
   multiline,
   save,
   valueFromContent,
+  onSelect,
 }: EditableTextProps) {
   const [value, setValue] = useState<string>(valueFromContent ?? initial);
 
