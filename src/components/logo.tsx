@@ -39,7 +39,7 @@ export function Logo({ variant = "header", className = "", cropToLetters = false
           />
         </span>
 
-        {/* Нижня половина — L.A.B. у кольорі RGB(217, 93, 57) */}
+        {/* Нижня половина — L.A.B. у кольорі акценту RGB(255, 48, 0) */}
         <span
           className="absolute inset-0 overflow-hidden"
           style={{ clipPath: "inset(50% 0 0 0)" }}

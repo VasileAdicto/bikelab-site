@@ -10,9 +10,9 @@
   --card: #141814;
   --olive: #4d5c44;
   --olive-light: #5c6b4f;
-  --accent: #d95d39;
-  --accent-bright: #e07c3c;
-  --accent-dim: rgba(217, 93, 57, 0.18);
+  --accent: rgb(255, 48, 0);
+  --accent-bright: rgb(255, 80, 30);
+  --accent-dim: rgba(255, 48, 0, 0.18);
   --beige: #c4b8a8;
 }
 
@@ -25,9 +25,9 @@
   --card: #0f130e;
   --olive: #3d4a36;
   --olive-light: #4d5c44;
-  --accent: #d95d39;
-  --accent-bright: #e07c3c;
-  --accent-dim: rgba(217, 93, 57, 0.14);
+  --accent: rgb(255, 48, 0);
+  --accent-bright: rgb(255, 80, 30);
+  --accent-dim: rgba(255, 48, 0, 0.14);
   --beige: #b8ac9c;
 }
 
@@ -70,7 +70,7 @@ body {
 /* Grid — olive/orange tint */
 .lab-grid {
   background-image: linear-gradient(
-      rgba(217, 93, 57, 0.04) 1px,
+      rgba(255, 48, 0, 0.04) 1px,
       transparent 1px
     ),
     linear-gradient(90deg, rgba(77, 92, 68, 0.06) 1px, transparent 1px);
@@ -128,7 +128,7 @@ body {
   @apply transition-all duration-300;
 }
 .card-hover:hover {
-  box-shadow: 0 0 0 1px rgba(217, 93, 57, 0.3), 0 8px 32px -8px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 1px rgba(255, 48, 0, 0.3), 0 8px 32px -8px rgba(0, 0, 0, 0.5);
 }
 
 /* Accent top line for cards */

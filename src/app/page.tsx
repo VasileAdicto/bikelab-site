@@ -32,7 +32,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <span className="text-accent drop-shadow-[0_0_24px_rgba(217,93,57,0.5)]">
+            <span className="text-accent drop-shadow-[0_0_24px_rgba(255,48,0,0.5)]">
               BIKE LIKE A BOSS
             </span>
           </motion.h1>
@@ -55,7 +55,7 @@ export default function Home() {
           >
             <a
               href="/training"
-              className="group inline-flex items-center gap-2 rounded-full border border-accent bg-accent px-6 py-2.5 text-xs font-mono uppercase tracking-[0.25em] font-medium text-white shadow-[0_0_28px_rgba(217,93,57,0.4)] transition-all hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(217,93,57,0.5)] hover:bg-accent-bright"
+              className="group inline-flex items-center gap-2 rounded-full border border-accent bg-accent px-6 py-2.5 text-xs font-mono uppercase tracking-[0.25em] font-medium text-white shadow-[0_0_28px_rgba(255,48,0,0.4)] transition-all hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(255,48,0,0.5)] hover:bg-accent-bright"
             >
               Записатися на тренування
             </a>
@@ -89,12 +89,12 @@ export default function Home() {
           href="https://www.instagram.com/bike_like_a_boss"
           target="_blank"
           rel="noopener noreferrer"
-          className="relative flex aspect-[4/5] w-full flex-col overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-slate-900/90 via-black to-slate-950/90 shadow-[0_0_60px_-12px_rgba(0,0,0,0.6)] transition-shadow hover:shadow-[0_0_48px_-8px_rgba(217,93,57,0.25)]"
+          className="relative flex aspect-[4/5] w-full flex-col overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-slate-900/90 via-black to-slate-950/90 shadow-[0_0_60px_-12px_rgba(0,0,0,0.6)] transition-shadow hover:shadow-[0_0_48px_-8px_rgba(255,48,0,0.25)]"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(217,93,57,0.15),transparent_50%),radial-gradient(ellipse_60%_40%_at_90%_100%,rgba(77,92,68,0.15),transparent_45%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(255,48,0,0.15),transparent_50%),radial-gradient(ellipse_60%_40%_at_90%_100%,rgba(77,92,68,0.15),transparent_45%)]" />
           {/* Фото з тонкою обводкою та мінімальним відступом */}
           <div className="relative flex-1 px-1.5 sm:px-2 pt-2 pb-0.5 flex flex-col min-h-0">
             <div className="relative flex-1 min-h-0 overflow-hidden max-w-[95%] mx-auto w-full border border-border/60 rounded-sm">
@@ -104,7 +104,7 @@ export default function Home() {
           {/* Під фото: @handle і кнопка Підписатися */}
           <div className="relative shrink-0 p-4 pt-2 pb-5 space-y-3">
             <p className="text-base font-semibold text-foreground">@bike_like_a_boss</p>
-            <span className="block w-full rounded-full border border-accent bg-accent py-2.5 text-center text-xs font-mono uppercase tracking-[0.25em] font-medium text-white shadow-[0_0_20px_rgba(217,93,57,0.3)] transition-all hover:bg-accent-bright hover:shadow-[0_0_28px_rgba(217,93,57,0.4)]">
+            <span className="block w-full rounded-full border border-accent bg-accent py-2.5 text-center text-xs font-mono uppercase tracking-[0.25em] font-medium text-white shadow-[0_0_20px_rgba(255,48,0,0.3)] transition-all hover:bg-accent-bright hover:shadow-[0_0_28px_rgba(255,48,0,0.4)]">
               Підписатися
             </span>
           </div>
