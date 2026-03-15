@@ -275,7 +275,7 @@ export default function AdminDashboardPage() {
                     className="w-full rounded-xl border border-border bg-background px-3 py-1.5 text-foreground"
                     onBlur={(e) =>
                       savePartial({
-                        sizes: { ...sizes, [`${selected}.width`]: e.target.value || undefined },
+                        sizes: { ...sizes, [`${selected}.width`]: e.target.value },
                       })
                     }
                   />
@@ -289,7 +289,7 @@ export default function AdminDashboardPage() {
                     className="w-full rounded-xl border border-border bg-background px-3 py-1.5 text-foreground"
                     onBlur={(e) =>
                       savePartial({
-                        fontSizes: { ...fontSizes, [selected]: e.target.value || undefined },
+                        fontSizes: { ...fontSizes, [selected]: e.target.value },
                       })
                     }
                   />
@@ -303,7 +303,7 @@ export default function AdminDashboardPage() {
                     className="w-full rounded-xl border border-border bg-background px-3 py-1.5 text-foreground"
                     onBlur={(e) =>
                       savePartial({
-                        customCode: { ...customCode, [`${selected}.color`]: e.target.value || undefined },
+                        customCode: { ...customCode, [`${selected}.color`]: e.target.value },
                       })
                     }
                   />
