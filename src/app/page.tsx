@@ -24,8 +24,15 @@ export default function Home() {
   }, []);
 
   const texts = content?.texts ?? {};
-  const statsFromContent = texts["stats"] as { value: string; label: string }[] | undefined;
-  const stats = Array.isArray(statsFromContent) && statsFromContent.length === 3 ? statsFromContent : defaultStats;
+  const stats =
+    typeof texts["stats.0.value"] === "string" &&
+    typeof texts["stats.0.label"] === "string"
+      ? [
+          { value: texts["stats.0.value"], label: texts["stats.0.label"] },
+          { value: (texts["stats.1.value"] as string) ?? defaultStats[1].value, label: (texts["stats.1.label"] as string) ?? defaultStats[1].label },
+          { value: (texts["stats.2.value"] as string) ?? defaultStats[2].value, label: (texts["stats.2.label"] as string) ?? defaultStats[2].label },
+        ]
+      : defaultStats;
   const heroPhoto = content?.images?.["hero.photo"] as string | undefined;
 
   return (
