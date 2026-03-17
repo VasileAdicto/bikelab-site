@@ -151,7 +151,7 @@ export default function Home() {
         <div className="grid gap-5 md:grid-cols-3 text-xs">
           <blockquote className="rounded-2xl border border-border/60 bg-card/40 p-5 card-hover border-l-2 border-l-accent/50 flex gap-4">
             <img
-              src="https://api.dicebear.com/7.x/avataaars/svg?seed=Tolia&backgroundColor=4d5c44&radius=50"
+              src="https://api.dicebear.com/7.x/avataaars/svg?seed=Yulia&backgroundColor=4d5c44&radius=50"
               alt=""
               width={56}
               height={56}
@@ -159,10 +159,10 @@ export default function Home() {
             />
             <div className="min-w-0 flex flex-col flex-1">
               <p className="text-foreground/90 leading-relaxed flex-1">
-                Я був здивований наскільки просто пояснюють складні речі, завдяки чому все виходило в 100 разів швидше ніж коли сам вчився.
+                Це був перший клуб, де я змогла тренуватися на постійній основі. Не важливо яку підготовку ти маєш — аби було бажання: тренери знайдуть спосіб, дадуть окреме завдання, і ти почуваєш себе на рівні з сильними. Мене цей клуб виростив — звички та підходи, яких не зустрічаю в жодному клубі досі. Під час ковіду тримали нас купи, з теплотою згадую руханки. Хтось знайшов друзів, хтось результати, хтось — задоволення від вихідного разом.
               </p>
               <cite className="mt-3 text-[11px] font-mono text-accent not-italic">
-                Толя
+                Юля
               </cite>
             </div>
           </blockquote>
