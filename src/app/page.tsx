@@ -168,7 +168,7 @@ export default function Home() {
           </blockquote>
           <blockquote className="rounded-2xl border border-border/60 bg-card/40 p-5 card-hover border-l-2 border-l-olive-light/50 flex gap-4">
             <img
-              src="https://api.dicebear.com/7.x/avataaars/svg?seed=Serhii&backgroundColor=4d5c44&radius=50"
+              src="https://api.dicebear.com/7.x/avataaars/svg?seed=Glib&backgroundColor=4d5c44&radius=50"
               alt=""
               width={56}
               height={56}
@@ -176,10 +176,10 @@ export default function Home() {
             />
             <div className="min-w-0 flex flex-col flex-1">
               <p className="text-foreground/90 leading-relaxed flex-1">
-                Я прийшов повним профаном, тепер катаю заднім колесом по 10 метрів, а всього рік тому сів на велосипед.
+                Будьте обережні, ця тусовка може вас закохати в МТБ.
               </p>
               <cite className="mt-3 text-[11px] font-mono text-accent not-italic">
-                Сергій
+                Гліб
               </cite>
             </div>
           </blockquote>
