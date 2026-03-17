@@ -44,9 +44,7 @@ export default function TeamPage() {
         <p className="section-label">Team / Club</p>
         <h1 className="section-title text-accent">Команда тренерів BikeLab Kyiv.</h1>
         <p className="max-w-2xl text-sm text-muted leading-relaxed">
-          Ми поєднуємо досвід стартів, волонтерські проєкти та лабораторний
-          підхід до даних. Кожен тренер — це окремий експеримент, але всі
-          працюють в одній системі.
+          Ми різні за характером, але єдині в підході: чітка методика і прогнозований прогрес.
         </p>
       </header>
 
