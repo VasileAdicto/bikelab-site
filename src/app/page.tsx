@@ -176,7 +176,7 @@ export default function Home() {
             />
             <div className="min-w-0 flex flex-col flex-1">
               <p className="text-foreground/90 leading-relaxed flex-1">
-                Будьте обережні, ця тусовка може вас закохати в МТБ.
+                Колись я потрапив на тренування «групи новачків» в рік коли купив свій перший велосипед. На тому занятті було так важко, що я помер… Через пару днів я вже воскрес велосипедистом і з того дня важко уявити життя без велосипеда.
               </p>
               <cite className="mt-3 text-[11px] font-mono text-accent not-italic">
                 Гліб
