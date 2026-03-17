@@ -185,7 +185,7 @@ export default function Home() {
           </blockquote>
           <blockquote className="rounded-2xl border border-border/60 bg-card/40 p-5 card-hover border-l-2 border-l-accent/50 flex gap-4">
             <img
-              src="https://api.dicebear.com/7.x/avataaars/svg?seed=Tania&backgroundColor=4d5c44&radius=50"
+              src="https://api.dicebear.com/7.x/avataaars/svg?seed=Dmytro&backgroundColor=4d5c44&radius=50"
               alt=""
               width={56}
               height={56}
@@ -193,10 +193,29 @@ export default function Home() {
             />
             <div className="min-w-0 flex flex-col flex-1">
               <p className="text-foreground/90 leading-relaxed flex-1">
-                Була приємно здивована що стільки дівчат на тренуваннях, що можна не тільки покатати, а поспілкуватися на дівчачі теми.
+                Хоч як я не люблю прокидатись рано вранці, але на тренування з Bike L.A.B. завжди мчав із задоволенням. Крім чудово проведеного часу в компанії тренерів та «учнів» отримав бонус у вигляді базової техніки МТБ 🤗
+                <br />
+                <span className="mt-2 block">Все ще маю надію, що згодом зможу долучитись до групи продвинутого катання.</span>
               </p>
               <cite className="mt-3 text-[11px] font-mono text-accent not-italic">
-                Таня
+                Дмитро
+              </cite>
+            </div>
+          </blockquote>
+          <blockquote className="rounded-2xl border border-border/60 bg-card/40 p-5 card-hover border-l-2 border-l-olive-light/50 flex gap-4">
+            <img
+              src="https://api.dicebear.com/7.x/avataaars/svg?seed=Darya&backgroundColor=4d5c44&radius=50"
+              alt=""
+              width={56}
+              height={56}
+              className="h-14 w-14 shrink-0 rounded-full border-2 border-accent/30 object-cover bg-steel self-start"
+            />
+            <div className="min-w-0 flex flex-col flex-1">
+              <p className="text-foreground/90 leading-relaxed flex-1">
+                Що відбувалось на трейлі — залишиться на трейлі :)
+              </p>
+              <cite className="mt-3 text-[11px] font-mono text-accent not-italic">
+                Дарья
               </cite>
             </div>
           </blockquote>
