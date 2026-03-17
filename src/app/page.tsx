@@ -149,23 +149,6 @@ export default function Home() {
       <section className="border-t border-border/60 pt-12">
         <h2 className="section-label text-foreground/90 mb-4">Відгуки</h2>
         <div className="grid gap-5 md:grid-cols-3 text-xs">
-          <blockquote className="rounded-2xl border border-border/60 bg-card/40 p-5 card-hover border-l-2 border-l-accent/50 flex gap-4">
-            <img
-              src="https://api.dicebear.com/7.x/avataaars/svg?seed=Yulia&backgroundColor=4d5c44&radius=50"
-              alt=""
-              width={56}
-              height={56}
-              className="h-14 w-14 shrink-0 rounded-full border-2 border-accent/30 object-cover bg-steel self-start"
-            />
-            <div className="min-w-0 flex flex-col flex-1">
-              <p className="text-foreground/90 leading-relaxed flex-1">
-                Це був перший клуб, де я змогла тренуватися на постійній основі. Не важливо яку підготовку ти маєш — аби було бажання: тренери знайдуть спосіб, дадуть окреме завдання, і ти почуваєш себе на рівні з сильними. Мене цей клуб виростив — звички та підходи, яких не зустрічаю в жодному клубі досі. Під час ковіду тримали нас купи, з теплотою згадую руханки. Хтось знайшов друзів, хтось результати, хтось — задоволення від вихідного разом.
-              </p>
-              <cite className="mt-3 text-[11px] font-mono text-accent not-italic">
-                Юля
-              </cite>
-            </div>
-          </blockquote>
           <blockquote className="rounded-2xl border border-border/60 bg-card/40 p-5 card-hover border-l-2 border-l-olive-light/50 flex gap-4">
             <img
               src="https://api.dicebear.com/7.x/avataaars/svg?seed=Glib&backgroundColor=4d5c44&radius=50"
@@ -182,6 +165,23 @@ export default function Home() {
               </p>
               <cite className="mt-3 text-[11px] font-mono text-accent not-italic">
                 Гліб
+              </cite>
+            </div>
+          </blockquote>
+          <blockquote className="rounded-2xl border border-border/60 bg-card/40 p-5 card-hover border-l-2 border-l-accent/50 flex gap-4">
+            <img
+              src="https://api.dicebear.com/7.x/avataaars/svg?seed=Yulia&backgroundColor=4d5c44&radius=50"
+              alt=""
+              width={56}
+              height={56}
+              className="h-14 w-14 shrink-0 rounded-full border-2 border-accent/30 object-cover bg-steel self-start"
+            />
+            <div className="min-w-0 flex flex-col flex-1">
+              <p className="text-foreground/90 leading-relaxed flex-1">
+                Це був перший клуб, де я змогла тренуватися на постійній основі. Не важливо яку підготовку ти маєш — аби було бажання: тренери знайдуть спосіб, дадуть окреме завдання, і ти почуваєш себе на рівні з сильними. Мене цей клуб виростив — звички та підходи, яких не зустрічаю в жодному клубі досі. Під час ковіду тримали нас купи, з теплотою згадую руханки. Хтось знайшов друзів, хтось результати, хтось — задоволення від вихідного разом.
+              </p>
+              <cite className="mt-3 text-[11px] font-mono text-accent not-italic">
+                Юля
               </cite>
             </div>
           </blockquote>
