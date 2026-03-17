@@ -137,15 +137,6 @@ export default function TeamPage() {
           ))}
         </TeamCarousel>
       </section>
-
-      <section className="rounded-2xl border border-dashed border-border bg-card/50 p-6 text-tiny text-muted">
-        <div className="section-label text-foreground/80 mb-3">Tour de Drone</div>
-        <p className="card-desc">
-          Окремий напрямок клубу: частину заїздів ми присвячуємо збору на дрони
-          для ЗСУ. Це відео, стріми, івенти з партнерами та регулярна звітність
-          по кожній гривні, що перетворилась на байрактач чи FPV.
-        </p>
-      </section>
     </div>
   );
 }
