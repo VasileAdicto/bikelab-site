@@ -133,8 +133,8 @@ export default function AdminDashboardPage() {
       {/* Герой як на головній, але редагований */}
       <section className="grid gap-12 pt-2 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] items-start border border-dashed border-border rounded-2xl p-4 sm:p-6 bg-card/40">
         <div className="space-y-8">
-          <p className="inline-flex items-center gap-2 rounded-full border border-accent/50 bg-accent-dim px-4 py-1.5 card-meta text-accent cursor-pointer">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_14px_var(--accent)]" />
+          <p className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 card-meta text-foreground/90 cursor-pointer">
+            <span className="h-1.5 w-1.5 rounded-full bg-foreground/70" />
             <EditableText
               id="hero.tagline"
               initial="Лабораторія твоєї швидкості"
@@ -150,7 +150,7 @@ export default function AdminDashboardPage() {
             initial="BIKE LIKE A BOSS"
             valueFromContent={get("hero.title", "BIKE LIKE A BOSS")}
             as="h1"
-            className="font-bold tracking-tight leading-[1.1] text-[1.11rem] sm:text-[1.33rem] md:text-[1.78rem] lg:text-[2.22rem] text-accent drop-shadow-[0_0_24px_rgba(255,48,0,0.5)] cursor-pointer"
+            className="font-bold tracking-tight leading-[1.1] text-[1.11rem] sm:text-[1.33rem] md:text-[1.78rem] lg:text-[2.22rem] text-foreground cursor-pointer"
             save={saveText}
             onSelect={setSelected}
           />
@@ -170,7 +170,7 @@ export default function AdminDashboardPage() {
 
           <div className="flex flex-wrap items-center gap-4">
             <button
-              className="group inline-flex items-center gap-2 rounded-full border border-accent bg-accent px-6 py-2.5 font-mono uppercase tracking-[0.25em] font-medium text-white shadow-[0_0_28px_rgba(255,48,0,0.4)] cursor-pointer"
+              className="group inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-6 py-2.5 font-mono uppercase tracking-[0.25em] font-medium text-foreground cursor-pointer hover:bg-steel/80 hover:border-foreground/20"
               style={{
                 width: sizes["hero.cta1.width"],
                 fontSize: fontSizes["hero.cta1"],
