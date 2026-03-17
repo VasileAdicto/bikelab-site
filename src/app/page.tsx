@@ -228,22 +228,19 @@ export default function Home() {
         <div className="rounded-2xl border border-border/60 bg-card/40 p-5 card-hover border-l-2 border-l-olive-light/50">
           <div className="section-label text-foreground/80 text-[11px]">XC / Trail</div>
           <p className="mt-2 leading-relaxed text-foreground/85">
-            Технічні тренування в Голосієві: коріння, каміння, вузькі стежки. Ми
-            знімаємо відео, аналізуємо позицію, кут атаки та роботу підвіски.
+            Технічні тренування: коріння, каміння, вузькі стежки. Байкпарки й підготовлені траси — тут народжується швидкість, контроль і впевненість на спусках.
           </p>
         </div>
         <div className="rounded-2xl border border-border/60 bg-card/40 p-5 card-hover border-l-2 border-l-accent/50">
           <div className="section-label text-foreground/80 text-[11px]">Road / Race</div>
           <p className="mt-2 leading-relaxed text-foreground/85">
-            Інтервальні блоки на Бориспільській трасі, робота в групі, енергетика
-            на довгих заїздах, підготовка до гранфондо та стартів.
+            Робота в групі, енергетика на довгих заїздах, підготовка до стартів по плану від тренера.
           </p>
         </div>
         <div className="rounded-2xl border border-border/60 bg-card/40 p-5 card-hover border-l-2 border-l-olive-light/50">
-          <div className="section-label text-foreground/80 text-[11px]">Tour de Drone</div>
+          <div className="section-label text-foreground/80 text-[11px]">Онлайн-супровід тренера</div>
           <p className="mt-2 leading-relaxed text-foreground/85">
-            Волонтерський напрямок клубу: тренуємось, знімаємо контент та
-            перетворюємо кілометри на підтримку виробництва дронів для ЗСУ.
+            Менше хаосу, більше ватів і чіткий шлях до результату.
           </p>
         </div>
       </section>
