@@ -25,7 +25,7 @@ export function Footer() {
         <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-[9px]">
           <div className="flex items-center gap-3 min-w-0">
             <Logo variant="footer" className="text-[10px]" />
-            <span className="text-muted shrink-0 hidden sm:inline">Bike Like A Boss</span>
+            <span className="text-muted shrink-0 hidden sm:inline">Kyiv Bike Club</span>
             <span className="text-muted shrink-0">Kyiv, UA</span>
           </div>
           <nav className="flex flex-wrap items-center gap-x-3 gap-y-0">

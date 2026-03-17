@@ -42,8 +42,8 @@ export default function TeamPage() {
     <div className="space-y-10">
       <header className="space-y-4">
         <p className="section-label">Team / Club</p>
-        <h1 className="section-title">Команда тренерів BikeLab Kyiv.</h1>
-        <p className="max-w-2xl text-xs text-muted leading-relaxed">
+        <h1 className="section-title text-accent">Команда тренерів BikeLab Kyiv.</h1>
+        <p className="max-w-2xl text-sm text-muted leading-relaxed">
           Ми поєднуємо досвід стартів, волонтерські проєкти та лабораторний
           підхід до даних. Кожен тренер — це окремий експеримент, але всі
           працюють в одній системі.
@@ -52,7 +52,7 @@ export default function TeamPage() {
 
       {/* Полоска: Тренера */}
       <div className="border-b border-border pb-2">
-        <h2 className="section-label text-foreground/90 text-[10.5px]">
+        <h2 className="section-label text-foreground/90 text-[13.5px]">
           Тренера
         </h2>
         <div className="mt-1 h-0.5 w-16 bg-accent/80" />
@@ -63,9 +63,9 @@ export default function TeamPage() {
         {trainers.map((trainer) => (
           <article
             key={trainer.name}
-            className="rounded-2xl border border-border bg-card/80 overflow-hidden text-xs card-hover card-accent-top flex flex-row"
+            className="trainer-card rounded-2xl border border-border bg-card/80 overflow-hidden text-xs card-hover card-accent-top flex flex-row"
           >
-            <div className="relative w-24 sm:w-28 shrink-0 aspect-[3/4]">
+            <div className="relative w-24 sm:w-28 shrink-0 aspect-[3/4] min-h-[120px]">
               <Image
                 src={trainer.image}
                 alt={`Тренер ${trainer.name}`}
@@ -99,7 +99,7 @@ export default function TeamPage() {
 
       {/* Полоска: Команда (під фото тренерів) */}
       <div className="border-b border-border pb-2">
-        <h2 className="section-label text-foreground/90 text-[10.5px]">
+        <h2 className="section-label text-foreground/90 text-[13.5px]">
           Команда
         </h2>
         <div className="mt-1 h-0.5 w-16 bg-accent/80" />

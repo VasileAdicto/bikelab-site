@@ -109,7 +109,7 @@ export default function CalendarPage() {
     <div className="space-y-10">
       <header className="space-y-4">
         <p className="section-label">Calendar / Club Rides</p>
-        <h1 className="section-title">Розклад клубних заїздів.</h1>
+        <h1 className="section-title text-accent">Розклад клубних заїздів.</h1>
         <p className="max-w-2xl text-xs text-muted leading-relaxed">
           Маршрути та параметри запланованих заїздів. Карта — Strava Route;
           дистанція, набір висоти, орієнтовний час і складність.

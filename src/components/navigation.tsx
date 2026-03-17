@@ -26,17 +26,22 @@ export function Navigation() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">
-      <nav className="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-4">
-        <Logo variant="header" />
+      {/* Той самий контейнер що й main — логотипи по краях контенту, не сторінки */}
+      <nav className="max-w-6xl mx-auto px-4 sm:px-6 w-full py-3.5 flex items-center">
+        {/* Лого по лівому краю контенту (збігається з початком тексту нижче) */}
+        <div className="w-[100px] sm:w-[120px] shrink-0 flex justify-start">
+          <Logo variant="header" cropToLetters className="max-w-full" />
+        </div>
 
-        <div className="hidden md:flex items-center gap-8">
+        {/* Навігація по центру між лого та Strava */}
+        <div className="hidden md:flex flex-1 justify-center items-center gap-8 min-w-0">
           {links.map((link) => {
             const active = pathname === link.href;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative py-1 text-xs font-mono uppercase tracking-[0.2em] transition-colors ${
+                className={`relative py-1 text-xs font-mono uppercase tracking-[0.2em] transition-colors shrink-0 ${
                   active ? "text-accent" : "text-foreground/70 hover:text-accent"
                 }`}
               >
@@ -53,7 +58,8 @@ export function Navigation() {
           })}
         </div>
 
-        <div className="flex items-center gap-2">
+        {/* Strava по правому краю контенту (збігається з кінцем тексту нижче) */}
+        <div className="w-[100px] sm:w-[120px] shrink-0 flex items-center justify-end gap-2">
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}

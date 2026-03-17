@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Oswald } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/theme-context";
 import { Navigation } from "@/components/navigation";
@@ -12,6 +12,12 @@ const inter = Inter({
   display: "swap",
 });
 
+const oswald = Oswald({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-heading",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "BikeLab Kyiv | BIKE L.A.B.",
   description: "Лабораторія твоєї швидкості. XC & Road Club Kyiv.",
@@ -19,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="uk" suppressHydrationWarning className={inter.variable}>
+    <html lang="uk" suppressHydrationWarning className={`${inter.variable} ${oswald.variable}`}>
       <body className="min-h-screen bg-background text-foreground font-sans antialiased">
         <ThemeProvider>
           <SwipeNav>

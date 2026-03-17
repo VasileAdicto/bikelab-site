@@ -5,7 +5,7 @@ export default function AboutPage() {
     <div className="space-y-10">
       <header className="space-y-4">
         <p className="section-label">Про нас</p>
-        <h1 className="section-title">
+        <h1 className="section-title text-accent">
           BikeLab Kyiv — лабораторія швидкості
         </h1>
       </header>

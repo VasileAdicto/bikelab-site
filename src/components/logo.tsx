@@ -3,55 +3,37 @@ import Link from "next/link";
 type LogoProps = {
   variant?: "header" | "footer";
   className?: string;
+  /** У хедері — обрізати до літер (вужчий вигляд при лівому краї) */
+  cropToLetters?: boolean;
 };
 
-export function Logo({ variant = "header", className = "" }: LogoProps) {
+export function Logo({ variant = "header", className = "", cropToLetters = false }: LogoProps) {
   const isFooter = variant === "footer";
+  const isCompact = variant === "header" && cropToLetters;
 
   return (
     <Link
       href="/"
-      className={`inline-flex items-center gap-1 sm:gap-4 group ${className}`}
+      className={`inline-flex items-center gap-0.5 sm:gap-1.5 group ${className}`}
       aria-label="BIKE L.A.B. — на головну"
     >
-      {/* Біло-помаранчеве лого: верх (BIKE) — білий, низ (L.A.B.) — помаранчевий */}
-      <span className="relative inline-block w-[120px] sm:w-[140px] h-[44px] sm:h-[52px] shrink-0">
-        {/* Верхня половина — біла */}
-        <span
-          className="absolute inset-0 overflow-hidden"
-          style={{ clipPath: "inset(0 0 50% 0)" }}
-        >
-          <img
-            src="/logo.png"
-            alt=""
-            width={140}
-            height={52}
-            className="w-full h-full object-contain object-top invert outline-none [outline:none]"
-          />
-        </span>
-        {/* Нижня половина — L.A.B. кольором #DA5C3B (фірмовий) */}
-        <span
-          className="absolute inset-0 overflow-hidden"
-          style={{ clipPath: "inset(50% 0 0 0)" }}
-        >
-          <img
-            src="/logo.png"
-            alt=""
-            width={140}
-            height={52}
-            className="w-full h-full object-contain object-top outline-none [outline:none]"
-            style={{
-              filter:
-                "invert(42%) sepia(73%) saturate(1540%) hue-rotate(338deg) brightness(98%) contrast(92%)",
-              outline: "none",
-            }}
-          />
-        </span>
+      <span
+        className={`relative inline-block shrink-0 overflow-hidden aspect-square ${
+          isCompact ? "w-10 h-10 sm:w-11 sm:h-11" : "w-11 h-11 sm:w-12 sm:h-12"
+        }`}
+      >
+        <img
+          src="/logo.png"
+          alt="BikeLab Kyiv logo"
+          width={956}
+          height={956}
+          className="size-full object-contain outline-none [outline:none]"
+        />
       </span>
 
       {!isFooter && (
-        <span className="text-[10px] font-mono uppercase tracking-[0.15em] text-muted/70 hidden sm:inline border-l pl-4 border-border">
-          Bike Like A Boss · Kyiv
+        <span className="text-[10px] font-mono uppercase tracking-[0.15em] text-muted/70 hidden sm:inline border-l pl-2 sm:pl-3 border-border">
+          Kyiv Bike Club
         </span>
       )}
     </Link>
