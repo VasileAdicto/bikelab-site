@@ -69,7 +69,7 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.15 }}
           >
             {(texts["hero.description"] as string) ??
-              "Наш Райдер - потужний як шосер, вправний як гравіті-воїн, захищений як мамина черешня 🍒"}
+              "Наш райдер - потужний як шосер, вправний як гравіті-воїн, захищений як мамина черешня 🍒"}
           </motion.p>
 
           <motion.div

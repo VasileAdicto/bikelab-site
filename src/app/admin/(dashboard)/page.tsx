@@ -157,10 +157,10 @@ export default function AdminDashboardPage() {
 
           <EditableText
             id="hero.description"
-            initial="Ми комбінуємо біомеханику, дані з датчиків та реальні київські рельєфи, щоб оптимізувати кожен ват та кожну секунду на колі."
+            initial="Наш райдер - потужний як шосер, вправний як гравіті-воїн, захищений як мамина черешня 🍒"
             valueFromContent={get(
               "hero.description",
-              "Ми комбінуємо біомеханику, дані з датчиків та реальні київські рельєфи, щоб оптимізувати кожен ват та кожну секунду на колі."
+              "Наш райдер - потужний як шосер, вправний як гравіті-воїн, захищений як мамина черешня 🍒"
             )}
             className="max-w-xl text-[11px] text-muted leading-relaxed cursor-pointer"
             multiline
