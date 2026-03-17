@@ -209,12 +209,12 @@ export default function AdminDashboardPage() {
             </button>
           </div>
 
-          {/* Статистика 10+ / 500+ / XC & Road */}
+          {/* Статистика 10+ / 500+ / 90% МТБ / 10% Шосе */}
           <div className="grid grid-cols-3 gap-2 sm:gap-2.5 pt-2 text-xs font-mono uppercase tracking-[0.2em] w-full max-w-[min(100%,33rem)]">
             {[
               { idValue: "stats.0.value", idLabel: "stats.0.label", defV: "10+", defL: "років досвіду" },
               { idValue: "stats.1.value", idLabel: "stats.1.label", defV: "500+", defL: "проведених тренувань" },
-              { idValue: "stats.2.value", idLabel: "stats.2.label", defV: "XC & Road", defL: "дисципліни" },
+              { idValue: "stats.2.value", idLabel: "stats.2.label", defV: "90% МТБ / 10% Шосе", defL: "дисципліни" },
             ].map((s) => (
               <div
                 key={s.idLabel}
