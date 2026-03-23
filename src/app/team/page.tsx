@@ -12,7 +12,7 @@ const trainers = [
   },
   {
     name: "Андрій",
-    role: "Road / Time Trial",
+    role: "XC/ Enduro",
     focus: "Головний тренер з техніки, інженер-конструктор трас",
     slug: "kukhar",
     image: "/team/andrii-kukhar.png",
