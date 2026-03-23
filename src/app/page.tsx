@@ -8,7 +8,7 @@ import type { SiteContent } from "@/lib/content";
 const defaultStats = [
   { label: "років досвіду", value: "10+" },
   { label: "проведених тренувань", value: "500+" },
-  { label: "дисципліни", value: "90% МТБ / 10% Шосе" },
+  { label: "20% Race/80% Fun", value: "20% Race/80% Fun" },
 ];
 
 export default function Home() {
