@@ -37,6 +37,13 @@ const trainers = [
     slug: "maryna",
     image: "/team/maryna-guide.png",
   },
+  {
+    name: "Ідеальний тренер, якого ми шукаємо",
+    role: "Open Position",
+    focus: "Якщо ти вмієш запалювати людей, тримаєш методику і любиш велосипед так само, як ми - напиши нам. Можливо, це твоя картка.",
+    slug: "open-position",
+    image: "/team/473188228_1128213855609989_6028438532367776445_n.jpg",
+  },
 ];
 
 const teamMembers = [
