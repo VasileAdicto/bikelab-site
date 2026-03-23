@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { motion } from "framer-motion";
 
 const STRIPE_COLORS: Record<string, string> = {
@@ -32,6 +32,22 @@ export function TrainingCard({
   footer,
 }: TrainingCardProps) {
   const stripe = stripeColor ? STRIPE_COLORS[stripeColor] : undefined;
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [contact, setContact] = useState("");
+  const [note, setNote] = useState("");
+
+  function submitLead() {
+    const subject = `Заявка на тренування: ${title}`;
+    const body =
+      `Тренування: ${title}\n` +
+      `Ім'я: ${name || "-"}\n` +
+      `Контакт: ${contact || "-"}\n` +
+      `Коментар: ${note || "-"}`;
+    const mailto = `mailto:lab@bikelab.kyiv?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+  }
+
   return (
     <motion.article
       whileHover={{ y: -4 }}
@@ -75,7 +91,58 @@ export function TrainingCard({
           )}
         </div>
 
-        {footer && <div className="mt-3 flex items-center justify-end pt-2 card-meta">{footer}</div>}
+        <div className="mt-4 border-t border-border/60 pt-3">
+          {!open ? (
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
+              className="w-full rounded-xl border border-accent/40 bg-accent-dim px-3 py-2 text-[12px] font-mono uppercase tracking-[0.12em] text-accent hover:border-accent/70"
+            >
+              Залишити заявку
+            </button>
+          ) : (
+            <div className="space-y-2">
+              <input
+                type="text"
+                placeholder="Ваше ім'я"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full rounded-lg border border-border bg-background/70 px-3 py-2 text-[13px] text-foreground outline-none focus:border-accent/60"
+              />
+              <input
+                type="text"
+                placeholder="Телефон або Telegram"
+                value={contact}
+                onChange={(e) => setContact(e.target.value)}
+                className="w-full rounded-lg border border-border bg-background/70 px-3 py-2 text-[13px] text-foreground outline-none focus:border-accent/60"
+              />
+              <textarea
+                placeholder="Коментар (необов'язково)"
+                value={note}
+                onChange={(e) => setNote(e.target.value)}
+                rows={2}
+                className="w-full resize-none rounded-lg border border-border bg-background/70 px-3 py-2 text-[13px] text-foreground outline-none focus:border-accent/60"
+              />
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={submitLead}
+                  className="flex-1 rounded-lg bg-accent px-3 py-2 text-[12px] font-mono uppercase tracking-[0.1em] text-white hover:bg-accent-bright"
+                >
+                  Надіслати
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  className="rounded-lg border border-border px-3 py-2 text-[12px] font-mono uppercase tracking-[0.1em] text-muted hover:text-foreground"
+                >
+                  Скасувати
+                </button>
+              </div>
+            </div>
+          )}
+          {footer && <div className="mt-2 flex items-center justify-end card-meta">{footer}</div>}
+        </div>
       </div>
     </motion.article>
   );
