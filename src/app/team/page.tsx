@@ -32,7 +32,7 @@ const trainers = [
   },
   {
     name: "Марина",
-    role: "XC / Marathon",
+    role: "Ride Guide",
     focus: "Гід і координаторка групових виїздів. Створює маршрути та стежить, щоб усі доїхали з посмішкою.",
     slug: "maryna",
     image: "/team/maryna-guide.png",
