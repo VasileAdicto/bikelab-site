@@ -59,7 +59,7 @@ export function TrainingCard({
           )}
         </div>
 
-        <p className="mt-2 card-desc text-muted text-[18px] leading-relaxed">
+        <p className="mt-2 card-desc text-muted text-[20px] leading-relaxed">
           {description}
         </p>
 
