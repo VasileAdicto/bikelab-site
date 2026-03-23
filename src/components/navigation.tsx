@@ -11,7 +11,6 @@ const links = [
   { href: "/", label: "Головна" },
   { href: "/team", label: "Команда" },
   { href: "/training", label: "Тренування" },
-  { href: "/blog", label: "Блог" },
   { href: "/calendar", label: "Календар" },
   { href: "/contacts", label: "Про нас" },
 ];
