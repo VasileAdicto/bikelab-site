@@ -6,15 +6,14 @@ export default function AboutPage() {
       <header className="space-y-4">
         <p className="section-label">Про нас</p>
         <h1 className="section-title text-accent">
-          BikeLab Kyiv — лабораторія швидкості
+          BikeLab Kyiv
         </h1>
       </header>
 
       <section className="grid gap-8 lg:grid-cols-[1fr_280px] text-xs">
         <div className="space-y-6 text-muted leading-relaxed">
           <p>
-            BikeLab — це не просто велоклуб. Це ком&apos;юніті людей, які хочуть їздити
-            краще: технічніше, впевненіше і з розумінням процесу.
+            Це ком&apos;юніті людей, які хочуть їздити краще: технічніше, впевненіше і з розумінням процесу.
           </p>
           <p>
             Ми поєднуємо задоволення від катання з системним підходом: дані, методика і стабільний прогрес.
