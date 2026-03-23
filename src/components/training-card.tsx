@@ -65,10 +65,12 @@ export function TrainingCard({
         </p>
 
         <div className="mt-3 flex items-center justify-between card-price text-muted">
-          <span>{duration}</span>
+          <span>{duration || ""}</span>
           <span className="text-foreground">
             {price}
-            <span className="text-muted"> / блок</span>
+            {price && !price.toLowerCase().includes("в розробці") && (
+              <span className="text-muted"> / блок</span>
+            )}
           </span>
         </div>
 

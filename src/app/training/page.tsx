@@ -7,9 +7,9 @@ const trainings = [
     stripeColor: "red" as const,
     description:
       "Лінії, дропаут, коріння, стрімкі спуски. Покроковий розбір технічних елементів.",
-    price: "2 500 UAH / блок",
-    duration: "3 години / 1 сесія",
-    badge: "Деталі протоколу",
+    price: "В розробці...",
+    duration: "",
+    badge: "В розробці...",
   },
   {
     title: "Individual Road Training — FTP Protocol",
