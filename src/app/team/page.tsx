@@ -18,7 +18,7 @@ const trainers = [
   },
   {
     name: "Олена",
-    role: "Gravel / All-rounder",
+    role: "XC / Road",
     focus: "Тренерка новачків, координатор. Допомогає адаптуватися тим, хто тільки починає, дбає про кожного.",
     slug: "buzhovych",
     image: "/team/olena-buzhovych.png",
