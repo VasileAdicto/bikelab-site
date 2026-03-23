@@ -63,15 +63,15 @@ export function TrainingCard({
         <div className="flex items-start justify-between gap-3">
           <div className="space-y-1">
             <div
-              className="flex items-center gap-1.5 card-meta text-muted text-[14px]"
-              style={{ fontFamily: "var(--font-heading), var(--font-sans), sans-serif" }}
+              className="flex items-center gap-1.5 text-muted text-[12px] font-medium tracking-normal"
+              style={{ fontFamily: "var(--font-sans), ui-sans-serif, system-ui, sans-serif" }}
             >
               <span className="inline-flex h-1 w-1 rounded-full bg-accent shadow-[0_0_8px_var(--accent)]" />
               {level === "All" ? "XC / Road" : level}
             </div>
             <h3
-              className="card-title text-[22px] leading-tight"
-              style={{ fontFamily: "var(--font-heading), var(--font-sans), sans-serif" }}
+              className="text-foreground text-[17px] md:text-[18px] font-semibold leading-tight tracking-normal"
+              style={{ fontFamily: "var(--font-sans), ui-sans-serif, system-ui, sans-serif" }}
             >
               {title}
             </h3>
@@ -84,15 +84,15 @@ export function TrainingCard({
         </div>
 
         <p
-          className="mt-2 text-foreground/90 text-[22px] md:text-[24px] leading-[1.45] tracking-normal"
+          className="mt-2 text-foreground/85 text-[14px] md:text-[15px] leading-[1.55] tracking-normal"
           style={{ fontFamily: "var(--font-sans), ui-sans-serif, system-ui, sans-serif" }}
         >
           {description}
         </p>
 
         <div
-          className="mt-3 flex items-center justify-between card-price text-muted text-[17px]"
-          style={{ fontFamily: "var(--font-heading), var(--font-sans), sans-serif" }}
+          className="mt-3 flex items-center justify-between text-muted text-[13px] md:text-[14px] font-medium"
+          style={{ fontFamily: "var(--font-sans), ui-sans-serif, system-ui, sans-serif" }}
         >
           <span>{duration || ""}</span>
           {price && (
