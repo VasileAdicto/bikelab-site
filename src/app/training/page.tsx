@@ -64,16 +64,7 @@ export default function TrainingPage() {
         ))}
       </section>
 
-      <section className="mt-6 rounded-2xl border border-dashed border-border bg-card/50 p-6 text-tiny text-muted">
-        <div className="section-label text-foreground/80 mb-3">
-          Checkout / Integration Placeholder
-        </div>
-        <p>
-          Тут з&apos;явиться інтеграція зі Stripe / Monobank: вибір продукту,
-          валюта, конфірмація платежу та автоматична видача доступу до плану
-          через TrainingPeaks / email.
-        </p>
-      </section>
+      {/* Checkout placeholder temporarily hidden */}
     </div>
   );
 }
