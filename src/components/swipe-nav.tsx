@@ -3,7 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useRef, useEffect, type ReactNode } from "react";
 
-const sections = ["/", "/team", "/training", "/blog", "/calendar", "/contacts"];
+const sections = ["/", "/team", "/training", "/calendar", "/contacts"];
 
 const MIN_SWIPE_PX = 80;
 const MIN_WHEEL_SUM = 100;
