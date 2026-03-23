@@ -3,18 +3,18 @@ import { TeamCarousel } from "@/components/team-carousel";
 
 const trainers = [
   {
-    name: "Микола",
-    role: "XC / Marathon",
-    focus: "Технічні та групові тренування.",
-    slug: "alekseev",
-    image: "/team/473188228_1128213855609989_6028438532367776445_n.jpg",
-  },
-  {
     name: "Андрій",
     role: "XC/ Enduro",
     focus: "Головний тренер з техніки, інженер-конструктор трас",
     slug: "kukhar",
     image: "/team/andrii-kukhar.png",
+  },
+  {
+    name: "Микола",
+    role: "XC / Marathon",
+    focus: "Технічні та групові тренування.",
+    slug: "alekseev",
+    image: "/team/473188228_1128213855609989_6028438532367776445_n.jpg",
   },
   {
     name: "Олена",
@@ -68,10 +68,10 @@ export default function TeamPage() {
         </p>
       </header>
 
-      {/* Полоска: Тренера */}
+      {/* Полоска: Тренери */}
       <div className="border-b border-border pb-2">
         <h2 className="section-label text-foreground/90 text-[13.5px]">
-          Тренера
+          Тренери
         </h2>
         <div className="mt-1 h-0.5 w-16 bg-accent/80" />
       </div>
