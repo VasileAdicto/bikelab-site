@@ -118,6 +118,16 @@ export default function AboutPage() {
                     Instagram — @bike_like_a_boss
                   </a>
                 </li>
+                <li>
+                  <a
+                    href="https://t.me/+Qpv1jxyUFuGXz3jS"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-accent transition-colors"
+                  >
+                    Клубний чат для учасників
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
