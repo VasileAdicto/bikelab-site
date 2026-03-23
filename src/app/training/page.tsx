@@ -7,7 +7,7 @@ const trainings = [
     stripeColor: "white" as const,
     description:
       "2 рази на тиждень по 1.5 години + 1 технічне тренування + довгий заїзд в вихідні. Повний абонемент",
-    price: "5 200 UAH / блок",
+    price: "5 200 UAH",
     duration: "4 тижні",
     badge: "",
   },
@@ -17,7 +17,7 @@ const trainings = [
     stripeColor: "blue" as const,
     description:
       "Структурований місячний план, регулярний аналіз форми щотижня та гнучке коригування тренувань у процесі.",
-    price: "4 000 UAH / блок",
+    price: "4 000 UAH",
     duration: "4 тижні",
     badge: "online",
   },

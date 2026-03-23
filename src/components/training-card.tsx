@@ -102,9 +102,6 @@ export function TrainingCard({
           {price && (
             <span className="text-foreground">
               {price}
-              {!price.toLowerCase().includes("в розробці") && (
-                <span className="text-muted"> / блок</span>
-              )}
             </span>
           )}
         </div>
