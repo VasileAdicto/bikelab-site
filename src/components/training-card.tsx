@@ -74,7 +74,7 @@ export function TrainingCard({
               {level === "All" ? "XC / Road" : level}
             </div>
             <h3
-              className="text-foreground text-[17px] md:text-[18px] font-semibold leading-tight tracking-normal"
+              className="text-foreground text-[15px] md:text-[16px] font-semibold leading-tight tracking-normal"
               style={{ fontFamily: "var(--font-sans), ui-sans-serif, system-ui, sans-serif" }}
             >
               {title}
@@ -88,7 +88,7 @@ export function TrainingCard({
         </div>
 
         <p
-          className="mt-2 text-foreground/85 text-[14px] md:text-[15px] leading-[1.55] tracking-normal"
+          className="mt-2 text-foreground/85 text-[13px] md:text-[14px] leading-[1.5] tracking-normal"
           style={{ fontFamily: "var(--font-sans), ui-sans-serif, system-ui, sans-serif" }}
         >
           {description}
