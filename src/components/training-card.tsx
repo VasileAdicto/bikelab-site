@@ -84,8 +84,8 @@ export function TrainingCard({
         </div>
 
         <p
-          className="mt-2 card-desc text-muted text-[22px] leading-relaxed"
-          style={{ fontFamily: "var(--font-heading), var(--font-sans), sans-serif" }}
+          className="mt-2 text-foreground/90 text-[22px] md:text-[24px] leading-[1.45] tracking-normal"
+          style={{ fontFamily: "var(--font-sans), ui-sans-serif, system-ui, sans-serif" }}
         >
           {description}
         </p>
