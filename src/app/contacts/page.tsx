@@ -90,10 +90,6 @@ export default function AboutPage() {
                   Анна (WhatsApp)
                 </a>
               </p>
-              <p className="text-muted">
-                <span className="text-foreground/90">Location:</span>{" "}
-                <span className="text-foreground">Kyiv, UA</span>
-              </p>
             </div>
             <div className="rounded-2xl border border-border bg-card/80 p-4 card-hover">
               <div className="section-label text-white text-[17.5px]">Social / Messengers</div>
