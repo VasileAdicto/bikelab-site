@@ -58,37 +58,36 @@ export default function AboutPage() {
           <div className="grid gap-4 pt-4 border-t border-border/60 sm:grid-cols-2">
             <div className="rounded-2xl border border-border bg-card/80 p-4 card-hover">
               <div className="section-label text-white text-[17.5px]">Direct</div>
-              <p className="mt-2 text-muted">
-                <span className="text-foreground/90">Email:</span>{" "}
-                <a
-                  href="mailto:annavergeles@gmail.com"
-                  className="text-foreground hover:text-accent transition-colors"
-                >
-                  annavergeles@gmail.com
-                </a>
-              </p>
-              <p className="text-muted">
-                <span className="text-foreground/90">Менеджер груп:</span>{" "}
-                <a
-                  href="https://t.me/+380506935608"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-foreground hover:text-accent transition-colors"
-                >
-                  Олена (Telegram)
-                </a>
-              </p>
-              <p className="text-muted">
-                <span className="text-foreground/90">Адмін:</span>{" "}
-                <a
-                  href="https://wa.me/34688732996"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-foreground hover:text-accent transition-colors"
-                >
-                  Анна (WhatsApp)
-                </a>
-              </p>
+              <ul className="mt-2 space-y-1 text-muted">
+                <li>
+                  <a
+                    href="mailto:annavergeles@gmail.com"
+                    className="hover:text-accent transition-colors"
+                  >
+                    Email: annavergeles@gmail.com
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://t.me/+380506935608"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-accent transition-colors"
+                  >
+                    Менеджер груп: Олена (Telegram)
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://wa.me/34688732996"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-accent transition-colors"
+                  >
+                    Адмін: Анна (WhatsApp)
+                  </a>
+                </li>
+              </ul>
             </div>
             <div className="rounded-2xl border border-border bg-card/80 p-4 card-hover">
               <div className="section-label text-white text-[17.5px]">Social / Messengers</div>
