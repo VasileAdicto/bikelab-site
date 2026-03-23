@@ -11,11 +11,11 @@ const trainers = [
     image: "/team/473188228_1128213855609989_6028438532367776445_n.jpg",
   },
   {
-    name: "Kukhar",
+    name: "Андрій",
     role: "Road / Time Trial",
-    focus: "Аеродинаміка, стабільний ватаж, контроль пейсингу на довгих рівнинах.",
+    focus: "Головний тренер з техніки, інженер-конструктор трас",
     slug: "kukhar",
-    image: "/team/470597147_1112117800552928_411063209783700537_n.jpg",
+    image: "/team/andrii-kukhar.png",
   },
   {
     name: "Buzhovych",
