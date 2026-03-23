@@ -17,11 +17,11 @@ const trainers = [
     image: "/team/andrii-kukhar.png",
   },
   {
-    name: "Buzhovych",
+    name: "Олена",
     role: "Gravel / All-rounder",
-    focus: "Мікс шосе та ґравію, стабільність на поганому асфальті, робота в групі.",
+    focus: "Тренерка новачків, координатор. Допомогає адаптуватися тим, хто тільки починає, дбає про кожного.",
     slug: "buzhovych",
-    image: "/team/476858637_1149951423436232_4905419100628643454_n.jpg",
+    image: "/team/olena-buzhovych.png",
   },
 ];
 
