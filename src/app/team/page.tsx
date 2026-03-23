@@ -25,14 +25,14 @@ const trainers = [
   },
   {
     name: "Анна",
-    role: "Online / Strength",
+    role: "XC / Road / Run",
     focus: "Тренерка з фізичної підготовки, онлайн планування та аналіз тренувань, підбір харчування, організація роботи клубу.",
     slug: "anna",
     image: "/team/anna-coach.png",
   },
   {
     name: "Марина",
-    role: "Ride Guide / Coordinator",
+    role: "XC / Marathon",
     focus: "Гід і координаторка групових виїздів. Створює маршрути та стежить, щоб усі доїхали з посмішкою.",
     slug: "maryna",
     image: "/team/maryna-guide.png",
