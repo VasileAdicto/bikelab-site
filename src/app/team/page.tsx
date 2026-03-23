@@ -4,9 +4,9 @@ import { TeamCarousel } from "@/components/team-carousel";
 
 const trainers = [
   {
-    name: "Alekseev",
+    name: "Микола",
     role: "XC / Marathon",
-    focus: "Технічні трейли, довгі аплінги, робота з моментом на корені.",
+    focus: "Технічні та групові тренування.",
     slug: "alekseev",
     image: "/team/473188228_1128213855609989_6028438532367776445_n.jpg",
   },
