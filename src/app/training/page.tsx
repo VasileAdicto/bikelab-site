@@ -12,7 +12,7 @@ const trainings = [
     badge: "",
   },
   {
-    title: "Monthly TrainingPeaks Plan — Club Edition",
+    title: "Місячний план TrainingPeaks — клубна версія",
     level: "All" as const,
     stripeColor: "blue" as const,
     description:
@@ -32,7 +32,7 @@ const trainings = [
     badge: "",
   },
   {
-    title: "XC Technical Course",
+    title: "Технічний курс XC",
     level: "XC" as const,
     stripeColor: "red" as const,
     description:
