@@ -47,11 +47,11 @@ export function TrainingCard({
       <div className={stripe ? "mt-1" : ""}>
         <div className="flex items-start justify-between gap-3">
           <div className="space-y-1">
-            <div className="flex items-center gap-1.5 card-meta text-muted">
+            <div className="flex items-center gap-1.5 card-meta text-muted text-[11px]">
               <span className="inline-flex h-1 w-1 rounded-full bg-accent shadow-[0_0_8px_var(--accent)]" />
               {level === "All" ? "XC / Road" : level}
             </div>
-            <h3 className="card-title">{title}</h3>
+            <h3 className="card-title text-[15px]">{title}</h3>
           </div>
           {badge && (
             <span className="rounded-full border border-accent/40 bg-black/40 px-2 py-0.5 card-meta text-accent">
@@ -60,11 +60,11 @@ export function TrainingCard({
           )}
         </div>
 
-        <p className="mt-2 card-desc text-muted text-[12px]">
+        <p className="mt-2 card-desc text-muted text-[13px]">
           {description}
         </p>
 
-        <div className="mt-3 flex items-center justify-between card-price text-muted">
+        <div className="mt-3 flex items-center justify-between card-price text-muted text-[13px]">
           <span>{duration || ""}</span>
           {price && (
             <span className="text-foreground">
