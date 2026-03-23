@@ -52,7 +52,7 @@ export default function Home() {
           </motion.p>
 
           <motion.h1
-            className="font-bold tracking-tight leading-[1.1] text-foreground text-[1.11rem] sm:text-[1.33rem] md:text-[1.78rem] lg:text-[2.22rem]"
+            className="font-bold tracking-tight leading-[1.1] text-accent text-[1.11rem] sm:text-[1.33rem] md:text-[1.78rem] lg:text-[2.22rem]"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
