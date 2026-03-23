@@ -69,7 +69,7 @@ export default function AboutPage() {
                 </a>
               </p>
               <p className="text-muted">
-                <span className="text-foreground/90">Телеграм:</span>{" "}
+                <span className="text-foreground/90">Менеджер груп:</span>{" "}
                 <a
                   href="https://t.me/+380506935608"
                   target="_blank"
@@ -80,7 +80,7 @@ export default function AboutPage() {
                 </a>
               </p>
               <p className="text-muted">
-                <span className="text-foreground/90">WhatsApp:</span>{" "}
+                <span className="text-foreground/90">Адмін:</span>{" "}
                 <a
                   href="https://wa.me/34688732996"
                   target="_blank"
