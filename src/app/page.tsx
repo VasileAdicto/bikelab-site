@@ -148,8 +148,8 @@ export default function Home() {
       {/* Відгуки клієнтів */}
       <section className="border-t border-border/60 pt-12">
         <h2 className="section-label text-foreground/90 mb-4">Відгуки</h2>
-        <div className="grid gap-5 md:grid-cols-3 text-xs">
-          <blockquote className="rounded-2xl border border-border/60 bg-card/40 p-5 card-hover border-l-2 border-l-olive-light/50 flex gap-4">
+        <div className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-1 text-xs">
+          <blockquote className="snap-start shrink-0 w-[300px] rounded-2xl border border-border/60 bg-card/40 p-4 card-hover border-l-2 border-l-olive-light/50 flex gap-3">
             <img
               src="https://api.dicebear.com/7.x/avataaars/svg?seed=Glib&backgroundColor=4d5c44&radius=50"
               alt=""
@@ -168,7 +168,7 @@ export default function Home() {
               </cite>
             </div>
           </blockquote>
-          <blockquote className="rounded-2xl border border-border/60 bg-card/40 p-5 card-hover border-l-2 border-l-accent/50 flex gap-4">
+          <blockquote className="snap-start shrink-0 w-[300px] rounded-2xl border border-border/60 bg-card/40 p-4 card-hover border-l-2 border-l-accent/50 flex gap-3">
             <img
               src="https://api.dicebear.com/7.x/avataaars/svg?seed=Yulia&backgroundColor=4d5c44&radius=50"
               alt=""
@@ -185,7 +185,7 @@ export default function Home() {
               </cite>
             </div>
           </blockquote>
-          <blockquote className="rounded-2xl border border-border/60 bg-card/40 p-5 card-hover border-l-2 border-l-accent/50 flex gap-4">
+          <blockquote className="snap-start shrink-0 w-[300px] rounded-2xl border border-border/60 bg-card/40 p-4 card-hover border-l-2 border-l-accent/50 flex gap-3">
             <img
               src="https://api.dicebear.com/7.x/avataaars/svg?seed=Dmytro&backgroundColor=4d5c44&radius=50"
               alt=""
@@ -204,7 +204,7 @@ export default function Home() {
               </cite>
             </div>
           </blockquote>
-          <blockquote className="rounded-2xl border border-border/60 bg-card/40 p-5 card-hover border-l-2 border-l-olive-light/50 flex gap-4">
+          <blockquote className="snap-start shrink-0 w-[300px] rounded-2xl border border-border/60 bg-card/40 p-4 card-hover border-l-2 border-l-olive-light/50 flex gap-3">
             <img
               src="https://api.dicebear.com/7.x/avataaars/svg?seed=Darya&backgroundColor=4d5c44&radius=50"
               alt=""
