@@ -38,7 +38,7 @@ const trainers = [
     image: "/team/maryna-guide.png",
   },
   {
-    name: "Ідеальний тренер, якого ми шукаємо",
+    name: "тренер",
     role: "Open Position",
     focus: "Якщо ти вмієш запалювати людей, тримаєш методику і любиш велосипед так само, як ми - напиши нам. Можливо, це твоя картка.",
     slug: "open-position",
@@ -84,13 +84,19 @@ export default function TeamPage() {
             className="trainer-card rounded-2xl border border-border bg-card/80 overflow-hidden text-xs card-hover card-accent-top flex flex-row"
           >
             <div className="relative w-24 sm:w-28 shrink-0 aspect-[3/4] min-h-[120px]">
-              <Image
-                src={trainer.image}
-                alt={`Тренер ${trainer.name}`}
-                fill
-                className="object-cover object-top"
-                sizes="(max-width: 640px) 96px, 112px"
-              />
+              {trainer.slug === "open-position" ? (
+                <div className="absolute inset-0 flex items-center justify-center bg-steel/70">
+                  <span className="card-meta text-muted/80">YOUR PHOTO</span>
+                </div>
+              ) : (
+                <Image
+                  src={trainer.image}
+                  alt={`Тренер ${trainer.name}`}
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 640px) 96px, 112px"
+                />
+              )}
             </div>
             <div className="p-4 flex flex-col flex-1 min-w-0">
               <div className="flex items-start justify-between gap-2 flex-wrap">
