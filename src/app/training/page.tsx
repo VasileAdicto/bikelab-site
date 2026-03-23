@@ -2,14 +2,14 @@ import { TrainingCard } from "@/components/training-card";
 
 const trainings = [
   {
-    title: "XC Technical Course — Holosiiv Lab",
+    title: "XC Technical Course",
     level: "XC" as const,
     stripeColor: "red" as const,
     description:
-      "Лінії, дропаут, коріння, стрімкі спуски. Покроковий розбір технічних елементів Голосіївського трейл-парку з відеоаналізом.",
-    price: "2 500 UAH",
+      "Лінії, дропаут, коріння, стрімкі спуски. Покроковий розбір технічних елементів.",
+    price: "2 500 UAH / блок",
     duration: "3 години / 1 сесія",
-    badge: "tech focus",
+    badge: "Деталі протоколу",
   },
   {
     title: "Individual Road Training — FTP Protocol",
