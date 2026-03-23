@@ -38,8 +38,10 @@ const trainings = [
     description:
       "Лінії, дропаут, коріння, стрімкі спуски. Покроковий розбір технічних елементів.",
     price: "",
-    duration: "В розробці...",
+    duration: "",
     badge: "",
+    ctaText: "В розробці...",
+    ctaDisabled: true,
   },
 ];
 
