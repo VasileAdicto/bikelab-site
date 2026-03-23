@@ -20,7 +20,7 @@ const oswald = Oswald({
 
 export const metadata: Metadata = {
   title: "BikeLab Kyiv | BIKE L.A.B.",
-  description: "Лабораторія твоєї швидкості. 20% Race/80% Fun. Club Kyiv.",
+  description: "Лабораторія твоєї швидкості. Ride hard, enjoy harder. Club Kyiv.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
