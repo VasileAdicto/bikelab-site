@@ -7,19 +7,19 @@ const trainings = [
     stripeColor: "red" as const,
     description:
       "Лінії, дропаут, коріння, стрімкі спуски. Покроковий розбір технічних елементів.",
-    price: "В розробці...",
-    duration: "",
-    badge: "В розробці...",
+    price: "",
+    duration: "В розробці...",
+    badge: "",
   },
   {
-    title: "Individual Road Training — FTP Protocol",
-    level: "Road" as const,
+    title: "Групові МТБ тренування",
+    level: "XC" as const,
     stripeColor: "white" as const,
     description:
-      "Персональний план на TrainingPeaks з урахуванням FTP, HRV, календаря стартів та доступності тренувальних слотів.",
-    price: "3 200 UAH",
+      "2 рази на тиждень по 1.5 години + 1 технічне тренування + довгий заїзд в вихідні. Повний абонемент",
+    price: "5 200 UAH / блок",
     duration: "4 тижні",
-    badge: "1:1",
+    badge: "",
   },
   {
     title: "Monthly TrainingPeaks Plan — Club Edition",
