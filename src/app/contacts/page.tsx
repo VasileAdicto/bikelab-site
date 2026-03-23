@@ -87,21 +87,26 @@ export default function AboutPage() {
                     rel="noopener noreferrer"
                     className="hover:text-accent transition-colors"
                   >
-                    Strava Club — BikeLab Kyiv
+                    Strava Club — https://www.strava.com/clubs/BLABtraining
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-accent transition-colors">
-                    Instagram — @bikelab_kyiv
+                  <a
+                    href="https://www.instagram.com/bike_like_a_boss"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-accent transition-colors"
+                  >
+                    Instagram — https://www.instagram.com/bike_like_a_boss
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-accent transition-colors">
-                    Telegram — BikeLab LabNotes
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-accent transition-colors">
+                  <a
+                    href="https://t.me/+Qpv1jxyUFuGXz3jS"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-accent transition-colors"
+                  >
                     Клубний чат для учасників
                   </a>
                 </li>
