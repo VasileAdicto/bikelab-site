@@ -39,18 +39,8 @@ export default function Home() {
     <div className="relative space-y-16">
       <div className="lab-noise" />
 
-      <section className="grid gap-12 pt-6 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] items-center">
+      <section className="grid gap-12 pt-2 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] items-start">
         <div className="space-y-8">
-          <motion.p
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 card-meta text-foreground/90"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-foreground/70" />
-            {(texts["hero.tagline"] as string) ?? "Лабораторія твоєї швидкості"}
-          </motion.p>
-
           <motion.h1
             className="font-bold tracking-tight leading-[1.1] text-accent text-[1.11rem] sm:text-[1.33rem] md:text-[1.78rem] lg:text-[2.22rem]"
             initial={{ opacity: 0, y: 10 }}
