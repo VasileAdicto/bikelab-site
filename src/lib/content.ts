@@ -25,8 +25,8 @@ const defaultContent: SiteContent = {
     "stats.0.label": "років досвіду",
     "stats.1.value": "500+",
     "stats.1.label": "проведених тренувань",
-    "stats.2.value": "20% Race/80% Fun",
-    "stats.2.label": "20% Race/80% Fun",
+    "stats.2.value": "Ride hard, enjoy harder",
+    "stats.2.label": "Ride hard, enjoy harder",
     "logo.suffix": "Kyiv Bike Club",
   },
   links: {
