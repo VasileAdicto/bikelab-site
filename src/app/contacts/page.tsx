@@ -10,15 +10,11 @@ export default function AboutPage() {
         </h1>
       </header>
 
-      <section className="grid gap-8 lg:grid-cols-[1fr_280px] text-xs">
-        <div className="space-y-6 text-muted leading-relaxed">
+      <section className="grid gap-6 lg:grid-cols-[1fr_280px] text-xs">
+        <div className="space-y-4 text-muted leading-relaxed">
           <p>
             Це ком&apos;юніті людей, які хочуть їздити краще: технічніше, впевненіше і з розумінням процесу.
           </p>
-          <p>
-            Ми поєднуємо задоволення від катання з системним підходом: дані, методика і стабільний прогрес.
-          </p>
-
           <div>
             <h2 className="about-subtitle mb-2">
               Наш підхід
