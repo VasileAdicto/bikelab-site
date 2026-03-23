@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Send } from "lucide-react";
+import { Send } from "lucide-react";
 import { Logo } from "@/components/logo";
 
 const navLinks = [
@@ -12,9 +12,7 @@ const navLinks = [
 
 const social = [
   { label: "Strava", href: "https://www.strava.com/clubs/BLABtraining" },
-  { label: "Instagram", href: "#" },
-  { label: "YouTube", href: "#" },
-  { label: "Telegram", href: "#" },
+  { label: "Instagram", href: "https://www.instagram.com/bike_like_a_boss" },
 ];
 
 export function Footer() {
@@ -51,13 +49,6 @@ export function Footer() {
                 {s.label}
               </a>
             ))}
-            <a
-              href="mailto:lab@bikelab.kyiv"
-              className="text-muted hover:text-accent transition-colors inline-flex items-center gap-0.5"
-            >
-              <Mail className="h-2 w-2 shrink-0" />
-              lab@bikelab.kyiv
-            </a>
           </div>
           <div className="flex items-center gap-2 text-muted">
             <span>© {new Date().getFullYear()} BikeLab Kyiv</span>
