@@ -60,11 +60,18 @@ export default function AboutPage() {
             <div className="rounded-2xl border border-border bg-card/80 p-4 card-hover">
               <div className="section-label text-white text-[17.5px]">Direct</div>
               <p className="mt-2 text-muted">
-                Email: <span className="text-foreground">lab@bikelab.kyiv</span>
+                Email: <span className="text-foreground">annavergeles@gmail.com</span>
               </p>
               <p className="text-muted">
                 Telegram:{" "}
-                <span className="text-foreground">@bikelab_kyiv</span>
+                <a
+                  href="https://t.me/+Qpv1jxyUFuGXz3jS"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground hover:text-accent transition-colors"
+                >
+                  https://t.me/+Qpv1jxyUFuGXz3jS
+                </a>
               </p>
               <p className="text-muted">
                 Location: <span className="text-foreground">Kyiv, UA</span>
