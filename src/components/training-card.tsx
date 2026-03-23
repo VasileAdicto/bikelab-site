@@ -19,6 +19,8 @@ type TrainingCardProps = {
   duration: string;
   badge?: string;
   footer?: ReactNode;
+  ctaText?: string;
+  ctaDisabled?: boolean;
 };
 
 export function TrainingCard({
@@ -30,6 +32,8 @@ export function TrainingCard({
   duration,
   badge,
   footer,
+  ctaText = "Залишити заявку",
+  ctaDisabled = false,
 }: TrainingCardProps) {
   const stripe = stripeColor ? STRIPE_COLORS[stripeColor] : undefined;
   const [open, setOpen] = useState(false);
@@ -109,10 +113,17 @@ export function TrainingCard({
           {!open ? (
             <button
               type="button"
-              onClick={() => setOpen(true)}
-              className="w-full rounded-xl border border-accent/40 bg-accent-dim px-3 py-2 text-[12px] font-mono uppercase tracking-[0.12em] text-accent hover:border-accent/70"
+              onClick={() => {
+                if (!ctaDisabled) setOpen(true);
+              }}
+              disabled={ctaDisabled}
+              className={`w-full rounded-xl border px-3 py-2 text-[12px] font-mono uppercase tracking-[0.12em] ${
+                ctaDisabled
+                  ? "border-border bg-card/60 text-muted cursor-not-allowed"
+                  : "border-accent/40 bg-accent-dim text-accent hover:border-accent/70"
+              }`}
             >
-              Залишити заявку
+              {ctaText}
             </button>
           ) : (
             <div className="space-y-2">
