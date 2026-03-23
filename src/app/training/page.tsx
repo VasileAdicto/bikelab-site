@@ -2,16 +2,6 @@ import { TrainingCard } from "@/components/training-card";
 
 const trainings = [
   {
-    title: "XC Technical Course",
-    level: "XC" as const,
-    stripeColor: "red" as const,
-    description:
-      "Лінії, дропаут, коріння, стрімкі спуски. Покроковий розбір технічних елементів.",
-    price: "",
-    duration: "В розробці...",
-    badge: "",
-  },
-  {
     title: "Групові МТБ тренування",
     level: "XC" as const,
     stripeColor: "white" as const,
@@ -39,6 +29,16 @@ const trainings = [
       "700 техніка; 500 довге тренування вихідного дня; 350 розвиваюче тренування в лісі по будням. Можливі абонементи: Тільки техніка - 2500 в місяць; Тільки розвиваючі фізичні - 2500; Тільки довгі на вихідні - 1800.",
     price: "",
     duration: "",
+    badge: "",
+  },
+  {
+    title: "XC Technical Course",
+    level: "XC" as const,
+    stripeColor: "red" as const,
+    description:
+      "Лінії, дропаут, коріння, стрімкі спуски. Покроковий розбір технічних елементів.",
+    price: "",
+    duration: "В розробці...",
     badge: "",
   },
 ];
