@@ -62,11 +62,19 @@ export function TrainingCard({
       <div className={stripe ? "mt-1" : ""}>
         <div className="flex items-start justify-between gap-3">
           <div className="space-y-1">
-            <div className="flex items-center gap-1.5 card-meta text-muted text-[13px]">
+            <div
+              className="flex items-center gap-1.5 card-meta text-muted text-[14px]"
+              style={{ fontFamily: "var(--font-heading), var(--font-sans), sans-serif" }}
+            >
               <span className="inline-flex h-1 w-1 rounded-full bg-accent shadow-[0_0_8px_var(--accent)]" />
               {level === "All" ? "XC / Road" : level}
             </div>
-            <h3 className="card-title text-[19px]">{title}</h3>
+            <h3
+              className="card-title text-[22px] leading-tight"
+              style={{ fontFamily: "var(--font-heading), var(--font-sans), sans-serif" }}
+            >
+              {title}
+            </h3>
           </div>
           {badge && (
             <span className="rounded-full border border-accent/40 bg-black/40 px-2 py-0.5 card-meta text-accent">
@@ -75,11 +83,17 @@ export function TrainingCard({
           )}
         </div>
 
-        <p className="mt-2 card-desc text-muted text-[20px] leading-relaxed">
+        <p
+          className="mt-2 card-desc text-muted text-[22px] leading-relaxed"
+          style={{ fontFamily: "var(--font-heading), var(--font-sans), sans-serif" }}
+        >
           {description}
         </p>
 
-        <div className="mt-3 flex items-center justify-between card-price text-muted text-[15px]">
+        <div
+          className="mt-3 flex items-center justify-between card-price text-muted text-[17px]"
+          style={{ fontFamily: "var(--font-heading), var(--font-sans), sans-serif" }}
+        >
           <span>{duration || ""}</span>
           {price && (
             <span className="text-foreground">
