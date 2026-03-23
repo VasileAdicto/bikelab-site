@@ -81,7 +81,14 @@ export default function AboutPage() {
               </p>
               <p className="text-muted">
                 <span className="text-foreground/90">WhatsApp:</span>{" "}
-                <span className="text-foreground">Annd 688732996</span>
+                <a
+                  href="https://wa.me/34688732996"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground hover:text-accent transition-colors"
+                >
+                  +34688732996
+                </a>
               </p>
               <p className="text-muted">
                 <span className="text-foreground/90">Location:</span>{" "}
