@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { TeamCarousel } from "@/components/team-carousel";
 
 const trainers = [
@@ -84,12 +83,7 @@ export default function TeamPage() {
               <p className="mt-2 card-desc text-foreground/85 line-clamp-4">
                 {trainer.focus}
               </p>
-              <Link
-                href={`/team#${trainer.slug}`}
-                className="mt-auto pt-3 card-meta text-accent hover:underline inline-flex items-center gap-1"
-              >
-                Детальніше &rarr;
-              </Link>
+              <div className="mt-auto pt-3" />
             </div>
           </article>
         ))}
