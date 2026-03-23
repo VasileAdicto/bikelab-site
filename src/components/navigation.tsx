@@ -69,7 +69,7 @@ export function Navigation() {
             {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
           <a
-            href="https://www.strava.com"
+            href="https://www.strava.com/clubs/BLABtraining"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-[#FC4C02]/50 hover:border-[#FC4C02] transition-all hover:bg-[#FC4C02]/10"

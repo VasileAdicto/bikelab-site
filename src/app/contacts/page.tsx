@@ -74,7 +74,12 @@ export default function AboutPage() {
               <div className="section-label text-white text-[17.5px]">Social / Messengers</div>
               <ul className="mt-2 space-y-1 text-muted">
                 <li>
-                  <a href="#" className="hover:text-accent transition-colors">
+                  <a
+                    href="https://www.strava.com/clubs/BLABtraining"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-accent transition-colors"
+                  >
                     Strava Club — BikeLab Kyiv
                   </a>
                 </li>

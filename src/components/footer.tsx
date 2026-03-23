@@ -12,7 +12,7 @@ const navLinks = [
 ];
 
 const social = [
-  { label: "Strava", href: "#" },
+  { label: "Strava", href: "https://www.strava.com/clubs/BLABtraining" },
   { label: "Instagram", href: "#" },
   { label: "YouTube", href: "#" },
   { label: "Telegram", href: "#" },
