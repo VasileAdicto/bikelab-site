@@ -60,21 +60,32 @@ export default function AboutPage() {
             <div className="rounded-2xl border border-border bg-card/80 p-4 card-hover">
               <div className="section-label text-white text-[17.5px]">Direct</div>
               <p className="mt-2 text-muted">
-                Email: <span className="text-foreground">annavergeles@gmail.com</span>
+                <span className="text-foreground/90">Email:</span>{" "}
+                <a
+                  href="mailto:annavergeles@gmail.com"
+                  className="text-foreground hover:text-accent transition-colors"
+                >
+                  annavergeles@gmail.com
+                </a>
               </p>
               <p className="text-muted">
-                Telegram:{" "}
+                <span className="text-foreground/90">Telegram:</span>{" "}
                 <a
                   href="https://t.me/+Qpv1jxyUFuGXz3jS"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-foreground hover:text-accent transition-colors"
                 >
-                  https://t.me/+Qpv1jxyUFuGXz3jS
+                  Bike L.A.B. Chat
                 </a>
               </p>
               <p className="text-muted">
-                Location: <span className="text-foreground">Kyiv, UA</span>
+                <span className="text-foreground/90">WhatsApp:</span>{" "}
+                <span className="text-foreground">Annd 688732996</span>
+              </p>
+              <p className="text-muted">
+                <span className="text-foreground/90">Location:</span>{" "}
+                <span className="text-foreground">Kyiv, UA</span>
               </p>
             </div>
             <div className="rounded-2xl border border-border bg-card/80 p-4 card-hover">
@@ -87,7 +98,7 @@ export default function AboutPage() {
                     rel="noopener noreferrer"
                     className="hover:text-accent transition-colors"
                   >
-                    Strava Club — https://www.strava.com/clubs/BLABtraining
+                    Strava Club — BIKE L.A.B.
                   </a>
                 </li>
                 <li>
@@ -97,7 +108,7 @@ export default function AboutPage() {
                     rel="noopener noreferrer"
                     className="hover:text-accent transition-colors"
                   >
-                    Instagram — https://www.instagram.com/bike_like_a_boss
+                    Instagram — @bike_like_a_boss
                   </a>
                 </li>
                 <li>
@@ -107,7 +118,7 @@ export default function AboutPage() {
                     rel="noopener noreferrer"
                     className="hover:text-accent transition-colors"
                   >
-                    Клубний чат для учасників
+                    Клубний чат для учасників (Telegram)
                   </a>
                 </li>
               </ul>
