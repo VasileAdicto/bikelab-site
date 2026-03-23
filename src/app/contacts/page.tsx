@@ -70,11 +70,25 @@ export default function AboutPage() {
               </p>
               <p className="text-muted">
                 <span className="text-foreground/90">Телеграм:</span>{" "}
-                <span className="text-foreground">+380506935608 (Олена)</span>
+                <a
+                  href="https://t.me/+380506935608"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground hover:text-accent transition-colors"
+                >
+                  Олена (Telegram)
+                </a>
               </p>
               <p className="text-muted">
                 <span className="text-foreground/90">WhatsApp:</span>{" "}
-                <span className="text-foreground">688732996 (Анна)</span>
+                <a
+                  href="https://wa.me/34688732996"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground hover:text-accent transition-colors"
+                >
+                  Анна (WhatsApp)
+                </a>
               </p>
               <p className="text-muted">
                 <span className="text-foreground/90">Location:</span>{" "}
