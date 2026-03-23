@@ -135,19 +135,6 @@ export default function TeamPage() {
                   sizes="140px"
                 />
               </div>
-              <div className="p-2 flex flex-col flex-1 min-w-0">
-                <h3 className="card-title text-[11px]">
-                  {member.name}
-                </h3>
-                <p className="mt-0.5 card-meta text-accent text-[8px]">
-                  {member.role}
-                </p>
-                <p className="mt-1 text-[8px] font-mono text-muted">
-                  FTP <span className="text-foreground/90">{member.ftp} W</span>
-                  <br />
-                  VO2max <span className="text-foreground/90">{member.vo2max} ml/kg</span>
-                </p>
-              </div>
             </article>
           ))}
         </TeamCarousel>
