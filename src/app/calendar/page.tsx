@@ -1,5 +1,4 @@
 import { CalendarRidesCarousel } from "@/components/calendar-rides-carousel";
-import { StravaRouteEmbed } from "@/components/strava-route-embed";
 
 type RideCategory = "XC" | "Road" | "Race";
 
@@ -16,7 +15,7 @@ type Ride = {
   difficulty: number; // 1–5, для шкали зелений → червоний
 };
 
-const STRAVA_ROUTE_LINK = "https://www.strava.com/routes/12888094";
+const STRAVA_CLUB_LINK = "https://www.strava.com/clubs/BLABtraining";
 
 const rides: Ride[] = [
   {
@@ -75,13 +74,11 @@ export default function CalendarPage() {
               className="rounded-xl border border-border bg-card/80 overflow-hidden card-hover card-accent-top flex flex-col flex-shrink-0 w-[280px] sm:w-[300px]"
             >
               <div className="relative w-full aspect-video min-h-[120px] bg-steel/50 overflow-hidden">
-                <div className="absolute left-0 right-0 w-full h-[calc(100%+100px)] -top-[100px] [&_iframe]:!h-full [&_iframe]:!w-full [&_iframe]:!block">
-                  <StravaRouteEmbed
-                    routeId="12888094"
-                    mapHash="8.46/50.2891/30.5014"
-                    className="w-full h-full min-h-full block"
-                  />
-                </div>
+                <img
+                  src="/calendar-map.png"
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover object-center"
+                />
               </div>
               <div className="p-3 flex flex-col gap-2">
                 <div className="flex items-start justify-between gap-2 flex-wrap">
@@ -94,32 +91,37 @@ export default function CalendarPage() {
                   {new Date(ride.date).toLocaleDateString("uk-UA", { day: "2-digit", month: "short" })}
                   , 08:30 · {ride.meetingPoint}
                 </p>
-                <dl className="grid grid-cols-2 gap-x-2 gap-y-0.5 text-[11px] font-mono text-muted">
-                  <div><dt className="text-muted/80">Дист.</dt><dd className="text-foreground/90">{ride.distance}</dd></div>
-                  <div><dt className="text-muted/80">Набір</dt><dd className="text-foreground/90">{ride.elevation}</dd></div>
-                  <div><dt className="text-muted/80">Вт/кг</dt><dd className="text-foreground/90">{ride.powerWkg}</dd></div>
-                  <div><dt className="text-muted/80">Час</dt><dd className="text-foreground/90">{ride.duration}</dd></div>
-                </dl>
+                <div className="flex items-center justify-between gap-3 text-[11px] font-mono">
+                  <div className="flex items-baseline gap-2 min-w-0">
+                    <span className="text-muted/80">Дистанція</span>
+                    <span className="text-foreground/90 whitespace-nowrap">{ride.distance}</span>
+                  </div>
+                  <div className="flex items-baseline gap-2 min-w-0">
+                    <span className="text-muted/80">Набір</span>
+                    <span className="text-foreground/90 whitespace-nowrap">{ride.elevation}</span>
+                  </div>
+                  <div className="flex items-baseline gap-2 min-w-0">
+                    <span className="text-muted/80">Час</span>
+                    <span className="text-foreground/90 whitespace-nowrap">{ride.duration}</span>
+                  </div>
+                </div>
+
+                <div className="text-[11px] font-mono text-muted pt-1">
+                  <span className="text-muted/80">Вт/кг</span>{" "}
+                  <span className="text-foreground/90">{ride.powerWkg}</span>
+                </div>
                 <div>
                   <span className="text-[9px] uppercase text-muted/80">Складність</span>
                   <DifficultyBar value={ride.difficulty} />
                 </div>
                 <div className="mt-0.5 flex items-center justify-between gap-3">
                   <a
-                    href={STRAVA_ROUTE_LINK}
+                    href={STRAVA_CLUB_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[10px] font-mono uppercase tracking-wider text-accent hover:underline"
                   >
-                    Strava →
-                  </a>
-                  <a
-                    href={STRAVA_ROUTE_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[10px] font-mono uppercase tracking-wider text-foreground/80 hover:text-accent hover:underline"
-                  >
-                    ДОКЛАДНІШЕ &gt;&gt;
+                    Strava Club →
                   </a>
                 </div>
               </div>
