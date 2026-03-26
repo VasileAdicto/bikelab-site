@@ -21,10 +21,10 @@ const STRAVA_ROUTE_LINK = "https://www.strava.com/routes/12888094";
 const rides: Ride[] = [
   {
     id: "r1",
-    title: "Group XC — Holosiiv Roots Lab",
-    date: "2026-03-14",
+    title: "Group XC — Holosiiv Roots Lab (ознайомче для всіх)",
+    date: "2026-03-29",
     category: "XC",
-    meetingPoint: "Виставковий центр",
+    meetingPoint: "Голосієво",
     distance: "42 км",
     elevation: "+680 м",
     powerWkg: "2,1 Вт/кг",
@@ -63,8 +63,7 @@ export default function CalendarPage() {
         <p className="section-label">Calendar / Club Rides</p>
         <h1 className="section-title text-accent">Розклад клубних заїздів.</h1>
         <p className="max-w-2xl text-xs text-muted leading-relaxed">
-          Маршрути та параметри запланованих заїздів. Карта — Strava Route;
-          дистанція, набір висоти, орієнтовний час і складність.
+          Деталі запланованих заїздів.
         </p>
       </header>
 
