@@ -91,7 +91,7 @@ export default function CalendarPage() {
                   {new Date(ride.date).toLocaleDateString("uk-UA", { day: "2-digit", month: "short" })}
                   , 08:30 · {ride.meetingPoint}
                 </p>
-                <div className="flex items-center justify-between gap-3 text-[11px] font-mono">
+                <div className="grid grid-cols-3 gap-x-3 text-[11px] font-mono">
                   <div className="flex items-baseline gap-2 min-w-0">
                     <span className="text-muted/80">Дистанція</span>
                     <span className="text-foreground/90 whitespace-nowrap">{ride.distance}</span>
