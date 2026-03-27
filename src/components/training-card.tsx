@@ -39,6 +39,7 @@ export function TrainingCard({
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
+  const [email, setEmail] = useState("");
   const [note, setNote] = useState("");
 
   function submitLead() {
@@ -47,6 +48,7 @@ export function TrainingCard({
       `Тренування: ${title}\n` +
       `Ім'я: ${name || "-"}\n` +
       `Контакт: ${contact || "-"}\n` +
+      `Email: ${email || "-"}\n` +
       `Коментар: ${note || "-"}`;
     const to = "annavergeles@gmail.com";
     const encSubject = encodeURIComponent(subject);
@@ -143,6 +145,13 @@ export function TrainingCard({
                 placeholder="Телефон або Telegram"
                 value={contact}
                 onChange={(e) => setContact(e.target.value)}
+                className="w-full rounded-lg border border-border bg-background/70 px-3 py-2 text-[13px] text-foreground outline-none focus:border-accent/60"
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full rounded-lg border border-border bg-background/70 px-3 py-2 text-[13px] text-foreground outline-none focus:border-accent/60"
               />
               <textarea
