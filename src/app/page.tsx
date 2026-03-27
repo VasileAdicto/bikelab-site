@@ -160,7 +160,7 @@ export default function Home() {
           </blockquote>
           <blockquote className="snap-start shrink-0 w-[300px] rounded-2xl border border-border/60 bg-card/40 p-4 card-hover border-l-2 border-l-accent/50 flex gap-3">
             <img
-              src="https://api.dicebear.com/7.x/avataaars/svg?seed=Yulia&backgroundColor=4d5c44&radius=50"
+              src="/reviews/yulia.png"
               alt=""
               width={56}
               height={56}
