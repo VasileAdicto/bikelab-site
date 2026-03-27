@@ -141,7 +141,7 @@ export default function Home() {
         <div className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-1 text-xs">
           <blockquote className="snap-start shrink-0 w-[300px] rounded-2xl border border-border/60 bg-card/40 p-4 card-hover border-l-2 border-l-olive-light/50 flex gap-3">
             <img
-              src="https://api.dicebear.com/7.x/avataaars/svg?seed=Glib&backgroundColor=4d5c44&radius=50"
+              src="/reviews/glib.png"
               alt=""
               width={56}
               height={56}
