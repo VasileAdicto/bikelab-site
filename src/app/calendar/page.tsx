@@ -24,7 +24,7 @@ const rides: Ride[] = [
     id: "r1",
     title: "ознайомче для всіх членів клубу",
     date: "2026-03-29",
-    startTime: "8:00",
+    startTime: "9:00",
     category: "MTB",
     meetingPoint: "Голосієво",
     distance: "",
