@@ -48,8 +48,15 @@ export function TrainingCard({
       `Ім'я: ${name || "-"}\n` +
       `Контакт: ${contact || "-"}\n` +
       `Коментар: ${note || "-"}`;
-    const mailto = `mailto:annavergeles@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
+    const to = "annavergeles@gmail.com";
+    const encSubject = encodeURIComponent(subject);
+    const encBody = encodeURIComponent(body);
+    const gmailCompose = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${encSubject}&body=${encBody}`;
+    const mailto = `mailto:${to}?subject=${encSubject}&body=${encBody}`;
+
+    // Prefer web compose (works even without local mail app), fallback to mailto.
+    const win = window.open(gmailCompose, "_blank", "noopener,noreferrer");
+    if (!win) window.location.href = mailto;
   }
 
   return (
