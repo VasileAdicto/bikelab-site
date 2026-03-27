@@ -48,7 +48,7 @@ export function TrainingCard({
       `Ім'я: ${name || "-"}\n` +
       `Контакт: ${contact || "-"}\n` +
       `Коментар: ${note || "-"}`;
-    const mailto = `mailto:lab@bikelab.kyiv?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailto = `mailto:annavergeles@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailto;
   }
 
