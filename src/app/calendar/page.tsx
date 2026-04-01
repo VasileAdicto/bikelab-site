@@ -17,13 +17,13 @@ type Ride = {
   difficulty: number; // 1–5, для шкали зелений → червоний
 };
 
-const STRAVA_ROUTE_LINK = "https://www.strava.com/routes/12888094";
+const STRAVA_ROUTE_LINK = "https://www.strava.com/clubs/BLABtraining";
 
 const rides: Ride[] = [
   {
     id: "r1",
     title: "ознайомче для всіх членів клубу",
-    date: "2026-03-29",
+    date: "2026-05-05",
     startTime: "9:00",
     category: "MTB",
     meetingPoint: "Голосієво",
