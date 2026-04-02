@@ -22,7 +22,7 @@ const STRAVA_ROUTE_LINK = "https://www.strava.com/clubs/BLABtraining";
 const rides: Ride[] = [
   {
     id: "r1",
-    title: "ознайомче для всіх членів клубу",
+    title: "Відкрите тренування",
     date: "2026-05-05",
     startTime: "9:00",
     category: "MTB",
@@ -79,7 +79,7 @@ export default function CalendarPage() {
             >
               <div className="relative w-full aspect-video min-h-[120px] bg-steel/50 overflow-hidden">
                 <img
-                  src="/calendar/holosiiv-ride.png"
+                  src="/calendar/open-training.png"
                   alt="Клубне тренування в Голосієво"
                   className="h-full w-full object-cover"
                 />
