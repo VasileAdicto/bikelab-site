@@ -118,7 +118,7 @@ export default function CalendarPage() {
                     Strava →
                   </a>
                   <a
-                    href="https://kruty.app/events/01KMP0GB1ZX32ZEEVKM1EJM34H"
+                    href="https://kruty.app/events/01KN57KS5NP3XS64NX37DMVAJ8"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[10px] font-mono uppercase tracking-wider text-foreground/80 hover:text-accent hover:underline"
