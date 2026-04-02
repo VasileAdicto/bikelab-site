@@ -30,7 +30,7 @@ const rides: Ride[] = [
     distance: "",
     elevation: "",
     powerWkg: "",
-    duration: "~2 год 30 хв",
+    duration: "3+год",
     note: "Кава на фініші",
     difficulty: 3,
   },
