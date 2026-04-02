@@ -17,6 +17,19 @@ const INSTAGRAM_PHOTOS = [
   "/team/490107972_1402585534493013_2303849373563560771_n.jpg",
   "/team/490351244_1402593151158918_4836592385950887100_n.jpg",
   "/team/589139143_18074321729252633_7922891989151677289_n.jpg",
+  "/instagram/ig-extra-1.png",
+  "/instagram/ig-extra-2.png",
+  "/instagram/ig-extra-3.png",
+  "/instagram/ig-extra-4.png",
+  "/instagram/ig-extra-5.png",
+  "/instagram/ig-extra-6.png",
+  "/instagram/ig-extra-7.png",
+  "/instagram/ig-extra-8.png",
+  "/instagram/ig-extra-9.png",
+  "/instagram/ig-extra-10.png",
+  "/instagram/ig-extra-11.png",
+  "/instagram/ig-extra-12.png",
+  "/instagram/ig-extra-13.png",
 ];
 
 const ROTATE_MS = 5000;
