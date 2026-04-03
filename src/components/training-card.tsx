@@ -41,8 +41,14 @@ export function TrainingCard({
   const [contact, setContact] = useState("");
   const [email, setEmail] = useState("");
   const [note, setNote] = useState("");
+  const [sending, setSending] = useState(false);
+  const [status, setStatus] = useState<string>("");
 
-  function submitLead() {
+  async function submitLead() {
+    if (sending) return;
+    setStatus("");
+    setSending(true);
+
     const subject = `Заявка на тренування: ${title}`;
     const body =
       `Тренування: ${title}\n` +
@@ -51,14 +57,38 @@ export function TrainingCard({
       `Email: ${email || "-"}\n` +
       `Коментар: ${note || "-"}`;
     const to = "annavergeles@gmail.com";
+    try {
+      const res = await fetch("/api/training-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title,
+          name,
+          contact,
+          email,
+          note,
+        }),
+      });
+
+      if (res.ok) {
+        setStatus("Дякуємо! Заявка надіслана.");
+        setName("");
+        setContact("");
+        setEmail("");
+        setNote("");
+        return;
+      }
+    } catch {
+      // If API is unavailable, fallback to local mail client.
+    } finally {
+      setSending(false);
+    }
+
     const encSubject = encodeURIComponent(subject);
     const encBody = encodeURIComponent(body);
-    const gmailCompose = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${encSubject}&body=${encBody}`;
     const mailto = `mailto:${to}?subject=${encSubject}&body=${encBody}`;
-
-    // Prefer web compose (works even without local mail app), fallback to mailto.
-    const win = window.open(gmailCompose, "_blank", "noopener,noreferrer");
-    if (!win) window.location.href = mailto;
+    window.location.href = mailto;
+    setStatus("Відкрито поштовий клієнт для надсилання заявки.");
   }
 
   return (
@@ -165,9 +195,10 @@ export function TrainingCard({
                 <button
                   type="button"
                   onClick={submitLead}
+                  disabled={sending}
                   className="flex-1 rounded-lg bg-accent px-3 py-2 text-[12px] font-mono uppercase tracking-[0.1em] text-white hover:bg-accent-bright"
                 >
-                  Надіслати
+                  {sending ? "Надсилаємо..." : "Надіслати"}
                 </button>
                 <button
                   type="button"
@@ -177,6 +208,7 @@ export function TrainingCard({
                   Скасувати
                 </button>
               </div>
+              {status && <p className="text-[11px] text-foreground/80">{status}</p>}
             </div>
           )}
           {footer && <div className="mt-2 flex items-center justify-end card-meta">{footer}</div>}
