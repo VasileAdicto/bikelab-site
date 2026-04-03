@@ -44,6 +44,42 @@ export function TrainingCard({
   const [sending, setSending] = useState(false);
   const [status, setStatus] = useState<string>("");
 
+  function submitViaFormSubmitFallback(data: {
+    title: string;
+    name: string;
+    contact: string;
+    email: string;
+    note: string;
+  }) {
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "https://formsubmit.co/annavergeles@gmail.com";
+    form.style.display = "none";
+
+    const fields: Record<string, string> = {
+      _subject: `Заявка на тренування: ${data.title}`,
+      _captcha: "false",
+      _template: "table",
+      training: data.title,
+      name: data.name || "-",
+      contact: data.contact || "-",
+      email: data.email || "-",
+      note: data.note || "-",
+    };
+
+    Object.entries(fields).forEach(([key, value]) => {
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.name = key;
+      input.value = value;
+      form.appendChild(input);
+    });
+
+    document.body.appendChild(form);
+    form.submit();
+    form.remove();
+  }
+
   async function submitLead() {
     if (sending) return;
     setStatus("");
@@ -54,14 +90,6 @@ export function TrainingCard({
       setStatus("Вкажіть ім'я та хоча б один контакт: телефон/Telegram або email.");
       return;
     }
-
-    const subject = `Заявка на тренування: ${title}`;
-    const body =
-      `Тренування: ${title}\n` +
-      `Ім'я: ${name || "-"}\n` +
-      `Контакт: ${contact || "-"}\n` +
-      `Email: ${email || "-"}\n` +
-      `Коментар: ${note || "-"}`;
 
     try {
       const res = await fetch("/api/training-lead", {
@@ -85,17 +113,15 @@ export function TrainingCard({
         return;
       }
       const err = await res.json().catch(() => null);
-      const fallbackMailto = `mailto:annavergeles@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = fallbackMailto;
+      submitViaFormSubmitFallback({ title, name, contact, email, note });
       setStatus(
         err?.error
           ? `Помилка: ${err.error}. Відкрито поштовий клієнт для ручного надсилання.`
-          : "Автовідправка недоступна. Відкрито поштовий клієнт для ручного надсилання.",
+          : "Автовідправка через API недоступна. Надсилаємо резервним каналом.",
       );
     } catch {
-      const fallbackMailto = `mailto:annavergeles@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = fallbackMailto;
-      setStatus("Не вдалося з'єднатися із сервером. Відкрито поштовий клієнт для ручного надсилання.");
+      submitViaFormSubmitFallback({ title, name, contact, email, note });
+      setStatus("Не вдалося з'єднатися із сервером. Надсилаємо резервним каналом.");
     } finally {
       setSending(false);
     }
