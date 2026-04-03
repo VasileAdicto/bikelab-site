@@ -44,43 +44,7 @@ export function TrainingCard({
   const [sending, setSending] = useState(false);
   const [status, setStatus] = useState<string>("");
 
-  function submitViaFormSubmitFallback(data: {
-    title: string;
-    name: string;
-    contact: string;
-    email: string;
-    note: string;
-  }) {
-    const form = document.createElement("form");
-    form.method = "POST";
-    form.action = "https://formsubmit.co/annavergeles@gmail.com";
-    form.style.display = "none";
-
-    const fields: Record<string, string> = {
-      _subject: `Заявка на тренування: ${data.title}`,
-      _captcha: "false",
-      _template: "table",
-      training: data.title,
-      name: data.name || "-",
-      contact: data.contact || "-",
-      email: data.email || "-",
-      note: data.note || "-",
-    };
-
-    Object.entries(fields).forEach(([key, value]) => {
-      const input = document.createElement("input");
-      input.type = "hidden";
-      input.name = key;
-      input.value = value;
-      form.appendChild(input);
-    });
-
-    document.body.appendChild(form);
-    form.submit();
-    form.remove();
-  }
-
-  function submitLead() {
+  async function submitLead() {
     if (sending) return;
     setStatus("");
     setSending(true);
@@ -91,12 +55,29 @@ export function TrainingCard({
       return;
     }
 
-    submitViaFormSubmitFallback({ title, name, contact, email, note });
-    setStatus("Дякуємо! Заявка надіслана.");
-    setName("");
-    setContact("");
-    setEmail("");
-    setNote("");
+    try {
+      const res = await fetch("/api/training-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title, name, contact, email, note }),
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => null);
+        setStatus(err?.error ? `Помилка: ${err.error}` : "Не вдалося надіслати заявку.");
+        return;
+      }
+
+      setStatus("Дякуємо! Заявка надіслана.");
+      setName("");
+      setContact("");
+      setEmail("");
+      setNote("");
+    } catch {
+      setStatus("Не вдалося з'єднатися із сервером. Спробуйте ще раз.");
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
