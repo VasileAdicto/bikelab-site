@@ -41,90 +41,35 @@ export function TrainingCard({
   const [contact, setContact] = useState("");
   const [email, setEmail] = useState("");
   const [note, setNote] = useState("");
-  const [sending, setSending] = useState(false);
   const [status, setStatus] = useState<string>("");
 
-  function submitViaFormSubmitFallback(data: {
-    title: string;
-    name: string;
-    contact: string;
-    email: string;
-    note: string;
-  }) {
-    const form = document.createElement("form");
-    form.method = "POST";
-    form.action = "https://formsubmit.co/annavergeles@gmail.com";
-    form.style.display = "none";
-
-    const fields: Record<string, string> = {
-      _subject: `Заявка на тренування: ${data.title}`,
-      _captcha: "false",
-      _template: "table",
-      training: data.title,
-      name: data.name || "-",
-      contact: data.contact || "-",
-      email: data.email || "-",
-      note: data.note || "-",
-    };
-
-    Object.entries(fields).forEach(([key, value]) => {
-      const input = document.createElement("input");
-      input.type = "hidden";
-      input.name = key;
-      input.value = value;
-      form.appendChild(input);
-    });
-
-    document.body.appendChild(form);
-    form.submit();
-    form.remove();
-  }
-
-  async function submitLead() {
-    if (sending) return;
+  function submitLead() {
     setStatus("");
-    setSending(true);
 
     if (!name.trim() || (!contact.trim() && !email.trim())) {
-      setSending(false);
       setStatus("Вкажіть ім'я та хоча б один контакт: телефон/Telegram або email.");
       return;
     }
 
-    try {
-      const res = await fetch("/api/training-lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          title,
-          name,
-          contact,
-          email,
-          note,
-        }),
-      });
+    const subject = `Заявка на тренування: ${title}`;
+    const body =
+      `Тренування: ${title}\n` +
+      `Ім'я: ${name || "-"}\n` +
+      `Контакт: ${contact || "-"}\n` +
+      `Email: ${email || "-"}\n` +
+      `Коментар: ${note || "-"}`;
+    const to = "annavergeles@gmail.com";
+    const encSubject = encodeURIComponent(subject);
+    const encBody = encodeURIComponent(body);
+    const gmailCompose = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${encSubject}&body=${encBody}`;
+    const mailto = `mailto:${to}?subject=${encSubject}&body=${encBody}`;
 
-      if (res.ok) {
-        setStatus("Дякуємо! Заявка надіслана.");
-        setName("");
-        setContact("");
-        setEmail("");
-        setNote("");
-        return;
-      }
-      const err = await res.json().catch(() => null);
-      submitViaFormSubmitFallback({ title, name, contact, email, note });
-      setStatus(
-        err?.error
-          ? `Помилка: ${err.error}. Відкрито поштовий клієнт для ручного надсилання.`
-          : "Автовідправка через API недоступна. Надсилаємо резервним каналом.",
-      );
-    } catch {
-      submitViaFormSubmitFallback({ title, name, contact, email, note });
-      setStatus("Не вдалося з'єднатися із сервером. Надсилаємо резервним каналом.");
-    } finally {
-      setSending(false);
+    const win = window.open(gmailCompose, "_blank", "noopener,noreferrer");
+    if (!win) {
+      window.location.href = mailto;
     }
+
+    setStatus("Відкрито форму листа.");
   }
 
   return (
@@ -231,10 +176,9 @@ export function TrainingCard({
                 <button
                   type="button"
                   onClick={submitLead}
-                  disabled={sending}
                   className="flex-1 rounded-lg bg-accent px-3 py-2 text-[12px] font-mono uppercase tracking-[0.1em] text-white hover:bg-accent-bright"
                 >
-                  {sending ? "Надсилаємо..." : "Надіслати"}
+                  Надіслати
                 </button>
                 <button
                   type="button"
