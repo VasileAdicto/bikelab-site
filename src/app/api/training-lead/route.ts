@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
 
 type TrainingLeadPayload = {
   title?: string;
@@ -32,61 +31,69 @@ export async function POST(req: Request) {
     );
   }
 
-  const gmailUser = process.env.GMAIL_USER;
-  const gmailPassword = process.env.GMAIL_APP_PASSWORD;
-
-  if (!gmailUser || !gmailPassword) {
-    return NextResponse.json(
-      { error: "Email service not configured." },
-      { status: 503 },
-    );
-  }
-
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: gmailUser,
-      pass: gmailPassword,
-    },
-  });
-
   const subject = `Заявка на тренування: ${title}`;
+  const text = [
+    `Тренування: ${title}`,
+    `Ім'я: ${name || "-"}`,
+    `Контакт: ${contact || "-"}`,
+    `Email: ${email || "-"}`,
+    `Коментар: ${note || "-"}`,
+  ].join("\n");
 
-  const html = `
-    <h2 style="color:#1a1a1a;">Нова заявка на тренування</h2>
-    <table style="border-collapse:collapse;font-family:sans-serif;font-size:14px;">
-      <tr><td style="padding:6px 12px;font-weight:bold;color:#555;">Тренування</td><td style="padding:6px 12px;">${escapeHtml(title)}</td></tr>
-      <tr><td style="padding:6px 12px;font-weight:bold;color:#555;">Ім'я</td><td style="padding:6px 12px;">${escapeHtml(name)}</td></tr>
-      <tr><td style="padding:6px 12px;font-weight:bold;color:#555;">Контакт</td><td style="padding:6px 12px;">${escapeHtml(contact || "-")}</td></tr>
-      <tr><td style="padding:6px 12px;font-weight:bold;color:#555;">Email</td><td style="padding:6px 12px;">${escapeHtml(email || "-")}</td></tr>
-      <tr><td style="padding:6px 12px;font-weight:bold;color:#555;vertical-align:top;">Коментар</td><td style="padding:6px 12px;">${escapeHtml(note || "-").replace(/\n/g, "<br/>")}</td></tr>
-    </table>
-  `;
+  const payload = {
+    _subject: subject,
+    training: title,
+    name,
+    contact: contact || "-",
+    email: email || "-",
+    note: note || "-",
+    message: text,
+    _captcha: "false",
+    _template: "table",
+  };
 
   try {
-    await transporter.sendMail({
-      from: `"BikeLab" <${gmailUser}>`,
-      to: DESTINATION_EMAIL,
-      replyTo: email || undefined,
-      subject,
-      html,
+    const resendApiKey = process.env.RESEND_API_KEY;
+    if (resendApiKey) {
+      const resendResponse = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${resendApiKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: "BikeLab Site <onboarding@resend.dev>",
+          to: [DESTINATION_EMAIL],
+          subject,
+          text,
+        }),
+      });
+
+      if (resendResponse.ok) {
+        return NextResponse.json({ ok: true, provider: "resend" });
+      }
+    }
+
+    const response = await fetch(`https://formsubmit.co/ajax/${DESTINATION_EMAIL}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
     });
 
-    return NextResponse.json({ ok: true });
+    if (!response.ok) {
+      const details = await response.text();
+      return NextResponse.json({ error: "Email send failed.", details }, { status: 502 });
+    }
+
+    return NextResponse.json({ ok: true, provider: "formsubmit" });
   } catch (err) {
-    console.error("[training-lead] Gmail error:", err);
+    console.error("[training-lead] FormSubmit error:", err);
     return NextResponse.json(
       { error: "Failed to send email." },
       { status: 502 },
     );
   }
-}
-
-function escapeHtml(value: string) {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
 }
