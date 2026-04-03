@@ -19,6 +19,56 @@ type Ride = {
 
 const STRAVA_ROUTE_LINK = "https://www.strava.com/clubs/BLABtraining";
 
+type WeekdayBlock = {
+  day: string;
+  title: string;
+  lines: string[];
+  bullets?: string[];
+  /** Текст після маркованого списку */
+  afterBullets?: string[];
+};
+
+const weeklySchedule: WeekdayBlock[] = [
+  {
+    day: "Вівторок",
+    title: "Коротке тренування в лісі",
+    lines: [
+      "Розвиваючі тренування на рельєфі з варіаціями навантаження.",
+      "За потреби ділимося на групи за рівнем — щоб кожному було комфортно і ефективно.",
+    ],
+  },
+  {
+    day: "Середа",
+    title: "Техніка (основна група)",
+    lines: ["Фокус на ключових технічних навичках:"],
+    bullets: ["контроль велосипеда", "проходження поворотів", "робота з рельєфом"],
+    afterBullets: ["Це одне з найважливіших тренувань для прогресу в МТБ."],
+  },
+  {
+    day: "Четвер",
+    title: "Коротке тренування в лісі",
+    lines: [
+      "Аналог вівторка, але з інтервальними завданнями згідно з планом.",
+      "Група також може ділитися за рівнем.",
+    ],
+  },
+  {
+    day: "Пʼятниця",
+    title: "Техніка (друга група)",
+    lines: [
+      "Тренування для тих, хто хоче більше попрацювати над базою та впевненістю на велосипеді у комфортнішому темпі.",
+      "Якщо учасників багато — підключаємо додаткових тренерів, щоб зберегти якість і увагу до кожного.",
+    ],
+  },
+  {
+    day: "Неділя",
+    title: "Довге тренування",
+    lines: ["Основний виїзд тижня:"],
+    bullets: ["розвиток витривалості", "більше часу в сідлі", "спокійний темп і спілкування"],
+    afterBullets: ["Часто завершується кавою або спільним відпочинком ☕"],
+  },
+];
+
 const rides: Ride[] = [
   {
     id: "r1",
@@ -70,7 +120,58 @@ export default function CalendarPage() {
         </p>
       </header>
 
+      <section className="space-y-4" aria-labelledby="weekly-schedule-heading">
+        <div className="space-y-1">
+          <p className="section-label">Типовий тиждень</p>
+          <h2 id="weekly-schedule-heading" className="text-sm font-semibold text-foreground md:text-base">
+            Постійний розклад тренувань
+          </h2>
+          <p className="max-w-2xl text-[11px] text-muted leading-relaxed md:text-xs">
+            Точний час і місце — у картках подій нижче та в клубному чаті.
+          </p>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {weeklySchedule.map((block) => (
+            <article
+              key={block.day}
+              className="rounded-xl border border-border bg-card/80 p-4 card-hover card-accent-top"
+            >
+              <div className="flex items-start gap-2">
+                <span className="mt-0.5 inline-flex h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
+                <div className="min-w-0 flex-1 space-y-2">
+                  <h3 className="text-[13px] font-semibold leading-snug text-foreground md:text-sm">
+                    <span className="text-accent">{block.day}</span>
+                    <span className="text-muted"> — </span>
+                    {block.title}
+                  </h3>
+                  <div className="space-y-1.5 text-[11px] leading-relaxed text-foreground/85 md:text-xs">
+                    {block.lines.map((line, i) => (
+                      <p key={i}>{line}</p>
+                    ))}
+                  </div>
+                  {block.bullets && block.bullets.length > 0 && (
+                    <ul className="list-disc space-y-0.5 pl-4 text-[11px] text-foreground/80 md:text-xs">
+                      {block.bullets.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  )}
+                  {block.afterBullets && block.afterBullets.length > 0 && (
+                    <div className="space-y-1.5 text-[11px] leading-relaxed text-foreground/85 md:text-xs">
+                      {block.afterBullets.map((line, i) => (
+                        <p key={i}>{line}</p>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="text-xs">
+        <p className="section-label mb-3">Найближчі події</p>
         <CalendarRidesCarousel>
           {rides.map((ride) => (
             <article
