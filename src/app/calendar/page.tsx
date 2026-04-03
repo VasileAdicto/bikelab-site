@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import { CalendarRidesCarousel } from "@/components/calendar-rides-carousel";
+
+export const metadata: Metadata = {
+  title: "Розклад | BikeLab Kyiv",
+  description: "Розклад клубних заїздів і типовий тиждень тренувань BikeLab.",
+};
 
 type RideCategory = "XC" | "Road" | "Race" | "MTB";
 
@@ -113,7 +119,7 @@ export default function CalendarPage() {
   return (
     <div className="space-y-10">
       <header className="space-y-4">
-        <p className="section-label">Calendar / Club Rides</p>
+        <p className="section-label">Розклад / Клубні заїзди</p>
         <h1 className="section-title text-accent">Розклад клубних заїздів.</h1>
         <p className="max-w-2xl text-xs text-muted leading-relaxed">
           Деталі запланованих заїздів.

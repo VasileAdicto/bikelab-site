@@ -6,7 +6,7 @@ const navLinks = [
   { href: "/", label: "Головна" },
   { href: "/team", label: "Команда" },
   { href: "/training", label: "Тренування" },
-  { href: "/calendar", label: "Календар" },
+  { href: "/calendar", label: "Розклад" },
   { href: "/contacts", label: "Про нас" },
 ];
 
