@@ -32,14 +32,6 @@ export async function POST(req: Request) {
     );
   }
 
-  const resendApiKey = process.env.RESEND_API_KEY;
-  if (!resendApiKey) {
-    return NextResponse.json(
-      { error: "Email provider is not configured on the server." },
-      { status: 503 },
-    );
-  }
-
   const subject = `Заявка на тренування: ${title}`;
   const text = [
     `Тренування: ${title}`,
@@ -58,27 +50,53 @@ export async function POST(req: Request) {
     <p><strong>Коментар:</strong><br/>${escapeHtml(note || "-").replace(/\n/g, "<br/>")}</p>
   `;
 
-  const resendResponse = await fetch("https://api.resend.com/emails", {
+  const resendApiKey = process.env.RESEND_API_KEY;
+  if (resendApiKey) {
+    const resendResponse = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${resendApiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: "BikeLab Site <onboarding@resend.dev>",
+        to: [DESTINATION_EMAIL],
+        subject,
+        text,
+        html,
+      }),
+    });
+
+    if (resendResponse.ok) {
+      return NextResponse.json({ ok: true, provider: "resend" });
+    }
+  }
+
+  const fallbackResponse = await fetch(`https://formsubmit.co/ajax/${DESTINATION_EMAIL}`, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${resendApiKey}`,
       "Content-Type": "application/json",
+      Accept: "application/json",
     },
     body: JSON.stringify({
-      from: "BikeLab Site <onboarding@resend.dev>",
-      to: [DESTINATION_EMAIL],
-      subject,
-      text,
-      html,
+      _subject: subject,
+      training: title,
+      name,
+      contact: contact || "-",
+      email: email || "-",
+      note: note || "-",
+      message: text,
+      _captcha: "false",
+      _template: "table",
     }),
   });
 
-  if (!resendResponse.ok) {
-    const details = await resendResponse.text();
+  if (!fallbackResponse.ok) {
+    const details = await fallbackResponse.text();
     return NextResponse.json({ error: "Email send failed.", details }, { status: 502 });
   }
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, provider: "formsubmit" });
 }
 
 function escapeHtml(value: string) {
