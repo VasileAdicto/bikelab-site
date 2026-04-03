@@ -40,7 +40,7 @@ export async function POST(req: Request) {
     `Коментар: ${note || "-"}`,
   ].join("\n");
 
-  const payload = {
+  const emailPayload = {
     _subject: subject,
     training: title,
     name,
@@ -80,7 +80,7 @@ export async function POST(req: Request) {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(emailPayload),
     });
 
     if (!response.ok) {
