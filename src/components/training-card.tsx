@@ -55,6 +55,14 @@ export function TrainingCard({
       return;
     }
 
+    const subject = `Заявка на тренування: ${title}`;
+    const body =
+      `Тренування: ${title}\n` +
+      `Ім'я: ${name || "-"}\n` +
+      `Контакт: ${contact || "-"}\n` +
+      `Email: ${email || "-"}\n` +
+      `Коментар: ${note || "-"}`;
+
     try {
       const res = await fetch("/api/training-lead", {
         method: "POST",
@@ -77,9 +85,17 @@ export function TrainingCard({
         return;
       }
       const err = await res.json().catch(() => null);
-      setStatus(err?.error ? `Помилка: ${err.error}` : "Не вдалося надіслати заявку. Спробуйте ще раз.");
+      const fallbackMailto = `mailto:annavergeles@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = fallbackMailto;
+      setStatus(
+        err?.error
+          ? `Помилка: ${err.error}. Відкрито поштовий клієнт для ручного надсилання.`
+          : "Автовідправка недоступна. Відкрито поштовий клієнт для ручного надсилання.",
+      );
     } catch {
-      setStatus("Не вдалося з'єднатися із сервером. Спробуйте ще раз.");
+      const fallbackMailto = `mailto:annavergeles@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = fallbackMailto;
+      setStatus("Не вдалося з'єднатися із сервером. Відкрито поштовий клієнт для ручного надсилання.");
     } finally {
       setSending(false);
     }
