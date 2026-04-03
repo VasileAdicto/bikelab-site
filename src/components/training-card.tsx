@@ -49,14 +49,12 @@ export function TrainingCard({
     setStatus("");
     setSending(true);
 
-    const subject = `Заявка на тренування: ${title}`;
-    const body =
-      `Тренування: ${title}\n` +
-      `Ім'я: ${name || "-"}\n` +
-      `Контакт: ${contact || "-"}\n` +
-      `Email: ${email || "-"}\n` +
-      `Коментар: ${note || "-"}`;
-    const to = "annavergeles@gmail.com";
+    if (!name.trim() || (!contact.trim() && !email.trim())) {
+      setSending(false);
+      setStatus("Вкажіть ім'я та хоча б один контакт: телефон/Telegram або email.");
+      return;
+    }
+
     try {
       const res = await fetch("/api/training-lead", {
         method: "POST",
@@ -78,17 +76,13 @@ export function TrainingCard({
         setNote("");
         return;
       }
+      const err = await res.json().catch(() => null);
+      setStatus(err?.error ? `Помилка: ${err.error}` : "Не вдалося надіслати заявку. Спробуйте ще раз.");
     } catch {
-      // If API is unavailable, fallback to local mail client.
+      setStatus("Не вдалося з'єднатися із сервером. Спробуйте ще раз.");
     } finally {
       setSending(false);
     }
-
-    const encSubject = encodeURIComponent(subject);
-    const encBody = encodeURIComponent(body);
-    const mailto = `mailto:${to}?subject=${encSubject}&body=${encBody}`;
-    window.location.href = mailto;
-    setStatus("Відкрито поштовий клієнт для надсилання заявки.");
   }
 
   return (
@@ -209,8 +203,7 @@ export function TrainingCard({
                 </button>
               </div>
               <p className="text-[11px] text-muted">
-                Заявка надсилається автоматично. Якщо сервіс пошти тимчасово недоступний, відкриється
-                поштовий клієнт.
+                Заявка надсилається автоматично без переходу в Gmail.
               </p>
               {status && <p className="text-[11px] text-foreground/80">{status}</p>}
             </div>
