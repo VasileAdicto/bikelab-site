@@ -72,31 +72,56 @@ export async function POST(req: Request) {
     }
   }
 
+  const fallbackPayload = {
+    _subject: subject,
+    training: title,
+    name,
+    contact: contact || "-",
+    email: email || "-",
+    note: note || "-",
+    message: text,
+    _captcha: "false",
+    _template: "table",
+  };
+
   const fallbackResponse = await fetch(`https://formsubmit.co/ajax/${DESTINATION_EMAIL}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
     },
-    body: JSON.stringify({
-      _subject: subject,
-      training: title,
-      name,
-      contact: contact || "-",
-      email: email || "-",
-      note: note || "-",
-      message: text,
-      _captcha: "false",
-      _template: "table",
-    }),
+    body: JSON.stringify(fallbackPayload),
   });
 
-  if (!fallbackResponse.ok) {
-    const details = await fallbackResponse.text();
-    return NextResponse.json({ error: "Email send failed.", details }, { status: 502 });
+  if (fallbackResponse.ok) {
+    return NextResponse.json({ ok: true, provider: "formsubmit-ajax" });
   }
 
-  return NextResponse.json({ ok: true, provider: "formsubmit" });
+  const formEncoded = new URLSearchParams();
+  for (const [key, value] of Object.entries(fallbackPayload)) {
+    formEncoded.append(key, value);
+  }
+
+  const fallbackResponseUrlEncoded = await fetch(`https://formsubmit.co/${DESTINATION_EMAIL}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    },
+    body: formEncoded.toString(),
+    redirect: "follow",
+  });
+
+  if (fallbackResponseUrlEncoded.ok) {
+    return NextResponse.json({ ok: true, provider: "formsubmit-urlencoded" });
+  }
+
+  const detailsAjax = await fallbackResponse.text();
+  const detailsUrlEncoded = await fallbackResponseUrlEncoded.text();
+  return NextResponse.json(
+    { error: "Email send failed.", detailsAjax, detailsUrlEncoded },
+    { status: 502 },
+  );
 }
 
 function escapeHtml(value: string) {

@@ -202,9 +202,6 @@ export function TrainingCard({
                   Скасувати
                 </button>
               </div>
-              <p className="text-[11px] text-muted">
-                Заявка надсилається автоматично без переходу в Gmail.
-              </p>
               {status && <p className="text-[11px] text-foreground/80">{status}</p>}
             </div>
           )}
