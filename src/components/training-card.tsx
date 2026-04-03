@@ -208,6 +208,10 @@ export function TrainingCard({
                   Скасувати
                 </button>
               </div>
+              <p className="text-[11px] text-muted">
+                Заявка надсилається автоматично. Якщо сервіс пошти тимчасово недоступний, відкриється
+                поштовий клієнт.
+              </p>
               {status && <p className="text-[11px] text-foreground/80">{status}</p>}
             </div>
           )}
