@@ -192,41 +192,41 @@ export default function CalendarPage() {
       <section className="space-y-4" aria-labelledby="weekly-schedule-heading">
         <div className="space-y-1">
           <p className="section-label">Типовий тиждень</p>
-          <h2 id="weekly-schedule-heading" className="text-sm font-semibold text-foreground md:text-base">
+          <h2 id="weekly-schedule-heading" className="text-[13px] font-semibold text-foreground md:text-sm">
             Постійний розклад тренувань
           </h2>
-          <p className="max-w-2xl text-[11px] text-muted leading-relaxed md:text-xs">
+          <p className="max-w-2xl text-[10px] text-muted leading-relaxed md:text-[11px]">
             Точний час і місце — у картках найближчих подій вище та в клубному чаті.
           </p>
         </div>
-        <div className="flex gap-3 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-2 items-stretch -mx-4 px-4 sm:-mx-0 sm:px-0 xl:overflow-x-visible xl:pb-0">
+        <div className="flex gap-3 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-2 items-stretch -mx-4 px-4 sm:-mx-0 sm:px-0 lg:overflow-x-visible lg:pb-0">
           {weeklySchedule.map((block) => (
             <article
               key={block.day}
-              className="flex w-[min(88vw,280px)] shrink-0 snap-start flex-col rounded-xl border border-border bg-card/80 p-3 card-hover card-accent-top sm:w-[260px] xl:w-0 xl:min-w-0 xl:max-w-none xl:flex-1 xl:snap-none xl:p-4"
+              className="flex w-[min(88vw,280px)] shrink-0 snap-start flex-col rounded-xl border border-border bg-card/80 p-3 card-hover card-accent-top sm:w-[260px] lg:w-0 lg:min-w-0 lg:max-w-none lg:flex-1 lg:snap-none lg:p-3.5"
             >
               <div className="flex items-start gap-2">
                 <span className="mt-0.5 inline-flex h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
-                <div className="min-w-0 flex-1 space-y-2">
-                  <h3 className="text-[13px] font-semibold leading-snug text-foreground md:text-sm">
+                <div className="min-w-0 flex-1 space-y-1.5">
+                  <h3 className="text-[12px] font-semibold leading-snug text-foreground md:text-[13px]">
                     <span className="text-accent">{block.day}</span>
                     <span className="text-muted"> — </span>
                     {block.title}
                   </h3>
-                  <div className="space-y-1.5 text-[11px] leading-relaxed text-foreground/85 md:text-xs">
+                  <div className="space-y-1 text-[10px] leading-relaxed text-foreground/85 md:text-[11px]">
                     {block.lines.map((line, i) => (
                       <p key={i}>{line}</p>
                     ))}
                   </div>
                   {block.bullets && block.bullets.length > 0 && (
-                    <ul className="list-disc space-y-0.5 pl-4 text-[11px] text-foreground/80 md:text-xs">
+                    <ul className="list-disc space-y-0.5 pl-3.5 text-[10px] text-foreground/80 md:text-[11px]">
                       {block.bullets.map((item) => (
                         <li key={item}>{item}</li>
                       ))}
                     </ul>
                   )}
                   {block.afterBullets && block.afterBullets.length > 0 && (
-                    <div className="space-y-1.5 text-[11px] leading-relaxed text-foreground/85 md:text-xs">
+                    <div className="space-y-1 text-[10px] leading-relaxed text-foreground/85 md:text-[11px]">
                       {block.afterBullets.map((line, i) => (
                         <p key={i}>{line}</p>
                       ))}
