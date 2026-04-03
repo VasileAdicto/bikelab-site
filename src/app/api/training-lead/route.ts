@@ -53,27 +53,6 @@ export async function POST(req: Request) {
   };
 
   try {
-    const resendApiKey = process.env.RESEND_API_KEY;
-    if (resendApiKey) {
-      const resendResponse = await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${resendApiKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          from: "BikeLab Site <onboarding@resend.dev>",
-          to: [DESTINATION_EMAIL],
-          subject,
-          text,
-        }),
-      });
-
-      if (resendResponse.ok) {
-        return NextResponse.json({ ok: true, provider: "resend" });
-      }
-    }
-
     const response = await fetch(`https://formsubmit.co/ajax/${DESTINATION_EMAIL}`, {
       method: "POST",
       headers: {
@@ -88,9 +67,9 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Email send failed.", details }, { status: 502 });
     }
 
-    return NextResponse.json({ ok: true, provider: "formsubmit" });
+    return NextResponse.json({ ok: true, provider: "formsubmit-ajax" });
   } catch (err) {
-    console.error("[training-lead] FormSubmit error:", err);
+    console.error("[training-lead] send error:", err);
     return NextResponse.json(
       { error: "Failed to send email." },
       { status: 502 },
