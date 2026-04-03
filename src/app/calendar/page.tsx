@@ -199,11 +199,11 @@ export default function CalendarPage() {
             Точний час і місце — у картках найближчих подій вище та в клубному чаті.
           </p>
         </div>
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="flex gap-3 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-2 items-stretch -mx-4 px-4 sm:-mx-0 sm:px-0 lg:overflow-x-visible lg:pb-0">
           {weeklySchedule.map((block) => (
             <article
               key={block.day}
-              className="rounded-xl border border-border bg-card/80 p-4 card-hover card-accent-top"
+              className="flex w-[min(88vw,280px)] shrink-0 snap-start flex-col rounded-xl border border-border bg-card/80 p-3 card-hover card-accent-top sm:w-[260px] lg:w-0 lg:min-w-0 lg:max-w-none lg:flex-1 lg:snap-none lg:p-4"
             >
               <div className="flex items-start gap-2">
                 <span className="mt-0.5 inline-flex h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
