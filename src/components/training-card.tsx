@@ -145,7 +145,7 @@ export function TrainingCard({
         </div>
 
         <p
-          className="mt-2 text-foreground/85 text-[13px] md:text-[14px] leading-[1.5] tracking-normal"
+          className="mt-2 whitespace-pre-line text-foreground/85 text-[13px] md:text-[14px] leading-[1.5] tracking-normal"
           style={{ fontFamily: "var(--font-sans), ui-sans-serif, system-ui, sans-serif" }}
         >
           {description}
