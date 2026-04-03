@@ -80,46 +80,23 @@ export function TrainingCard({
     form.remove();
   }
 
-  async function submitLead() {
+  function submitLead() {
     if (sending) return;
     setStatus("");
     setSending(true);
 
     if (!name.trim() || (!contact.trim() && !email.trim())) {
-      setSending(false);
       setStatus("Вкажіть ім'я та хоча б один контакт: телефон/Telegram або email.");
+      setSending(false);
       return;
     }
 
-    try {
-      const res = await fetch("/api/training-lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title, name, contact, email, note }),
-      });
-
-      if (res.ok) {
-        setStatus("Дякуємо! Заявка надіслана.");
-        setName("");
-        setContact("");
-        setEmail("");
-        setNote("");
-        return;
-      }
-
-      const err = await res.json().catch(() => null);
-      submitViaFormSubmitFallback({ title, name, contact, email, note });
-      setStatus(
-        err?.error
-          ? `Помилка: ${err.error}. Надсилаємо резервним каналом.`
-          : "Автовідправка через API недоступна. Надсилаємо резервним каналом.",
-      );
-    } catch {
-      submitViaFormSubmitFallback({ title, name, contact, email, note });
-      setStatus("Не вдалося з'єднатися із сервером. Надсилаємо резервним каналом.");
-    } finally {
-      setSending(false);
-    }
+    submitViaFormSubmitFallback({ title, name, contact, email, note });
+    setStatus("Дякуємо! Заявка надіслана.");
+    setName("");
+    setContact("");
+    setEmail("");
+    setNote("");
   }
 
   return (
