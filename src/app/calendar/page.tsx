@@ -86,8 +86,7 @@ const rides: Ride[] = [
     distance: "",
     elevation: "",
     powerWkg: "",
-    duration: "3+год",
-    note: "Кава на фініші",
+    duration: "1.5 години",
     difficulty: 3,
   },
 ];
