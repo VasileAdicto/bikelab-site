@@ -78,8 +78,8 @@ const weeklySchedule: WeekdayBlock[] = [
 const rides: Ride[] = [
   {
     id: "r1",
-    title: "Відкрите тренування",
-    date: "2026-05-05",
+    title: "Технічний велкам райд",
+    date: "2026-04-15",
     startTime: "9:00",
     category: "MTB",
     meetingPoint: "Голосієво",
