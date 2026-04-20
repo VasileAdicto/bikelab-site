@@ -131,9 +131,9 @@ export default function TrainingPage() {
             href={PAYMENT_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="block break-all text-accent hover:underline"
+            className="inline-flex items-center rounded-lg border border-accent/40 bg-accent-dim px-3 py-1.5 text-accent hover:border-accent/70 hover:underline"
           >
-            {PAYMENT_LINK}
+            Оплатити через QR-посилання
           </a>
           <p className="text-foreground/85">
             Після переходу також перевірте призначення платежу: “Сплата за послуги ... (додайте ваше
