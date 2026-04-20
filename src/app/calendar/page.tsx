@@ -12,6 +12,7 @@ type Ride = {
   id: string;
   title: string;
   metaLine?: string;
+  image: string;
   date: string;
   startTime: string;
   category: RideCategory;
@@ -81,6 +82,7 @@ const rides: Ride[] = [
     id: "r1",
     title: "Розвиваючі тренування",
     metaLine: "Вівторок та Четверг на 8:30",
+    image: "/calendar/open-training.png",
     date: "2026-04-15",
     startTime: "9:00",
     category: "MTB",
@@ -89,6 +91,22 @@ const rides: Ride[] = [
     elevation: "",
     powerWkg: "",
     duration: "1.5 години",
+    difficulty: 3,
+  },
+  {
+    id: "r2",
+    title: "Технічні тренування",
+    metaLine: "П'ятниця. Група 2",
+    image: "/calendar/technical-group-ride.png",
+    date: "2026-04-16",
+    startTime: "9:00",
+    category: "MTB",
+    meetingPoint: "Голосієво",
+    distance: "",
+    elevation: "",
+    powerWkg: "",
+    duration: "1.5 години",
+    note: "Середа. Група 1 (набрана)",
     difficulty: 3,
   },
 ];
@@ -137,7 +155,7 @@ export default function CalendarPage() {
             >
               <div className="relative w-full aspect-video min-h-[120px] bg-steel/50 overflow-hidden">
                 <img
-                  src="/calendar/open-training.png"
+                  src={ride.image}
                   alt="Клубне тренування в Голосієво"
                   className="h-full w-full object-cover"
                 />
