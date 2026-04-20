@@ -11,6 +11,7 @@ type RideCategory = "XC" | "Road" | "Race" | "MTB";
 type Ride = {
   id: string;
   title: string;
+  metaLine?: string;
   date: string;
   startTime: string;
   category: RideCategory;
@@ -79,6 +80,7 @@ const rides: Ride[] = [
   {
     id: "r1",
     title: "Розвиваючі тренування. Вівторок та Четверг на 8:30",
+    metaLine: "Вівторок та Четверг на 8:30",
     date: "2026-04-15",
     startTime: "9:00",
     category: "MTB",
@@ -148,8 +150,8 @@ export default function CalendarPage() {
                   </span>
                 </div>
                 <p className="text-[11px] font-mono text-muted">
-                  {new Date(ride.date).toLocaleDateString("uk-UA", { day: "2-digit", month: "short" })}
-                  , {ride.startTime} · {ride.meetingPoint}
+                  {ride.metaLine ??
+                    `${new Date(ride.date).toLocaleDateString("uk-UA", { day: "2-digit", month: "short" })}, ${ride.startTime} · ${ride.meetingPoint}`}
                 </p>
                 <dl className="grid gap-y-1 text-[11px] font-mono text-muted">
                   <div className="flex items-center justify-between gap-2">
