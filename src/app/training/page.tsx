@@ -66,6 +66,65 @@ export default function TrainingPage() {
         ))}
       </section>
 
+      <section className="rounded-2xl border border-border bg-card/70 p-5 space-y-4">
+        <div className="space-y-1">
+          <p className="section-label">Оплата</p>
+          <h2 className="text-[15px] md:text-[17px] font-semibold text-foreground">
+            Варіанти оплати за тренування Bike LAB
+          </h2>
+        </div>
+
+        <div className="space-y-2 text-[12px] md:text-[13px] text-foreground/90 leading-relaxed">
+          <p className="font-semibold text-foreground">Оплата за реквізитами</p>
+          <p>
+            <span className="text-muted">Найменування отримувача:</span> ФОП Щербацька Марина Сергіївна
+          </p>
+          <p>
+            <span className="text-muted">Код отримувача:</span> 3076708760
+          </p>
+          <p>
+            <span className="text-muted">
+              Рахунок отримувача у форматі відповідно до стандарту IBAN:
+            </span>{" "}
+            UA063052990000026004045017466
+          </p>
+          <p>
+            <span className="text-muted">Назва банку:</span> АТ КБ «ПриватБанк»
+          </p>
+          <p>
+            <span className="text-muted">Призначення платежу:</span> Сплата за послуги ... (додайте ваше
+            прізвище)
+          </p>
+        </div>
+
+        <div className="space-y-2 text-[12px] md:text-[13px] text-foreground/90 leading-relaxed">
+          <p>
+            Відскануйте QR код мобільним застосунком банку, з якого збираєтесь здійснити оплату.
+          </p>
+          <p>
+            Перевірте призначення платежу. Має бути: “Сплата за послуги ... (додайте ваше прізвище)”.
+          </p>
+        </div>
+
+        <div className="space-y-2 text-[12px] md:text-[13px] text-foreground/90 leading-relaxed">
+          <p>Перейдіть за посиланням зі смартфону (цей спосіб працює не у всіх).</p>
+          <p>
+            <span className="text-muted">Лінк на оплату:</span>{" "}
+            <a
+              href="https://bank.gov.ua/qr/QkNECjAwMgoyClVDVAoK1M7PINnl8OHg9vzq4CDM4PDo7eAg0eXw47O_4u3gClVBMDYzMDUyOTkwMDAwMDI2MDA0MDQ1MDE3NDY2ClVBSAozMDc2NzA4NzYwCgoK0e_r4PLgIOfgIO_u8evz4-gK"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="break-all text-accent hover:underline"
+            >
+              bank.gov.ua/qr/...
+            </a>
+          </p>
+          <p>
+            Перевірте призначення платежу. Має бути: “Сплата за послуги ... (додайте ваше прізвище)”.
+          </p>
+        </div>
+      </section>
+
       {/* Checkout placeholder temporarily hidden */}
     </div>
   );
