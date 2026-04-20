@@ -70,68 +70,74 @@ export default function TrainingPage() {
         ))}
       </section>
 
-      <section className="rounded-2xl border border-border bg-card/70 p-5 space-y-4">
+      <section className="rounded-2xl border border-border bg-card/70 p-5 md:p-6 space-y-5 card-accent-top">
         <div className="space-y-1">
           <p className="section-label">Оплата</p>
-          <h2 className="text-[15px] md:text-[17px] font-semibold text-foreground">
+          <h2 className="text-[16px] md:text-[18px] font-semibold text-foreground">
             Варіанти оплати за тренування Bike LAB
           </h2>
-        </div>
-
-        <div className="space-y-2 text-[12px] md:text-[13px] text-foreground/90 leading-relaxed">
-          <p className="font-semibold text-foreground">Оплата за реквізитами</p>
-          <p>
-            <span className="text-muted">Найменування отримувача:</span> ФОП Щербацька Марина Сергіївна
-          </p>
-          <p>
-            <span className="text-muted">Код отримувача:</span> 3076708760
-          </p>
-          <p>
-            <span className="text-muted">
-              Рахунок отримувача у форматі відповідно до стандарту IBAN:
-            </span>{" "}
-            UA063052990000026004045017466
-          </p>
-          <p>
-            <span className="text-muted">Назва банку:</span> АТ КБ «ПриватБанк»
-          </p>
-          <p>
-            <span className="text-muted">Призначення платежу:</span> Сплата за послуги ... (додайте ваше
-            прізвище)
+          <p className="text-[12px] md:text-[13px] text-muted">
+            Зручний спосіб: реквізити, QR-оплата або перехід за посиланням зі смартфона.
           </p>
         </div>
 
-        <div className="space-y-2 text-[12px] md:text-[13px] text-foreground/90 leading-relaxed">
-          <p>
-            Відскануйте QR код мобільним застосунком банку, з якого збираєтесь здійснити оплату.
-          </p>
-          <div className="pt-1">
+        <div className="grid gap-4 lg:grid-cols-[1.25fr_0.75fr]">
+          <div className="rounded-xl border border-border/80 bg-background/30 p-4 space-y-3">
+            <p className="text-[13px] md:text-[14px] font-semibold text-foreground">Оплата за реквізитами</p>
+            <dl className="grid gap-2 text-[12px] md:text-[13px] leading-relaxed">
+              <div className="grid gap-0.5">
+                <dt className="text-muted">Найменування отримувача</dt>
+                <dd className="text-foreground">ФОП Щербацька Марина Сергіївна</dd>
+              </div>
+              <div className="grid gap-0.5">
+                <dt className="text-muted">Код отримувача</dt>
+                <dd className="text-foreground">3076708760</dd>
+              </div>
+              <div className="grid gap-0.5">
+                <dt className="text-muted">IBAN</dt>
+                <dd className="text-foreground break-all">UA063052990000026004045017466</dd>
+              </div>
+              <div className="grid gap-0.5">
+                <dt className="text-muted">Назва банку</dt>
+                <dd className="text-foreground">АТ КБ «ПриватБанк»</dd>
+              </div>
+              <div className="grid gap-0.5">
+                <dt className="text-muted">Призначення платежу</dt>
+                <dd className="text-foreground">Сплата за послуги ... (додайте ваше прізвище)</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div className="rounded-xl border border-border/80 bg-background/30 p-4 space-y-3">
+            <p className="text-[13px] md:text-[14px] font-semibold text-foreground">Оплата через QR</p>
+            <p className="text-[12px] md:text-[13px] text-foreground/85">
+              Відскануйте QR код мобільним застосунком банку, з якого плануєте оплату.
+            </p>
             <img
               src={PAYMENT_QR_IMAGE}
               alt="QR код для оплати тренувань Bike LAB"
-              className="h-40 w-40 rounded-lg border border-border bg-white p-1 md:h-48 md:w-48"
+              className="mx-auto h-44 w-44 rounded-lg border border-border bg-white p-1 md:h-48 md:w-48"
             />
+            <p className="text-[12px] md:text-[13px] text-foreground/85">
+              Перевірте призначення платежу: “Сплата за послуги ... (додайте ваше прізвище)”.
+            </p>
           </div>
-          <p>
-            Перевірте призначення платежу. Має бути: “Сплата за послуги ... (додайте ваше прізвище)”.
-          </p>
         </div>
 
-        <div className="space-y-2 text-[12px] md:text-[13px] text-foreground/90 leading-relaxed">
-          <p>Перейдіть за посиланням зі смартфону (цей спосіб працює не у всіх).</p>
-          <p>
-            <span className="text-muted">Лінк на оплату:</span>{" "}
-            <a
-              href={PAYMENT_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="break-all text-accent hover:underline"
-            >
-              bank.gov.ua/qr/...
-            </a>
-          </p>
-          <p>
-            Перевірте призначення платежу. Має бути: “Сплата за послуги ... (додайте ваше прізвище)”.
+        <div className="rounded-xl border border-accent/30 bg-accent-dim/40 p-4 space-y-2 text-[12px] md:text-[13px] text-foreground/90">
+          <p className="font-semibold text-foreground">Альтернатива: перехід за посиланням зі смартфона</p>
+          <p className="text-foreground/85">Цей спосіб працює не у всіх банківських застосунках.</p>
+          <a
+            href={PAYMENT_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block break-all text-accent hover:underline"
+          >
+            {PAYMENT_LINK}
+          </a>
+          <p className="text-foreground/85">
+            Після переходу також перевірте призначення платежу: “Сплата за послуги ... (додайте ваше
+            прізвище)”.
           </p>
         </div>
       </section>
