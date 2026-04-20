@@ -109,6 +109,21 @@ const rides: Ride[] = [
     note: "Середа. Група 1 (набрана)",
     difficulty: 3,
   },
+  {
+    id: "r3",
+    title: "Довге тренування вихідного дня",
+    metaLine: "Неділя",
+    image: "/calendar/long-weekend-ride.png",
+    date: "2026-04-20",
+    startTime: "9:00",
+    category: "MTB",
+    meetingPoint: "Голосієво",
+    distance: "",
+    elevation: "",
+    powerWkg: "",
+    duration: "3+год",
+    difficulty: 4,
+  },
 ];
 
 function DifficultyBar({ value }: { value: number }) {
