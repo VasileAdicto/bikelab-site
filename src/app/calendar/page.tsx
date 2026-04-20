@@ -193,7 +193,13 @@ export default function CalendarPage() {
                   </div>
                 </dl>
                 {ride.note && (
-                  <p className="text-[11px] font-mono text-foreground/85">{ride.note}</p>
+                  <p
+                    className={`text-[11px] font-mono ${
+                      ride.id === "r2" ? "text-accent/75" : "text-foreground/85"
+                    }`}
+                  >
+                    {ride.note}
+                  </p>
                 )}
                 <div>
                   <span className="text-[9px] uppercase text-muted/80">Складність</span>
