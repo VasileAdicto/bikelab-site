@@ -1,5 +1,9 @@
 import { TrainingCard } from "@/components/training-card";
 
+const PAYMENT_LINK =
+  "https://bank.gov.ua/qr/QkNECjAwMgoyClVDVAoK1M7PINnl8OHg9vzq4CDM4PDo7eAg0eXw47O_4u3gClVBMDYzMDUyOTkwMDAwMDI2MDA0MDQ1MDE3NDY2ClVBSAozMDc2NzA4NzYwCgoK0e_r4PLgIOfgIO_u8evz4-gK";
+const PAYMENT_QR_IMAGE = `https://api.qrserver.com/v1/create-qr-code/?size=360x360&data=${encodeURIComponent(PAYMENT_LINK)}`;
+
 const trainings = [
   {
     title: "Групові МТБ тренування",
@@ -101,6 +105,13 @@ export default function TrainingPage() {
           <p>
             Відскануйте QR код мобільним застосунком банку, з якого збираєтесь здійснити оплату.
           </p>
+          <div className="pt-1">
+            <img
+              src={PAYMENT_QR_IMAGE}
+              alt="QR код для оплати тренувань Bike LAB"
+              className="h-40 w-40 rounded-lg border border-border bg-white p-1 md:h-48 md:w-48"
+            />
+          </div>
           <p>
             Перевірте призначення платежу. Має бути: “Сплата за послуги ... (додайте ваше прізвище)”.
           </p>
@@ -111,7 +122,7 @@ export default function TrainingPage() {
           <p>
             <span className="text-muted">Лінк на оплату:</span>{" "}
             <a
-              href="https://bank.gov.ua/qr/QkNECjAwMgoyClVDVAoK1M7PINnl8OHg9vzq4CDM4PDo7eAg0eXw47O_4u3gClVBMDYzMDUyOTkwMDAwMDI2MDA0MDQ1MDE3NDY2ClVBSAozMDc2NzA4NzYwCgoK0e_r4PLgIOfgIO_u8evz4-gK"
+              href={PAYMENT_LINK}
               target="_blank"
               rel="noopener noreferrer"
               className="break-all text-accent hover:underline"
