@@ -79,7 +79,7 @@ const weeklySchedule: WeekdayBlock[] = [
 const rides: Ride[] = [
   {
     id: "r1",
-    title: "Розвиваючі тренування. Вівторок та Четверг на 8:30",
+    title: "Розвиваючі тренування",
     metaLine: "Вівторок та Четверг на 8:30",
     date: "2026-04-15",
     startTime: "9:00",
@@ -155,7 +155,7 @@ export default function CalendarPage() {
                 </p>
                 <dl className="grid gap-y-1 text-[11px] font-mono text-muted">
                   <div className="flex items-center justify-between gap-2">
-                    <dt className="text-muted/80">Час</dt>
+                    <dt className="text-muted/80">Тривалість</dt>
                     <dd className="text-foreground/90">{ride.duration}</dd>
                   </div>
                 </dl>
