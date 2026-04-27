@@ -56,6 +56,12 @@ export default function TrainingPage() {
                 2 рази на тиждень розвиваючі тренування по 1.5 години + 1 технічне + 1 Довгий заїзд у
                 вихідні.
               </p>
+              <a
+                href="#training-right-blocks"
+                className="mt-2 inline-flex rounded-xl border border-accent/40 bg-accent-dim px-3 py-2 text-[12px] font-mono uppercase tracking-[0.12em] text-accent hover:border-accent/70"
+              >
+                Залишити заявку
+              </a>
             </div>
 
             <div className="overflow-x-auto">
@@ -96,7 +102,7 @@ export default function TrainingPage() {
           </div>
         </article>
 
-        <div className="grid grid-cols-1 gap-5">
+        <div id="training-right-blocks" className="grid grid-cols-1 gap-5">
           {featuredTrainings.map((t) => (
             <TrainingCard key={t.title} {...t} />
           ))}
