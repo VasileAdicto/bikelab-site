@@ -4,36 +4,16 @@ const PAYMENT_LINK =
   "https://bank.gov.ua/qr/QkNECjAwMgoyClVDVAoK1M7PINnl8OHg9vzq4CDM4PDo7eAg0eXw47O_4u3gClVBMDYzMDUyOTkwMDAwMDI2MDA0MDQ1MDE3NDY2ClVBSAozMDc2NzA4NzYwCgoK0e_r4PLgIOfgIO_u8evz4-gK";
 const PAYMENT_QR_IMAGE = `https://api.qrserver.com/v1/create-qr-code/?size=360x360&data=${encodeURIComponent(PAYMENT_LINK)}`;
 
-const trainings = [
-  {
-    title: "Групові МТБ тренування",
-    level: "XC" as const,
-    stripeColor: "white" as const,
-    description:
-      "2 рази на тиждень по 1.5 години + 1 технічне тренування + довгий заїзд в вихідні. Повний абонемент",
-    price: "",
-    duration: "",
-    badge: "",
-  },
+const featuredTrainings = [
   {
     title: "Місячний план TrainingPeaks — клубна версія",
     level: "All" as const,
     stripeColor: "blue" as const,
     description:
       "Структурований місячний план, регулярний аналіз форми щотижня та гнучке коригування тренувань у процесі.",
-    price: "",
+    price: "4200 грн",
     duration: "",
     badge: "online",
-  },
-  {
-    title: "Разові тренування.",
-    level: "All" as const,
-    stripeColor: "yellow" as const,
-    description:
-      "Техніка: разове — 700 грн, абонемент — 2500 грн\nДовге: разове — 500 грн, абонемент — 1800 грн\nРозвиваюче (вівторок/четвер): разове — 400 грн, абонемент — 3000 грн\nВсе: разове — 8000 грн, абонемент — 5800 грн\n\nАбонемент діє 30 днів з моменту першого тренування.",
-    price: "",
-    duration: "",
-    badge: "",
   },
   {
     title: "Технічний курс XC",
@@ -64,10 +44,62 @@ export default function TrainingPage() {
         </p>
       </header>
 
-      <section className="grid gap-5 grid-cols-1 sm:grid-cols-2">
-        {trainings.map((t) => (
-          <TrainingCard key={t.title} {...t} />
-        ))}
+      <section className="grid grid-cols-1 gap-5 lg:grid-cols-2 items-stretch">
+        <article className="rounded-2xl border border-border bg-card/80 p-5 card-hover card-accent-top h-full">
+          <div className="space-y-3">
+            <div className="space-y-1">
+              <p className="text-[12px] text-muted">XC</p>
+              <h2 className="text-[18px] font-semibold text-foreground leading-tight">
+                Групові МТБ тренування
+              </h2>
+              <p className="text-[13px] text-foreground/85 leading-relaxed">
+                2 рази на тиждень по 1.5 години + 1 технічне тренування + довгий заїзд у вихідні.
+              </p>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[380px] text-left text-[12px] md:text-[13px]">
+                <thead>
+                  <tr className="border-b border-border/70 text-muted">
+                    <th className="py-2 pr-3 font-medium">Тип тренування</th>
+                    <th className="py-2 pr-3 font-medium">Разове</th>
+                    <th className="py-2 font-medium">Абонемент</th>
+                  </tr>
+                </thead>
+                <tbody className="text-foreground/90">
+                  <tr className="border-b border-border/40">
+                    <td className="py-2 pr-3">Техніка</td>
+                    <td className="py-2 pr-3">700 грн</td>
+                    <td className="py-2">2500 грн</td>
+                  </tr>
+                  <tr className="border-b border-border/40">
+                    <td className="py-2 pr-3">Довге</td>
+                    <td className="py-2 pr-3">500 грн</td>
+                    <td className="py-2">1800 грн</td>
+                  </tr>
+                  <tr className="border-b border-border/40">
+                    <td className="py-2 pr-3">Розвиваюче (вівторок/четвер)</td>
+                    <td className="py-2 pr-3">400 грн</td>
+                    <td className="py-2">3000 грн</td>
+                  </tr>
+                  <tr>
+                    <td className="py-2 pr-3">Безлімітний абонемент на всі тренування (1 місяць)</td>
+                    <td className="py-2 pr-3">—</td>
+                    <td className="py-2 text-accent font-semibold">5800 грн</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p className="text-[12px] text-muted">Абонемент діє 30 днів з моменту першого тренування.</p>
+          </div>
+        </article>
+
+        <div className="grid grid-cols-1 gap-5">
+          {featuredTrainings.map((t) => (
+            <TrainingCard key={t.title} {...t} />
+          ))}
+        </div>
       </section>
 
       <section className="rounded-2xl border border-border bg-card/70 p-5 md:p-6 space-y-5 card-accent-top">
