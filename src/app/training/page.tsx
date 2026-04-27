@@ -88,10 +88,10 @@ export default function TrainingPage() {
               </table>
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-2 pt-1">
               <p className="text-[12px] text-muted">Абонемент діє 30 днів з моменту першого тренування.</p>
               <a
-                href="#training-right-blocks"
+                href="#training-request"
                 className="inline-flex w-full justify-center rounded-xl border border-accent/40 bg-accent-dim px-3 py-2 text-[12px] font-mono uppercase tracking-[0.12em] text-accent hover:border-accent/70"
               >
                 Залишити заявку
@@ -101,8 +101,10 @@ export default function TrainingPage() {
         </article>
 
         <div id="training-right-blocks" className="grid grid-cols-1 gap-5">
-          {featuredTrainings.map((t) => (
-            <TrainingCard key={t.title} {...t} />
+          {featuredTrainings.map((t, idx) => (
+            <div key={t.title} id={idx === 0 ? "training-request" : undefined} className={idx === 0 ? "scroll-mt-28" : undefined}>
+              <TrainingCard {...t} />
+            </div>
           ))}
         </div>
       </section>
