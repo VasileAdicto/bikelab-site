@@ -52,12 +52,6 @@ export default function TrainingPage() {
               <h2 className="text-[18px] font-semibold text-foreground leading-tight">
                 Групові МТБ тренування
               </h2>
-              <div className="overflow-x-auto scrollbar-hide">
-                <p className="whitespace-nowrap text-[13px] text-foreground/85 leading-relaxed">
-                  2 рази на тиждень розвиваючі тренування по 1.5 години + 1 технічне + 1 Довгий заїзд у
-                  вихідні.
-                </p>
-              </div>
             </div>
 
             <div className="overflow-x-auto">
@@ -71,17 +65,17 @@ export default function TrainingPage() {
                 </thead>
                 <tbody className="text-foreground/90">
                   <tr className="border-b border-border/40">
-                    <td className="py-2 pr-3">Техніка</td>
+                    <td className="py-2 pr-3">Техніка (1 заняття на тиждень)</td>
                     <td className="py-2 pr-3">700 грн</td>
                     <td className="py-2">2500 грн</td>
                   </tr>
                   <tr className="border-b border-border/40">
-                    <td className="py-2 pr-3">Довге</td>
+                    <td className="py-2 pr-3">Довге (1 на тижні)</td>
                     <td className="py-2 pr-3">500 грн</td>
                     <td className="py-2">1800 грн</td>
                   </tr>
                   <tr className="border-b border-border/40">
-                    <td className="py-2 pr-3">Розвиваюче (вівторок/четвер)</td>
+                    <td className="py-2 pr-3">Розвиваюче (2 рази на тиждень)</td>
                     <td className="py-2 pr-3">400 грн</td>
                     <td className="py-2">3000 грн</td>
                   </tr>
