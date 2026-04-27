@@ -45,8 +45,8 @@ export default function TrainingPage() {
       </header>
 
       <section className="grid grid-cols-1 gap-5 lg:grid-cols-2 items-stretch">
-        <article className="rounded-2xl border border-border bg-card/80 p-5 card-hover card-accent-top h-full">
-          <div className="flex h-full flex-col gap-3">
+        <article className="rounded-2xl border border-border bg-card/80 p-5 card-hover card-accent-top">
+          <div className="flex flex-col gap-3">
             <div className="space-y-1">
               <p className="text-[12px] text-muted">XC</p>
               <h2 className="text-[18px] font-semibold text-foreground leading-tight">
@@ -88,7 +88,7 @@ export default function TrainingPage() {
               </table>
             </div>
 
-            <div className="mt-auto space-y-2">
+            <div className="space-y-2">
               <p className="text-[12px] text-muted">Абонемент діє 30 днів з моменту першого тренування.</p>
               <a
                 href="#training-right-blocks"
