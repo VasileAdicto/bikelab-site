@@ -52,16 +52,12 @@ export default function TrainingPage() {
               <h2 className="text-[18px] font-semibold text-foreground leading-tight">
                 Групові МТБ тренування
               </h2>
-              <p className="text-[13px] text-foreground/85 leading-relaxed">
-                2 рази на тиждень розвиваючі тренування по 1.5 години + 1 технічне + 1 Довгий заїзд у
-                вихідні.
-              </p>
-              <a
-                href="#training-right-blocks"
-                className="mt-2 inline-flex rounded-xl border border-accent/40 bg-accent-dim px-3 py-2 text-[12px] font-mono uppercase tracking-[0.12em] text-accent hover:border-accent/70"
-              >
-                Залишити заявку
-              </a>
+              <div className="overflow-x-auto scrollbar-hide">
+                <p className="whitespace-nowrap text-[13px] text-foreground/85 leading-relaxed">
+                  2 рази на тиждень розвиваючі тренування по 1.5 години + 1 технічне + 1 Довгий заїзд у
+                  вихідні.
+                </p>
+              </div>
             </div>
 
             <div className="overflow-x-auto">
@@ -99,6 +95,12 @@ export default function TrainingPage() {
             </div>
 
             <p className="text-[12px] text-muted">Абонемент діє 30 днів з моменту першого тренування.</p>
+            <a
+              href="#training-right-blocks"
+              className="inline-flex w-full justify-center rounded-xl border border-accent/40 bg-accent-dim px-3 py-2 text-[12px] font-mono uppercase tracking-[0.12em] text-accent hover:border-accent/70"
+            >
+              Залишити заявку
+            </a>
           </div>
         </article>
 
