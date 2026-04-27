@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { TrainingCard } from "@/components/training-card";
 
 const PAYMENT_LINK =
@@ -30,6 +33,70 @@ const featuredTrainings = [
 ];
 
 export default function TrainingPage() {
+  const [openGroupLead, setOpenGroupLead] = useState(false);
+  const [groupName, setGroupName] = useState("");
+  const [groupContact, setGroupContact] = useState("");
+  const [groupEmail, setGroupEmail] = useState("");
+  const [groupNote, setGroupNote] = useState("");
+  const [groupSending, setGroupSending] = useState(false);
+  const [groupStatus, setGroupStatus] = useState("");
+
+  function submitGroupLead() {
+    if (groupSending) return;
+    setGroupStatus("");
+    setGroupSending(true);
+
+    if (!groupName.trim() || (!groupContact.trim() && !groupEmail.trim())) {
+      setGroupStatus("Вкажіть ім'я та хоча б один контакт: телефон/Telegram або email.");
+      setGroupSending(false);
+      return;
+    }
+
+    const targetName = `formsubmit_group_${Date.now()}`;
+    const iframe = document.createElement("iframe");
+    iframe.name = targetName;
+    iframe.style.display = "none";
+    document.body.appendChild(iframe);
+
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "https://formsubmit.co/annavergeles@gmail.com";
+    form.target = targetName;
+    form.style.display = "none";
+
+    const fields: Record<string, string> = {
+      _subject: "Заявка на тренування: Групові МТБ тренування",
+      _captcha: "false",
+      _template: "table",
+      training: "Групові МТБ тренування",
+      name: groupName || "-",
+      contact: groupContact || "-",
+      email: groupEmail || "-",
+      note: groupNote || "-",
+    };
+
+    Object.entries(fields).forEach(([key, value]) => {
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.name = key;
+      input.value = value;
+      form.appendChild(input);
+    });
+
+    document.body.appendChild(form);
+    form.submit();
+    form.remove();
+    setTimeout(() => iframe.remove(), 10000);
+
+    setGroupStatus("Дякуємо! Заявка надіслана.");
+    setGroupName("");
+    setGroupContact("");
+    setGroupEmail("");
+    setGroupNote("");
+    setGroupSending(false);
+    setOpenGroupLead(false);
+  }
+
   return (
     <div className="space-y-10">
       <header className="space-y-4">
@@ -89,30 +156,75 @@ export default function TrainingPage() {
             </div>
 
             <p className="text-[12px] text-muted">Абонемент діє 30 днів з моменту першого тренування.</p>
+            {!openGroupLead ? (
+              <button
+                type="button"
+                onClick={() => setOpenGroupLead(true)}
+                className="inline-flex w-full justify-center rounded-xl border border-accent/40 bg-accent-dim px-3 py-2 text-[12px] font-mono uppercase tracking-[0.12em] text-accent hover:border-accent/70"
+              >
+                Залишити заявку
+              </button>
+            ) : (
+              <div className="space-y-2">
+                <input
+                  type="text"
+                  placeholder="Ваше ім'я"
+                  value={groupName}
+                  onChange={(e) => setGroupName(e.target.value)}
+                  className="w-full rounded-lg border border-border bg-background/70 px-3 py-2 text-[13px] text-foreground outline-none focus:border-accent/60"
+                />
+                <input
+                  type="text"
+                  placeholder="Телефон або Telegram"
+                  value={groupContact}
+                  onChange={(e) => setGroupContact(e.target.value)}
+                  className="w-full rounded-lg border border-border bg-background/70 px-3 py-2 text-[13px] text-foreground outline-none focus:border-accent/60"
+                />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={groupEmail}
+                  onChange={(e) => setGroupEmail(e.target.value)}
+                  className="w-full rounded-lg border border-border bg-background/70 px-3 py-2 text-[13px] text-foreground outline-none focus:border-accent/60"
+                />
+                <textarea
+                  placeholder="Коментар (необов'язково)"
+                  value={groupNote}
+                  onChange={(e) => setGroupNote(e.target.value)}
+                  rows={2}
+                  className="w-full resize-none rounded-lg border border-border bg-background/70 px-3 py-2 text-[13px] text-foreground outline-none focus:border-accent/60"
+                />
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={submitGroupLead}
+                    disabled={groupSending}
+                    className="flex-1 rounded-lg bg-accent px-3 py-2 text-[12px] font-mono uppercase tracking-[0.1em] text-white hover:bg-accent-bright"
+                  >
+                    {groupSending ? "Надсилаємо..." : "Надіслати"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setOpenGroupLead(false)}
+                    className="rounded-lg border border-border px-3 py-2 text-[12px] font-mono uppercase tracking-[0.1em] text-muted hover:text-foreground"
+                  >
+                    Скасувати
+                  </button>
+                </div>
+              </div>
+            )}
+            {groupStatus && <p className="text-[11px] text-foreground/80">{groupStatus}</p>}
           </div>
         </article>
 
         <div id="training-right-blocks" className="grid grid-cols-1 gap-5">
           {featuredTrainings.map((t, idx) => (
-            <div
-              key={t.title}
-              id={idx === 0 ? "training-request" : undefined}
-              className={idx === 0 ? "scroll-mt-40" : undefined}
-            >
+            <div key={t.title} id={idx === 0 ? "training-request" : undefined} className={idx === 0 ? "scroll-mt-40" : undefined}>
               <TrainingCard {...t} />
             </div>
           ))}
         </div>
       </section>
-
-      <div className="-mt-1">
-        <a
-          href="/training#training-request"
-          className="inline-flex w-full justify-center rounded-xl border border-accent/40 bg-accent-dim px-3 py-2 text-[12px] font-mono uppercase tracking-[0.12em] text-accent hover:border-accent/70"
-        >
-          Залишити заявку
-        </a>
-      </div>
 
       <section className="rounded-2xl border border-border bg-card/70 p-5 md:p-6 space-y-5 card-accent-top">
         <div className="space-y-1">
