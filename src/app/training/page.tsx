@@ -155,7 +155,7 @@ export default function TrainingPage() {
               </table>
             </div>
 
-            <p className="text-[12px] text-muted">Абонемент діє 30 днів з моменту першого тренування.</p>
+            <p className="text-[12px] text-muted">Абонемент діє 4 тижні з моменту першого тренування.</p>
             {!openGroupLead ? (
               <button
                 type="button"
